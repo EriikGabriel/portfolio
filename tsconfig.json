@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": [
+      "ES6"
+    ],
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "rootDir": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@data/*": [
+        "./data/*"
+      ],
+      "@packages/*": [
+        "./packages/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ]
+    },
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
