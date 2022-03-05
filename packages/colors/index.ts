@@ -1,4 +1,3 @@
-// ´re
 const baseColors = {
   primary_base: "#F55A00",
   primary_100: "#FFA16A",

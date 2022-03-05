@@ -58,7 +58,7 @@ export const {
 
     fonts: {
       default: "Roboto, sans-serif",
-      cursive: "Rancho, sans-serif",
+      cursive: "Rancho, cursive",
       read: "Spectral, serif",
       code: "Fira Code, monospace",
     },
@@ -82,6 +82,7 @@ export const {
       sm: "5px",
       md: "10px",
       lg: "20px",
+      full: "9999px",
       rounded: "100%",
     },
   },

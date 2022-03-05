@@ -13,9 +13,7 @@ const Home: React.FC = () => {
         ogImageUrl={siteMetadata.siteLogo}
         ogType="website"
       />
-      <div>
-        <h1>Home Page</h1>
-      </div>
+      <div></div>
     </>
   );
 };
