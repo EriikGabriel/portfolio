@@ -10,7 +10,7 @@ export default class Document extends NextDocument {
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="robots" content="index, follow" />
-          <link rel="icon" type="image/png" href="/images/favicon.png" />
+          <link rel="icon" type="image/png" href="/assets/logo/logo-fill.svg" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
