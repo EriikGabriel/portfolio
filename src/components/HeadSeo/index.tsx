@@ -13,7 +13,15 @@ type HeadSeoProps = {
   children?: ReactNode;
 };
 
-const HeadSeo = ({ title, description, canonicalUrl, ogTwitterImage, ogType, ogImageUrl, children }: HeadSeoProps) => {
+const HeadSeo: React.FC<HeadSeoProps> = ({
+  title,
+  description,
+  canonicalUrl,
+  ogTwitterImage,
+  ogType,
+  ogImageUrl,
+  children,
+}) => {
   return (
     <Head>
       {/* basic metadata */}
