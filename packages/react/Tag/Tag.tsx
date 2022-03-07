@@ -1,5 +1,5 @@
-import { Tag as TagCSS } from "@packages/styles";
-import { styled } from "@packages/web";
+import { Tag as TagCSS } from "../../styles";
+import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
 const StyledTag = styled("span", TagCSS);

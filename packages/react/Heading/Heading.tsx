@@ -1,5 +1,5 @@
-import { Heading as HeadingCSS } from "@packages/styles";
-import { styled } from "@packages/web";
+import { Heading as HeadingCSS } from "../../styles";
+import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
 const StyledHeading = styled("h1", HeadingCSS);

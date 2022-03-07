@@ -2,8 +2,8 @@ import {
   IconButton as IconButtonCSS,
   ButtonLabel as ButtonLabelCSS,
   Spinner as SpinnerCSS,
-} from "@packages/styles";
-import { styled } from "@packages/web";
+} from "../../styles";
+import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
 const StyledIconButton = styled("button", IconButtonCSS);

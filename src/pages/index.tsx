@@ -1,8 +1,6 @@
 import React from "react";
 import HeadSeo from "src/components/HeadSeo/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
-import Text from "src/components/Text/Text";
-import Tag from "src/components/Tag/Tag";
 
 const Home: React.FC = () => {
   return (
@@ -15,17 +13,9 @@ const Home: React.FC = () => {
         ogImageUrl={siteMetadata.siteLogo}
         ogType="website"
       />
-      <div
-        style={{
-          background: "#3C3C3D",
-          padding: 0,
-          margin: 0,
-          height: "97vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      ></div>
+      <body>
+        <section></section>
+      </body>
     </>
   );
 };

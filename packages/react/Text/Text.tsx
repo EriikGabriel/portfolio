@@ -1,5 +1,5 @@
-import { Text as TextCSS } from "@packages/styles";
-import { styled } from "@packages/web";
+import { Text as TextCSS } from "../../styles";
+import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
 const StyledText = styled("p", TextCSS);
