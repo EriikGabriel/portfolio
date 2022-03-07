@@ -11,21 +11,6 @@ export const Button = css({
     cursor: "not-allowed",
   },
 
-  span: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "$white",
-    fontFamily: "$default",
-    fontWeight: "bold",
-    gap: "$3",
-
-    svg: {
-      height: "$4",
-      width: "$4",
-    },
-  },
-
   variants: {
     variant: {
       primary: {
