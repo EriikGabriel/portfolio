@@ -2,8 +2,6 @@ import React from "react";
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
 
-import { Scene } from "src/components/Scene";
-
 const Home: React.FC = () => {
   return (
     <>
@@ -15,9 +13,7 @@ const Home: React.FC = () => {
         ogImageUrl={siteMetadata.siteLogo}
         ogType="website"
       />
-      <body>
-        <Scene />
-      </body>
+      <body></body>
     </>
   );
 };
