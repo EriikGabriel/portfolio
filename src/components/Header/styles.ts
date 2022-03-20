@@ -5,38 +5,57 @@ export const Container = styled(motion.header, {
   position: "fixed",
   top: 0,
   left: 0,
-
+  height: "100%",
+  width: "100%",
+  backgroundColor: "$secondary_base",
   display: "flex",
-  justifyContent: "space-evenly",
+  justifyContent: "flex-end",
   alignItems: "center",
-  width: "100vw",
-  height: "$20",
   fontSize: "$sm",
+  transition: "1s",
 
   "&.transparentHeader": {
     boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.3)",
     backdropFilter: "blur(10px)",
   },
 
+  "> div:first-child": {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 100,
+    height: 100,
+    transition: "1s",
+    zIndex: 1001,
+
+    ".logo": {
+      width: "100%",
+      height: "100%",
+
+      path: {
+        stroke: "$primary_base",
+        strokeWidth: 3,
+        strokeLinejoin: "round",
+        strokeLinecap: "round",
+      },
+    },
+  },
+
   "> nav": {
+    position: "relative",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
+    paddingRight: "5rem",
     alignItems: "center",
     flexWrap: "wrap",
     width: "100%",
-    px: "$12",
+    height: "100%",
+    transition: "1s",
 
-    ".logo": {
-      width: 50,
-      height: 50,
-
-      path: {
-        fill: "$primary_base",
-      },
-    },
-
-    "div:nth-child(2)": {
+    "div:nth-child(1)": {
       display: "flex",
+      position: "relative",
       alignItems: "center",
       justifyContent: "center",
       fontFamily: "Fira Code, sans-serif",
@@ -79,18 +98,37 @@ export const Container = styled(motion.header, {
       },
     },
 
-    "div:last-child": {
+    "div:nth-child(2)": {
       display: "none",
     },
 
     //* Breakpoints *//
     "@sm": {
-      "div:nth-child(2)": {
+      paddingRight: "2rem",
+
+      "div:nth-child(1)": {
         display: "none",
       },
 
-      "div:last-child": {
+      "div:nth-child(2)": {
         display: "block",
+      },
+    },
+  },
+
+  "&.header": {
+    backgroundColor: "transparent",
+    height: "$20",
+
+    "> div:first-child": {
+      left: "5rem",
+      width: 50,
+      height: 50,
+      transition: "1s",
+
+      //* Breakpoints *//
+      "@sm": {
+        left: "3rem",
       },
     },
   },

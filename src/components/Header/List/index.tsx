@@ -1,24 +1,75 @@
 import Button from "@packages/react/Button/Button";
 import React from "react";
 
+import { m, LazyMotion, domAnimation } from "framer-motion";
+
+const liVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+  hidden: {
+    opacity: 0,
+    y: -20,
+  },
+};
+
 export const List: React.FC = () => {
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <ul>
-        <li>
+        <m.li
+          variants={liVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 0.8,
+          }}
+        >
           <a href="#">Quem sou</a>
-        </li>
-        <li>
+        </m.li>
+        <m.li
+          variants={liVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 0.9,
+          }}
+        >
           <a href="#">Skills</a>
-        </li>
-        <li>
+        </m.li>
+        <m.li
+          variants={liVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 1,
+          }}
+        >
           <a href="#">Projetos</a>
-        </li>
-        <li>
+        </m.li>
+        <m.li
+          variants={liVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 1.1,
+          }}
+        >
           <a href="#">Conecte-se</a>
-        </li>
+        </m.li>
       </ul>
-      <Button outlined>Currículo</Button>
-    </>
+      <Button
+        variants={liVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{
+          delay: 1.2,
+        }}
+        outlined
+      >
+        Currículo
+      </Button>
+    </LazyMotion>
   );
 };

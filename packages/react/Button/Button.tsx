@@ -5,8 +5,9 @@ import {
 } from "../../styles";
 import { styled } from "../../web";
 import React, { forwardRef } from "react";
+import { m } from "framer-motion";
 
-const StyledButton = styled("button", ButtonCSS);
+const StyledButton = styled(m.button, ButtonCSS);
 const ButtonLabel = styled("span", ButtonLabelCSS);
 const Spinner = styled("span", SpinnerCSS);
 
