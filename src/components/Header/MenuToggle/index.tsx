@@ -1,10 +1,12 @@
-import { motion } from "framer-motion";
+import React from "react";
+
 import { styled } from "@packages/web";
 import { theme } from "@packages/web";
-import React, { forwardRef } from "react";
 import IconButton from "@packages/react/Button/IconButton";
 
-type PathProps = React.ComponentProps<typeof motion.path>;
+import { m } from "framer-motion";
+
+type PathProps = React.ComponentProps<typeof m.path>;
 type MenuToggleProps = {
   toggle: () => void;
   isOpen: boolean;
@@ -18,12 +20,7 @@ const Button = styled(IconButton, {
 });
 
 const Path: React.FC<PathProps> = props => (
-  <motion.path
-    fill="transparent"
-    strokeLinecap="round"
-    strokeWidth="3"
-    {...props}
-  />
+  <m.path fill="transparent" strokeLinecap="round" strokeWidth="3" {...props} />
 );
 
 const transition = { duration: 0.33 };

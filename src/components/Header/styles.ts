@@ -1,7 +1,7 @@
 import { styled } from "@packages/web";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
-export const Container = styled(motion.header, {
+export const Container = styled(m.header, {
   position: "fixed",
   top: 0,
   left: 0,
@@ -134,7 +134,7 @@ export const Container = styled(motion.header, {
   },
 });
 
-export const Menu = styled(motion.aside, {
+export const Menu = styled(m.aside, {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

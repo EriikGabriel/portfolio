@@ -1,7 +1,7 @@
 import Button from "@packages/react/Button/Button";
 import React from "react";
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m } from "framer-motion";
 
 const liVariants = {
   visible: {
@@ -16,7 +16,7 @@ const liVariants = {
 
 export const List: React.FC = () => {
   return (
-    <LazyMotion features={domAnimation}>
+    <>
       <ul>
         <m.li
           variants={liVariants}
@@ -70,6 +70,6 @@ export const List: React.FC = () => {
       >
         Currículo
       </Button>
-    </LazyMotion>
+    </>
   );
 };
