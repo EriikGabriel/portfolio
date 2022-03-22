@@ -58,7 +58,7 @@ export const Container = styled(m.header, {
       position: "relative",
       alignItems: "center",
       justifyContent: "center",
-      fontFamily: "Fira Code, sans-serif",
+      fontFamily: "$code",
       gap: 30,
 
       ul: {
@@ -87,7 +87,7 @@ export const Container = styled(m.header, {
 
       button: {
         span: {
-          fontFamily: "Fira Code, sans-serif",
+          fontFamily: "$code",
           fontWeight: "$regular",
           color: "$primary_base",
         },
@@ -139,7 +139,7 @@ export const Menu = styled(m.aside, {
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "$secondary_400",
-  fontFamily: "Fira Code, sans-serif",
+  fontFamily: "$code",
   fontSize: "$md",
   position: "fixed",
   zIndex: 1001,
@@ -191,7 +191,7 @@ export const Menu = styled(m.aside, {
       width: "60%",
 
       span: {
-        fontFamily: "Fira Code, sans-serif",
+        fontFamily: "$code",
         fontWeight: "$regular",
         fontSize: "$md",
         color: "$primary_base",
