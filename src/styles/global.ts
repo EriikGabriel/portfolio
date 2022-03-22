@@ -1,3 +1,4 @@
+import { transparentize } from "polished";
 import { globalCss } from "@packages/web";
 
 export const globalStyles = globalCss({
@@ -18,5 +19,18 @@ export const globalStyles = globalCss({
 
   ul: {
     listStyle: "none",
+  },
+
+  "::-webkit-scrollbar": {
+    width: 8,
+  },
+
+  "::-webkit-scrollbar-track": {
+    background: "transparent",
+  },
+
+  "::-webkit-scrollbar-thumb": {
+    background: transparentize(0.6, "#FF5A00"),
+    borderRadius: "$sm",
   },
 });

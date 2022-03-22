@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
     const body = document.querySelector("body") as HTMLBodyElement;
     const header = document.querySelector("header") as HTMLHeadingElement;
 
-    const LOADER_DURATION_MILLISECONDS = 4 * 1000; // Padrão: min 4s
+    const LOADER_DURATION_MILLISECONDS = 0.5 * 1000; // Padrão: min 4s
 
     body.style.overflow = "hidden";
 
