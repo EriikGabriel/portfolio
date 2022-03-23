@@ -93,6 +93,7 @@ export const {
     lg: "(max-width: 62em)",
     xl: "(max-width: 80em)",
     xxl: "(max-width: 96em)",
+    xxxl: "(max-width: 160em)",
   },
 
   utils: {

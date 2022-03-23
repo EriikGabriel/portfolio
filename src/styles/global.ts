@@ -1,5 +1,11 @@
 import { transparentize } from "polished";
-import { globalCss } from "@packages/web";
+import { globalCss, keyframes } from "@packages/web";
+
+const blink = keyframes({
+  "50%": {
+    opacity: 0,
+  },
+});
 
 export const globalStyles = globalCss({
   "*": { margin: 0, padding: 0, boxSizing: "border-box" },
@@ -19,6 +25,15 @@ export const globalStyles = globalCss({
 
   ul: {
     listStyle: "none",
+  },
+
+  ".end-cursor:after": {
+    content: "|",
+    color: "$white",
+  },
+
+  ".end-cursor.blinking:after": {
+    animation: `${blink} 1s step-start infinite`,
   },
 
   "::-webkit-scrollbar": {

@@ -1,3 +1,4 @@
+import { transparentize } from "polished";
 import { styled } from "@packages/web";
 import { m } from "framer-motion";
 
@@ -92,8 +93,8 @@ export const Container = styled(m.header, {
           color: "$primary_base",
         },
 
-        "&:hover span": {
-          color: "$white",
+        "&:hover": {
+          backgroundColor: transparentize(0.9, "#F55A00"),
         },
       },
     },

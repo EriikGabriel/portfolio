@@ -40,7 +40,7 @@ const baseColors = {
 
 const aliases = {
   "text-title": baseColors.gray_200,
-  "text-base": baseColors.gray_100,
+  "text-base": baseColors.gray_300,
   "color-background": baseColors.secondary_base,
 };
 

@@ -1,8 +1,10 @@
 import { Text as TextCSS } from "../../styles";
-import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
-const StyledText = styled("p", TextCSS);
+import { m } from "framer-motion";
+import { styled } from "../../web";
+
+const StyledText = styled(m.p, TextCSS);
 
 type TextProps = React.ComponentProps<typeof StyledText>;
 

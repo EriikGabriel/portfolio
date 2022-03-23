@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { m, LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
 
 import { Container, Menu, Overlay } from "./styles";
 
 import { MenuToggle } from "./MenuToggle";
 import { List } from "./List";
+import { LoaderContext } from "src/contexts/LoaderContext";
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldShowHeader, setShouldShowHeader] = useState(true);
   const [lastYPos, setLastYPos] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  const { changeLoadingState, isLoading } = useContext(LoaderContext);
 
   const variantsSvg = {
     hidden: {
@@ -27,12 +29,12 @@ export const Header: React.FC = () => {
     const body = document.querySelector("body") as HTMLBodyElement;
     const header = document.querySelector("header") as HTMLHeadingElement;
 
-    const LOADER_DURATION_MILLISECONDS = 0.5 * 1000; // Padrão: min 4s
+    const LOADER_DURATION_MILLISECONDS = 4 * 1000; // Padrão: min 4s
 
     body.style.overflow = "hidden";
 
     const timeout = setTimeout(() => {
-      setIsLoading(false);
+      changeLoadingState();
       body.style.overflow = "visible";
       header.classList.add("header");
     }, LOADER_DURATION_MILLISECONDS);

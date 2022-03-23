@@ -1,8 +1,10 @@
-import { Heading as HeadingCSS } from "../../styles";
-import { styled } from "../../web";
 import React, { forwardRef } from "react";
 
-const StyledHeading = styled("h1", HeadingCSS);
+import { Heading as HeadingCSS } from "../../styles";
+import { styled } from "../../web";
+import { m } from "framer-motion";
+
+const StyledHeading = styled(m.h1, HeadingCSS);
 
 type HeadingProps = React.ComponentProps<typeof StyledHeading>;
 

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
 
 import { Header } from "src/components/Header";
 import { Main } from "src/styles/style";
+import { Introduction } from "src/components/Sections/Introduction";
+import { LazyMotion, domAnimation } from "framer-motion";
+import { LoaderContext } from "src/contexts/LoaderContext";
 
 const Home: React.FC = () => {
+  const { isLoading } = useContext(LoaderContext);
+
   return (
     <>
       <HeadSeo
@@ -18,9 +23,9 @@ const Home: React.FC = () => {
       />
 
       <Header />
-      <Main>
-        <h1>Main</h1>
-      </Main>
+      <LazyMotion features={domAnimation}>
+        <Main>{!isLoading && <Introduction />}</Main>
+      </LazyMotion>
     </>
   );
 };
