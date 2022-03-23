@@ -1,5 +1,5 @@
 import { transparentize } from "polished";
-import { keyframes, styled } from "@packages/web";
+import { styled } from "@packages/web";
 
 export const Container = styled("section", {
   display: "flex",
@@ -26,8 +26,13 @@ export const Container = styled("section", {
   },
 
   div: {
-    "h1:first-child": {
+    "h1:first-child > div span": {
       fontSize: "$8xl",
+      width: "52vw",
+
+      "@sm": {
+        width: "85vw",
+      },
     },
 
     "h1:last-child": {

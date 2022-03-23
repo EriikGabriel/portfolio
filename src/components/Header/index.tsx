@@ -8,11 +8,11 @@ import { List } from "./List";
 import { LoaderContext } from "src/contexts/LoaderContext";
 
 export const Header: React.FC = () => {
+  const { changeLoadingState, isLoading } = useContext(LoaderContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const [shouldShowHeader, setShouldShowHeader] = useState(true);
   const [lastYPos, setLastYPos] = useState(0);
-  // const [isLoading, setIsLoading] = useState(true);
-  const { changeLoadingState, isLoading } = useContext(LoaderContext);
 
   const variantsSvg = {
     hidden: {

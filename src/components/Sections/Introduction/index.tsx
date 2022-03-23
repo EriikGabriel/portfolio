@@ -6,10 +6,11 @@ import cn from "classnames";
 
 import { TypeStage, useTypedText } from "src/hooks/useTypedText";
 import { Container } from "./styles";
+import GlitchEffect from "src/components/GlitchEffect";
 
 export const Introduction: React.FC = () => {
   const { typedText, selectedTexts, stage, hideCursor } = useTypedText({
-    texts: ["Olá meu nome é"],
+    texts: ["Olá, meu nome é"],
     idleInterval: 2600,
   });
 
@@ -39,15 +40,19 @@ export const Introduction: React.FC = () => {
       >
         {typedText}
       </Text>
+
       <div>
         <Heading
           size="2xl"
-          initial="hidden"
-          animate="visible"
-          variants={introductionVariants}
-          transition={{ delay: 1.9 }}
+          initial={{ display: "none" }}
+          animate={{ display: "block" }}
+          transition={{
+            delay: 1.7,
+          }}
         >
-          Erik Gabriel.
+          <GlitchEffect>
+            <span>Erik Gabriel.</span>
+          </GlitchEffect>
         </Heading>
         <Heading
           size="xl"
