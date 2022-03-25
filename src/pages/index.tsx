@@ -7,6 +7,7 @@ import { Main } from "src/styles/style";
 import { Introduction } from "src/components/Sections/Introduction";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
+import About from "src/components/Sections/About";
 
 const Home: React.FC = () => {
   const { isLoading } = useContext(LoaderContext);
@@ -24,7 +25,14 @@ const Home: React.FC = () => {
 
       <Header />
       <LazyMotion features={domAnimation}>
-        <Main>{!isLoading && <Introduction />}</Main>
+        <Main>
+          {!isLoading && (
+            <>
+              <Introduction />
+              <About />
+            </>
+          )}
+        </Main>
       </LazyMotion>
     </>
   );

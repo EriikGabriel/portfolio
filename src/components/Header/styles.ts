@@ -14,6 +14,7 @@ export const Container = styled(m.header, {
   alignItems: "center",
   fontSize: "$sm",
   transition: "1s",
+  zIndex: 500,
 
   "&.transparentHeader": {
     boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.3)",

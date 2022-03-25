@@ -34,6 +34,7 @@ const glitch = keyframes({
 export const Container = styled("div", {
   display: "grid",
   gridTemplateColumns: 1,
+  userSelect: "none",
 
   "> span": {
     gridRowStart: 1,

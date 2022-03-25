@@ -16,9 +16,7 @@ export const Container = styled("section", {
   "> p:last-of-type": {
     maxWidth: "540px",
 
-    "@md": {
-      maxWidth: "400px",
-    },
+    "@md": { maxWidth: "400px" },
   },
 
   "p span": {
@@ -30,9 +28,7 @@ export const Container = styled("section", {
       fontSize: "$8xl",
       width: "52vw",
 
-      "@sm": {
-        width: "85vw",
-      },
+      "@sm": { width: "85vw" },
     },
 
     "h1:last-child": {

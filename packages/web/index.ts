@@ -88,6 +88,8 @@ export const {
   },
 
   media: {
+    xxs: "(max-width: 20em)",
+    xs: "(max-width: 24em)",
     sm: "(max-width: 30em)",
     md: "(max-width: 48em)",
     lg: "(max-width: 62em)",

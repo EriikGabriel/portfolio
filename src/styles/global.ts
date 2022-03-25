@@ -29,7 +29,6 @@ export const globalStyles = globalCss({
 
   ".end-cursor:after": {
     content: "|",
-    color: "$white",
   },
 
   ".end-cursor.blinking:after": {
