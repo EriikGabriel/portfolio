@@ -19,7 +19,6 @@
     "paths": {
       "@data/*": ["./data/*"],
       "@packages/*": ["./packages/*"],
-      "@exports/*": ["./src/exports/*"],
       "@config/*": ["./src/config/*"]
     },
     "allowJs": true,

@@ -24,7 +24,7 @@ import {
   GitHubIcon,
   PhpIcon,
   BootstrapIcon,
-} from "@exports/icons";
+} from "../../../exports/icons";
 
 import { Container } from "./styles";
 
