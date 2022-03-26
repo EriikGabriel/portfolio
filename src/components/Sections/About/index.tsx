@@ -19,14 +19,8 @@ export const About: React.FC = () => {
   });
 
   const aboutVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -68,7 +62,7 @@ export const About: React.FC = () => {
           <span></span>
           <div>
             <Image
-              src="/assets/me.jpg"
+              src="/assets/images/me.jpg"
               alt="Minha foto de rosto"
               layout="fill"
               objectFit="cover"
@@ -96,5 +90,3 @@ export const About: React.FC = () => {
     </Container>
   );
 };
-
-export default About;

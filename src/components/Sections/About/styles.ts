@@ -51,6 +51,8 @@ export const Container = styled("section", {
     width: "10vw",
     height: 1,
     backgroundColor: "$gray_400",
+
+    "@xs": { display: "none" },
   },
 
   "> div:last-child": {

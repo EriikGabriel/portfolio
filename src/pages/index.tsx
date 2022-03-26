@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
 
-import { Header } from "src/components/Header";
 import { Main } from "src/styles/style";
+
+import { Header } from "src/components/Header";
 import { Introduction } from "src/components/Sections/Introduction";
+import { About } from "src/components/Sections/About";
+import { Skills } from "src/components/Sections/Skills";
+
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
-import About from "src/components/Sections/About";
 
 const Home: React.FC = () => {
   const { isLoading } = useContext(LoaderContext);
@@ -30,6 +33,7 @@ const Home: React.FC = () => {
             <>
               <Introduction />
               <About />
+              <Skills />
             </>
           )}
         </Main>
