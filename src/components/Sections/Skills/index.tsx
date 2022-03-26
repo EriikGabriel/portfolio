@@ -7,22 +7,24 @@ import { TypeStage, useTypedText } from "src/hooks/useTypedText";
 import { m } from "framer-motion";
 import cn from "classnames";
 
-import HtmlIcon from "../../../../public/assets/icons/html5.svg";
-import CssIcon from "../../../../public/assets/icons/css3.svg";
-import SassIcon from "../../../../public/assets/icons/sass.svg";
-import JavascriptIcon from "../../../../public/assets/icons/javascript.svg";
-import TypescriptIcon from "../../../../public/assets/icons/typescript.svg";
-import NextIcon from "../../../../public/assets/icons/nextjs.svg";
-import ReactIcon from "../../../../public/assets/icons/reactjs.svg";
-import UnityIcon from "../../../../public/assets/icons/unity.svg";
-import CSharpIcon from "../../../../public/assets/icons/csharp.svg";
-import NodeIcon from "../../../../public/assets/icons/nodejs.svg";
-import MysqlIcon from "../../../../public/assets/icons/mysql.svg";
-import FigmaIcon from "../../../../public/assets/icons/figma.svg";
-import GitIcon from "../../../../public/assets/icons/git.svg";
-import GitHubIcon from "../../../../public/assets/icons/github.svg";
-import PhpIcon from "../../../../public/assets/icons/php.svg";
-import BootstrapIcon from "../../../../public/assets/icons/bootstrap.svg";
+import {
+  HtmlIcon,
+  CssIcon,
+  SassIcon,
+  JavascriptIcon,
+  TypescriptIcon,
+  NextIcon,
+  ReactIcon,
+  UnityIcon,
+  CSharpIcon,
+  NodeIcon,
+  MysqlIcon,
+  FigmaIcon,
+  GitIcon,
+  GitHubIcon,
+  PhpIcon,
+  BootstrapIcon,
+} from "@exports/icons";
 
 import { Container } from "./styles";
 
