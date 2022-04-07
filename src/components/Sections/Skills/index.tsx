@@ -57,6 +57,7 @@ export const Skills: React.FC = () => {
             Minhas <span>skills</span>
           </Heading>
           <Text
+            size="sm"
             className={cn({
               ["end-cursor"]:
                 sectionText.stage !== TypeStage.Deleting &&

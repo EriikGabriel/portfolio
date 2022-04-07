@@ -37,6 +37,7 @@ export const globalStyles = globalCss({
 
   "::-webkit-scrollbar": {
     width: 8,
+    height: 8,
   },
 
   "::-webkit-scrollbar-track": {

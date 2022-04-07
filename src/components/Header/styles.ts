@@ -77,7 +77,6 @@ export const Container = styled(m.header, {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-
           height: 40,
 
           "&:hover a": {

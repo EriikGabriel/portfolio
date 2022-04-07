@@ -75,6 +75,7 @@ export const Container = styled("section", {
       p: {
         fontFamily: "$code",
         textAlign: "center",
+        fontWeight: "$bold",
         textTransform: "uppercase",
 
         "@md": { fontSize: "$sm" },
