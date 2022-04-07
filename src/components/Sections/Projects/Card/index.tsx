@@ -6,6 +6,7 @@ import Tag from "@packages/react/Tag/Tag";
 
 import { GitHub, Eye } from "react-feather";
 import { Container } from "./styles";
+import { m } from "framer-motion";
 
 type CardProps = {
   children: ReactNode;

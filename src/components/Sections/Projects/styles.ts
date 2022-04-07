@@ -46,6 +46,7 @@ export const Container = styled("section", {
 
       a: {
         textDecoration: "underline",
+        color: "$white",
         fontWeight: "bold",
         padding: 0,
       },

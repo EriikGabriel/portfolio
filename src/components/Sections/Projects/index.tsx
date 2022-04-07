@@ -33,11 +33,19 @@ export const Projects: React.FC = () => {
       x: ["0vw", "35vw"],
     },
   };
+
   const smallCircleVariants = {
     hidden: { y: 0, x: 0 },
     visible: {
       y: [0, 400, 0],
       x: ["0vw", "-35vw", "4vw", "-35vw", "0vw"],
+    },
+  };
+
+  const CardVariants = {
+    hidden: { scale: 0 },
+    visible: {
+      scale: 1,
     },
   };
 
@@ -91,24 +99,45 @@ export const Projects: React.FC = () => {
           }}
         />
         <Carousel>
-          <Card
-            imageSrc=""
-            githubUrl="#"
-            deployUrl="#"
-            tags={["Aplicativo Web", "React"]}
+          <m.div
+            variants={CardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
           >
-            Do it!
-          </Card>
-          <Card
-            imageSrc=""
-            githubUrl="#"
-            deployUrl="#"
-            tags={["Aplicativo Web", "React"]}
+            <Card
+              imageSrc=""
+              githubUrl="#"
+              deployUrl="#"
+              tags={["Aplicativo Web", "React"]}
+            >
+              Do it!
+            </Card>
+          </m.div>
+          <m.div
+            variants={CardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
           >
-            Do it!
-          </Card>
+            <Card
+              imageSrc=""
+              githubUrl="#"
+              deployUrl="#"
+              tags={["Aplicativo Web", "React"]}
+            >
+              CanLearn!
+            </Card>
+          </m.div>
         </Carousel>
-        <Text>
+        <Text
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
           Para ver mais projetos acesse meu{" "}
           <Link href="https://github.com/EriikGabriel">Github</Link>
         </Text>
