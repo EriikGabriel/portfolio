@@ -13,6 +13,7 @@ import { Connect } from "src/components/Sections/Connect";
 
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
+import { Footer } from "src/components/Footer";
 
 const Home: React.FC = () => {
   const { isLoading } = useContext(LoaderContext);
@@ -41,6 +42,7 @@ const Home: React.FC = () => {
             </>
           )}
         </Main>
+        {!isLoading && <Footer />}
       </LazyMotion>
     </>
   );
