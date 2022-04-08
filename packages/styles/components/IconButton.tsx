@@ -1,5 +1,4 @@
 import { css } from "@packages/web";
-import { relative } from "node:path/win32";
 
 export const IconButton = css({
   cursor: "pointer",

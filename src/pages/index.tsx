@@ -9,6 +9,7 @@ import { Introduction } from "src/components/Sections/Introduction";
 import { About } from "src/components/Sections/About";
 import { Skills } from "src/components/Sections/Skills";
 import { Projects } from "src/components/Sections/Projects";
+import { Connect } from "src/components/Sections/Connect";
 
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
               <About />
               <Skills />
               <Projects />
+              <Connect />
             </>
           )}
         </Main>
