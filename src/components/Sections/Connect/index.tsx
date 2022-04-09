@@ -35,7 +35,7 @@ export const Connect: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container id="connect">
       <m.div
         variants={connectVariants}
         initial="hidden"

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
 
@@ -17,6 +17,18 @@ import { Footer } from "src/components/Footer";
 
 const Home: React.FC = () => {
   const { isLoading } = useContext(LoaderContext);
+
+  useEffect(() => {
+    if (location.hash) {
+      const timeout = setTimeout(() => {
+        document.querySelector(`${location.hash}`)?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 1.5 * 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isLoading]);
 
   return (
     <>

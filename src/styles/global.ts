@@ -8,7 +8,12 @@ const blink = keyframes({
 });
 
 export const globalStyles = globalCss({
-  "*": { margin: 0, padding: 0, boxSizing: "border-box" },
+  "*": {
+    margin: 0,
+    padding: 0,
+    boxSizing: "border-box",
+    scrollBehavior: "smooth",
+  },
 
   body: {
     fontFamily: "$default",

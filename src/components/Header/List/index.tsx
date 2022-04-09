@@ -26,7 +26,7 @@ export const List: React.FC = () => {
             delay: 0.8,
           }}
         >
-          <a href="#">Quem sou</a>
+          <a href="#about">Quem sou</a>
         </m.li>
         <m.li
           variants={liVariants}
@@ -36,7 +36,7 @@ export const List: React.FC = () => {
             delay: 0.9,
           }}
         >
-          <a href="#">Skills</a>
+          <a href="#skills">Skills</a>
         </m.li>
         <m.li
           variants={liVariants}
@@ -46,7 +46,7 @@ export const List: React.FC = () => {
             delay: 1,
           }}
         >
-          <a href="#">Projetos</a>
+          <a href="#projects">Projetos</a>
         </m.li>
         <m.li
           variants={liVariants}
@@ -56,7 +56,7 @@ export const List: React.FC = () => {
             delay: 1.1,
           }}
         >
-          <a href="#">Conecte-se</a>
+          <a href="#connect">Conecte-se</a>
         </m.li>
       </ul>
       <Button

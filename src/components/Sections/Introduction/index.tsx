@@ -75,6 +75,11 @@ export const Introduction: React.FC = () => {
         transition={{ delay: 2.2 }}
         size="lg"
         outlined
+        onClick={() => {
+          document.getElementById("projects")?.scrollIntoView({
+            block: "center",
+          });
+        }}
       >
         Veja meus projetos!
       </Button>

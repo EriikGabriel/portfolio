@@ -24,7 +24,7 @@ export const About: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container id="about">
       <m.div
         variants={aboutVariants}
         initial="hidden"
@@ -66,6 +66,7 @@ export const About: React.FC = () => {
               alt="Minha foto de rosto"
               layout="fill"
               objectFit="cover"
+              priority
             />
           </div>
         </m.div>

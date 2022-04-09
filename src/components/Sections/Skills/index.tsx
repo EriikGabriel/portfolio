@@ -43,7 +43,7 @@ export const Skills: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container id="skills">
       <m.div
         variants={skillsVariants}
         initial="hidden"
