@@ -11,6 +11,10 @@ export const Container = styled("section", {
     alignItems: "center",
     textAlign: "center",
 
+    div: {
+      minWidth: "50%",
+    },
+
     h1: {
       letterSpacing: 3,
       fontSize: "$5xl",
@@ -32,7 +36,6 @@ export const Container = styled("section", {
   "> div:first-child::before, > div:first-child::after": {
     content: "",
     margin: "0 20px",
-    display: "inline",
     width: "10vw",
     height: 1,
     backgroundColor: "$gray_400",

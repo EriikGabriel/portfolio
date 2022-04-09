@@ -30,6 +30,10 @@ export const Container = styled("section", {
     alignItems: "center",
     textAlign: "center",
 
+    div: {
+      minWidth: "50%",
+    },
+
     h1: {
       letterSpacing: 3,
       fontSize: "$5xl",

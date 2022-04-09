@@ -19,7 +19,7 @@ export const Connect: React.FC = () => {
 
   const sectionText = useTypedText({
     texts: ["Para quem deseja entrar em contato comigo"],
-    typingInterval: 100,
+    typingInterval: 80,
     startTyping,
   });
 
