@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
 
+import { Container, BigCircle, SmallCircle } from "./styles";
 import { TypeStage, useTypedText } from "src/hooks/useTypedText";
 import { Carousel } from "./Carousel";
 import { Card } from "./Card";
 import { m } from "framer-motion";
-import cn from "classnames";
 
-import { Container, BigCircle, SmallCircle } from "./styles";
 import Link from "next/link";
+import cn from "classnames";
+import axios from "axios";
 
 export const Projects: React.FC = () => {
   const [startTyping, setStartTyping] = useState(false);
@@ -48,6 +49,17 @@ export const Projects: React.FC = () => {
       scale: 1,
     },
   };
+
+  useEffect(() => {
+    axios
+      .get("/api/techs")
+      .then(techs => {
+        console.log(techs.data);
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
+  }, []);
 
   return (
     <Container id="projects">

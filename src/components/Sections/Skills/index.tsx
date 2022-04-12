@@ -27,6 +27,7 @@ import {
 } from "../../../exports/icons";
 
 import { Container } from "./styles";
+import Image from "next/image";
 
 export const Skills: React.FC = () => {
   const [startTyping, setStartTyping] = useState(false);
@@ -78,7 +79,15 @@ export const Skills: React.FC = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <HtmlIcon />
+          <div
+            style={{
+              position: "relative",
+              width: 50,
+              height: 50,
+            }}
+          >
+            <Image src={"/html5.svg"} layout="fill" />
+          </div>
           <Text size="xs">HTML5</Text>
         </m.div>
         <m.div
