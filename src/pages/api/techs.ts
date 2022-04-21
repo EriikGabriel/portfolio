@@ -1,31 +1,27 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import mongoose from "mongoose";
+
+import { mongoose, connectToDatabase } from "@config/database";
 
 interface ITechs {
-  _doc: {
-    techs: string[];
-  };
-}
-
-async function connectToDatabase(uri: string) {
-  mongoose
-    .connect(uri)
-    .then(() => console.log("✅ Database successfully connected!"))
-    .catch(error => {
-      throw new Error(`❌ Error connecting to database: ${error}.`);
-    });
+  techs: string[];
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectToDatabase(process.env.MONGODB_URI ?? "");
+  await connectToDatabase();
 
-  const techsSchema = new mongoose.Schema({}, { collection: "techs" });
-
-  const techs = mongoose.models.techs || mongoose.model("techs", techsSchema);
-
-  techs.findOne({}, (error: string, techs: ITechs) => {
-    if (error) throw error;
-
-    return res.json(techs["_doc"].techs);
+  const TechsSchema = new mongoose.Schema({
+    techs: { type: Array, required: true },
   });
+
+  const techsModel =
+    mongoose.models.techs || mongoose.model("techs", TechsSchema);
+
+  const techs: ITechs = await techsModel
+    .findOne({})
+    .exec()
+    .catch(err => {
+      throw new Error(`Erro: ${err}`);
+    });
+
+  res.send(techs);
 };

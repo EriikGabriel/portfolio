@@ -45,9 +45,7 @@ export const Projects: React.FC = () => {
 
   const CardVariants = {
     hidden: { scale: 0 },
-    visible: {
-      scale: 1,
-    },
+    visible: { scale: 1 },
   };
 
   useEffect(() => {
