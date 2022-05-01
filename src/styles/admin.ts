@@ -156,3 +156,10 @@ export const ToastContent = styled("div", {
 });
 
 export const CheckIndicator = styled(CheckboxPrimitive.Indicator, {});
+
+export const Container = styled("div", {
+  height: "100vh",
+  width: "100vw",
+  backgroundColor: "red",
+  background: "$secondary_base",
+});

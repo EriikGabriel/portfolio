@@ -8,13 +8,20 @@ import HeadSeo from "src/components/HeadSeo";
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { CheckboxIndicator } from "@radix-ui/react-checkbox";
-import { Checkbox, LoginBox, Label, ToastContent } from "src/styles/admin";
 import { Check, XCircle } from "react-feather";
+import { Toast } from "src/components/Toast";
+import {
+  Checkbox,
+  LoginBox,
+  Label,
+  ToastContent,
+  Container,
+} from "src/styles/admin";
 
 import axios from "axios";
-import { Toast } from "src/components/Toast";
+import { Menu } from "src/components/Menu";
 
-type adminDataType = {
+export type AdminDataType = {
   _id: string;
   username: string;
 };
@@ -37,12 +44,12 @@ const Admin: React.FC = () => {
     axios
       .post("/api/admins", { username, password, rememberMe })
       .then(admin => {
-        const data: adminDataType = admin.data;
+        const data: AdminDataType = admin.data;
         if (data) {
           if (rememberMe) {
             localStorage.setItem(
               "@portfolio:adminData",
-              JSON.stringify({ id: data._id, username: data.username })
+              JSON.stringify({ _id: data._id, username: data.username })
             );
           }
           setLoginData(data);
@@ -64,9 +71,9 @@ const Admin: React.FC = () => {
         ogType="website"
       />
       {Object.entries(loginData).length !== 0 ? (
-        <>
-          <h1>Admin Panel</h1>
-        </>
+        <Container>
+          <Menu />
+        </Container>
       ) : (
         <LoginBox>
           <m.div

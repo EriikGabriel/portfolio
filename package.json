@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.5",
     "@radix-ui/react-dialog": "^0.1.7",
+    "@radix-ui/react-dropdown-menu": "^0.1.6",
     "@radix-ui/react-hover-card": "^0.1.5",
     "@radix-ui/react-label": "^0.1.5",
     "@radix-ui/react-toast": "^0.1.1",
