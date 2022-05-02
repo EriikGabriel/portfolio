@@ -16,10 +16,12 @@ import {
   Label,
   ToastContent,
   Container,
+  Content,
 } from "src/styles/admin";
 
 import axios from "axios";
 import { Menu } from "src/components/Menu";
+import { PanelHeader } from "src/components/PanelHeader";
 
 export type AdminDataType = {
   _id: string;
@@ -73,6 +75,9 @@ const Admin: React.FC = () => {
       {Object.entries(loginData).length !== 0 ? (
         <Container>
           <Menu />
+          <Content>
+            <PanelHeader />
+          </Content>
         </Container>
       ) : (
         <LoginBox>

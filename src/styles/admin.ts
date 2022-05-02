@@ -163,3 +163,5 @@ export const Container = styled("div", {
   backgroundColor: "red",
   background: "$secondary_base",
 });
+
+export const Content = styled("div", { marginLeft: "20%" });
