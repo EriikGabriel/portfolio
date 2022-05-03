@@ -164,4 +164,10 @@ export const Container = styled("div", {
   background: "$secondary_base",
 });
 
-export const Content = styled("div", { marginLeft: "20%" });
+export const Content = styled("div", {
+  marginLeft: "20%",
+  minHeight: "100vh",
+
+  "@md": { marginLeft: "25%" },
+  "@sm": { marginLeft: 0, paddingBottom: "12vh" },
+});

@@ -5,7 +5,7 @@ export const Container = styled("header", {
   justifyContent: "end",
   alignItems: "center",
   paddingRight: "$10",
-  height: "$20",
+  height: "12vh",
 
   "@sm": { display: "none" },
 

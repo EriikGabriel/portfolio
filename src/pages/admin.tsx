@@ -10,6 +10,9 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 import { CheckboxIndicator } from "@radix-ui/react-checkbox";
 import { Check, XCircle } from "react-feather";
 import { Toast } from "src/components/Toast";
+import { Menu } from "src/components/Menu";
+import { PanelHeader } from "src/components/PanelHeader";
+import { Home } from "src/components/AdminPanel/Home";
 import {
   Checkbox,
   LoginBox,
@@ -20,8 +23,6 @@ import {
 } from "src/styles/admin";
 
 import axios from "axios";
-import { Menu } from "src/components/Menu";
-import { PanelHeader } from "src/components/PanelHeader";
 
 export type AdminDataType = {
   _id: string;
@@ -34,6 +35,7 @@ const Admin: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [openSignToast, setOpenSignToast] = useState(false);
   const [loginData, setLoginData] = useState({});
+  const [panelContent, setPanelContent] = useState("Home");
 
   useEffect(() => {
     const persistedData = localStorage.getItem("@portfolio:adminData");
@@ -62,6 +64,15 @@ const Admin: React.FC = () => {
       });
   }
 
+  function switchPanelContent(panelName: string) {
+    switch (panelName) {
+      case "Home":
+        return <Home />;
+      default:
+        return <Home />;
+    }
+  }
+
   return (
     <LazyMotion features={domAnimation}>
       <HeadSeo
@@ -77,6 +88,7 @@ const Admin: React.FC = () => {
           <Menu />
           <Content>
             <PanelHeader />
+            {switchPanelContent(panelContent)}
           </Content>
         </Container>
       ) : (

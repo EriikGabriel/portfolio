@@ -7,7 +7,7 @@ export const Container = styled("aside", {
   flexDirection: "column",
   alignItems: "center",
   position: "fixed",
-  top: 0,
+  bottom: 0,
   left: 0,
   width: "20%",
   height: "100%",
@@ -15,15 +15,17 @@ export const Container = styled("aside", {
   paddingTop: "$10",
   backgroundColor: "$secondary_400",
   borderRadius: "0 $lg $lg 0",
+  zIndex: 1000,
 
   "@md": { width: "25%" },
   "@sm": {
     flexDirection: "row",
     justifyContent: "center",
-    borderRadius: "0 0 $lg $lg",
+    borderRadius: "$lg $lg 0 0",
+    boxShadow: "rgba(100, 100, 111, 0.2) 5px 10px 29px 5px",
     width: "100%",
+    height: "12vh",
     paddingTop: 0,
-    height: 80,
   },
 
   "> div:first-child": {
@@ -35,7 +37,6 @@ export const Container = styled("aside", {
   },
 
   ul: {
-    // backgroundColor: "red",
     display: "flex",
     flexDirection: "column",
     width: "80%",
