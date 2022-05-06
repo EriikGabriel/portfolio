@@ -15,26 +15,65 @@ export const Menu: React.FC = () => {
       </div>
       <ul>
         <li>
-          <Button variant="tertiary" leftIcon={<Home />}>
+          <Button
+            variant="tertiary"
+            leftIcon={<Home />}
+            onClick={() => {
+              location.href = "#home";
+              location.reload();
+            }}
+          >
             Home
           </Button>
-          <IconButton variant="tertiary">
+          <IconButton
+            variant="tertiary"
+            onClick={() => {
+              location.href = "#home";
+              location.reload();
+            }}
+          >
             <Home />
           </IconButton>
         </li>
         <li>
-          <Button variant="tertiary" leftIcon={<Box />}>
+          <Button
+            variant="tertiary"
+            leftIcon={<Box />}
+            onClick={() => {
+              location.href = "#projects";
+              location.reload();
+            }}
+          >
             Projetos
           </Button>
-          <IconButton variant="tertiary">
+          <IconButton
+            variant="tertiary"
+            onClick={() => {
+              location.href = "#projects";
+              location.reload();
+            }}
+          >
             <Box />
           </IconButton>
         </li>
         <li>
-          <Button variant="tertiary" leftIcon={<Smartphone />}>
+          <Button
+            variant="tertiary"
+            leftIcon={<Smartphone />}
+            onClick={() => {
+              location.href = "#social";
+              location.reload();
+            }}
+          >
             Social
           </Button>
-          <IconButton variant="tertiary">
+          <IconButton
+            variant="tertiary"
+            onClick={() => {
+              location.href = "#social";
+              location.reload();
+            }}
+          >
             <Smartphone />
           </IconButton>
         </li>

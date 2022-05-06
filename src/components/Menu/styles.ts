@@ -48,7 +48,7 @@ export const Container = styled("aside", {
     },
 
     "li:last-of-type": {
-      button: {
+      "a button": {
         "&:hover": {
           backgroundColor: "transparent",
 

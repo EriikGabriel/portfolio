@@ -21,6 +21,7 @@ import {
   Container,
   Content,
 } from "src/styles/admin";
+import { Projects } from "src/components/AdminPanel/Projects";
 
 import axios from "axios";
 
@@ -35,7 +36,6 @@ const Admin: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [openSignToast, setOpenSignToast] = useState(false);
   const [loginData, setLoginData] = useState({});
-  const [panelContent, setPanelContent] = useState("Home");
 
   useEffect(() => {
     const persistedData = localStorage.getItem("@portfolio:adminData");
@@ -46,7 +46,7 @@ const Admin: React.FC = () => {
     e.preventDefault();
 
     axios
-      .post("/api/admins", { username, password, rememberMe })
+      .post("/api/admin", { username, password, rememberMe })
       .then(admin => {
         const data: AdminDataType = admin.data;
         if (data) {
@@ -64,10 +64,12 @@ const Admin: React.FC = () => {
       });
   }
 
-  function switchPanelContent(panelName: string) {
-    switch (panelName) {
-      case "Home":
+  function switchPanelContent() {
+    switch (location.hash) {
+      case "#home":
         return <Home />;
+      case "#projects":
+        return <Projects />;
       default:
         return <Home />;
     }
@@ -88,7 +90,7 @@ const Admin: React.FC = () => {
           <Menu />
           <Content>
             <PanelHeader />
-            {switchPanelContent(panelContent)}
+            {switchPanelContent()}
           </Content>
         </Container>
       ) : (

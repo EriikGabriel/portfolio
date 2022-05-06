@@ -5,6 +5,7 @@ import Text from "@packages/react/Text/Text";
 
 import { Container, BigCircle, SmallCircle } from "./styles";
 import { TypeStage, useTypedText } from "src/hooks/useTypedText";
+import { ProjectType } from "src/components/AdminPanel/Projects";
 import { Carousel } from "./Carousel";
 import { Card } from "./Card";
 import { m } from "framer-motion";
@@ -15,6 +16,7 @@ import axios from "axios";
 
 export const Projects: React.FC = () => {
   const [startTyping, setStartTyping] = useState(false);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   const sectionText = useTypedText({
     texts: ["Alguns projetos desenvolvidos por mim"],
@@ -50,9 +52,9 @@ export const Projects: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("/api/techs")
-      .then(techs => {
-        console.log(techs.data);
+      .get("/api/admin/projects")
+      .then(res => {
+        setProjects(res.data);
       })
       .catch(error => {
         throw new Error(error);
@@ -109,38 +111,26 @@ export const Projects: React.FC = () => {
           }}
         />
         <Carousel>
-          <m.div
-            variants={CardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <Card
-              imageSrc=""
-              githubUrl="#"
-              deployUrl="#"
-              tags={["Aplicativo Web", "React"]}
-            >
-              Do it!
-            </Card>
-          </m.div>
-          <m.div
-            variants={CardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <Card
-              imageSrc=""
-              githubUrl="#"
-              deployUrl="#"
-              tags={["Aplicativo Web", "React"]}
-            >
-              CanLearn!
-            </Card>
-          </m.div>
+          {projects.length !== 0 &&
+            projects.map(({ cover, name, tags, githubUrl, deployUrl, _id }) => (
+              <m.div
+                variants={CardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                key={_id}
+              >
+                <Card
+                  imageSrc={cover.path}
+                  githubUrl={githubUrl}
+                  deployUrl={deployUrl}
+                  tags={tags}
+                >
+                  {name}
+                </Card>
+              </m.div>
+            ))}
         </Carousel>
         <Text
           initial={{ opacity: 0, y: 20 }}

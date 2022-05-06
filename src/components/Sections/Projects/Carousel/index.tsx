@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 
-import { m } from "framer-motion";
 import { Container } from "./styles";
 import { SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination, Navigation } from "swiper";

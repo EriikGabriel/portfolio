@@ -159,8 +159,7 @@ export const CheckIndicator = styled(CheckboxPrimitive.Indicator, {});
 
 export const Container = styled("div", {
   height: "100vh",
-  width: "100vw",
-  backgroundColor: "red",
+  maxWidth: "100vw",
   background: "$secondary_base",
 });
 
