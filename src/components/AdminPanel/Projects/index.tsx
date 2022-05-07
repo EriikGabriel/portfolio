@@ -42,7 +42,8 @@ export const Projects: React.FC = () => {
         {projects.length !== 0 &&
           projects.map(({ cover, name, tags, githubUrl, deployUrl, _id }) => (
             <Card
-              imageSrc={cover.path}
+              id={_id}
+              imageName={cover.fileName}
               githubUrl={githubUrl}
               deployUrl={deployUrl}
               tags={tags}

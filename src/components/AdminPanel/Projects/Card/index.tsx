@@ -4,21 +4,24 @@ import Tag from "@packages/react/Tag/Tag";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { Edit3, Eye, GitHub, Trash2 } from "react-feather";
+import { DeleteModal } from "../DeleteModal";
 
 import { Container } from "./styles";
 
 type CardProps = {
   children: ReactNode;
+  id: string;
   tags: string[];
-  imageSrc: string;
+  imageName: string;
   githubUrl?: string;
   deployUrl?: string;
 };
 
 export const Card: React.FC<CardProps> = ({
   children,
+  id,
   tags,
-  imageSrc,
+  imageName,
   githubUrl,
   deployUrl,
 }) => {
@@ -26,7 +29,7 @@ export const Card: React.FC<CardProps> = ({
     <Container>
       <div>
         <Image
-          src="/cover.jpg"
+          src={`/tmp/uploads/${imageName}`}
           layout="fill"
           objectFit="cover"
           className="cover"
@@ -57,9 +60,16 @@ export const Card: React.FC<CardProps> = ({
         <Button size="sm" leftIcon={<Edit3 />} outlined>
           Editar
         </Button>
-        <Button size="sm" leftIcon={<Trash2 />} outlined>
-          Excluir
-        </Button>
+        <DeleteModal
+          projectInfo={{
+            id,
+            name: children ? children.toString() : "P_NAME",
+          }}
+        >
+          <Button size="sm" leftIcon={<Trash2 />} outlined>
+            Excluir
+          </Button>
+        </DeleteModal>
       </div>
     </Container>
   );

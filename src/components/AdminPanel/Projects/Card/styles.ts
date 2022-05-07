@@ -48,7 +48,7 @@ export const Container = styled("div", {
     },
   },
 
-  "div:last-of-type": {
+  "> div:last-of-type": {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -58,7 +58,7 @@ export const Container = styled("div", {
     padding: 10,
     gap: 20,
 
-    button: {
+    "> button": {
       span: {
         color: "$primary_base",
         svg: { stroke: "$primary_base" },

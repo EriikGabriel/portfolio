@@ -62,7 +62,7 @@ export const About: React.FC = () => {
           <span></span>
           <div>
             <Image
-              src="/me.jpg"
+              src="/assets/me.jpg"
               alt="Minha foto de rosto"
               layout="fill"
               objectFit="cover"

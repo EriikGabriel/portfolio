@@ -30,7 +30,7 @@ export type ProjectResponse = {
 function handleCreateProject(req: NextApiRequest, res: NextApiResponse) {
   const form = new formidable.IncomingForm({
     keepExtensions: true,
-    uploadDir: "./tmp/uploads",
+    uploadDir: "./public/tmp/uploads",
     filename: (name, ext, part) => {
       const hash = crypto.randomBytes(16).toString("hex");
 
