@@ -9,7 +9,7 @@ export const config = {
   api: { bodyParser: false },
 };
 
-type FormDataFields = {
+export type FormDataFields = {
   name: string;
   tags: string;
   githubUrl: string;
@@ -17,10 +17,13 @@ type FormDataFields = {
 };
 
 export type ProjectResponse = {
-  cover: {
-    path: string;
-    fileName: string;
-  };
+  cover:
+    | {
+        file: File;
+        path: string;
+        fileName: string;
+      }
+    | undefined;
   name: string;
   tags: string[];
   githubUrl: string;
@@ -46,6 +49,7 @@ function handleCreateProject(req: NextApiRequest, res: NextApiResponse) {
 
     const response: ProjectResponse = {
       cover: {
+        file: uploadedFile,
         path: uploadedFile.filepath,
         fileName: uploadedFile.newFilename,
       },

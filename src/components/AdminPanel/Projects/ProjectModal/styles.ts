@@ -151,6 +151,7 @@ export const DialogForm = styled("form", {
     div: {
       display: "flex",
       flexDirection: "column",
+      alignItems: "start",
       width: "100%",
       gap: 10,
     },

@@ -22,28 +22,33 @@ import {
 
 type ProjectModalProps = {
   children: ReactNode;
+  editId?: string;
 };
 
 type CoverType = {
-  file?: File;
+  file: File;
   preview: string;
 };
 
-export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
+export const ProjectModal: React.FC<ProjectModalProps> = ({
+  children,
+  editId,
+}) => {
   const [cover, setCover] = useState<CoverType>();
   const [name, setName] = useState("");
-  const [tags, setTags] = useState<string[]>();
+  const [tags, setTags] = useState<string[]>([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [deployUrl, setDeployUrl] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     multiple: false,
     accept: {
       "image/*": [],
     },
     onDropAccepted: acceptedFiles => {
+      console.log(acceptedFiles);
       setCover({
         file: acceptedFiles[0],
         preview: URL.createObjectURL(acceptedFiles[0]),
@@ -51,10 +56,30 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
     },
   });
 
+  function handleGetEditFormData() {
+    axios
+      .get(`/api/admin/projects/${editId}`)
+      .then(res => {
+        setCover({
+          file: res.data.cover.file,
+          preview: `/tmp/uploads/${res.data.cover.fileName}`,
+        });
+        setName(res.data.name);
+        setTags(res.data.tags);
+        setGithubUrl(res.data.githubUrl);
+        setDeployUrl(res.data.deployUrl);
+      })
+      .catch(err => {
+        throw new Error(`Ocorreu um erro: ${err}`);
+      });
+  }
+
   function handleAddProject(e: FormEvent) {
     e.preventDefault();
     if (cover?.file) {
       const data = new FormData();
+
+      console.log(cover.file);
 
       data.append("cover", cover.file, cover.file.name);
       data.append("name", name);
@@ -73,11 +98,37 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
     }
   }
 
+  function handleEditProject(e: FormEvent) {
+    e.preventDefault();
+    if (cover?.file) {
+      const data = new FormData();
+
+      if (acceptedFiles.length !== 0) {
+        data.append("cover", cover.file, cover.file.name);
+      }
+      data.append("name", name);
+      data.append("tags", JSON.stringify(tags));
+      data.append("githubUrl", githubUrl);
+      data.append("deployUrl", deployUrl);
+
+      axios
+        .patch(`/api/admin/projects/${editId}`, data)
+        .then(res => {
+          location.reload();
+        })
+        .catch(err => {
+          throw new Error(`Ocorreu um erro: ${err}`);
+        });
+    }
+  }
+
   return (
     <Container
       open={openModal}
       onOpenChange={open => {
         setOpenModal(!openModal);
+
+        if (open && editId) handleGetEditFormData();
 
         if (!open) {
           setCover(undefined);
@@ -88,8 +139,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogOverlay>
         <DialogContent>
-          <Heading size="sm">Adicionar projeto</Heading>
-          <DialogForm onSubmit={handleAddProject}>
+          <Heading size="sm">{editId ? "Editar" : "Adicionar"} projeto</Heading>
+          <DialogForm onSubmit={editId ? handleEditProject : handleAddProject}>
             <fieldset>
               <label htmlFor="dndCover">Cover</label>
               {cover && (
@@ -129,6 +180,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
                 placeholder="Digite o nome"
                 autoComplete="off"
                 onChange={e => setName(e.target.value)}
+                value={name}
                 required
               />
             </fieldset>
@@ -146,6 +198,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
                 onChange={e => {
                   setTags(e.target.value.replace(/,\s*/g, ",").split(","));
                 }}
+                value={tags}
                 required
               />
               <div>
@@ -163,6 +216,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
                   placeholder="Digite a URL do repositório"
                   autoComplete="off"
                   onChange={e => setGithubUrl(e.target.value)}
+                  value={githubUrl}
                 />
               </div>
               <div>
@@ -173,12 +227,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ children }) => {
                   placeholder="Digite a URL do deploy"
                   autoComplete="off"
                   onChange={e => setDeployUrl(e.target.value)}
+                  value={deployUrl}
                 />
               </div>
             </fieldset>
 
             <div>
-              <Button type="submit">Adicionar</Button>
+              <Button type="submit">{editId ? "Concluir" : "Adicionar"}</Button>
               <DialogClose asChild>
                 <Button aria-label="Close" variant="primary" outlined>
                   Cancelar

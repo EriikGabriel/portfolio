@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { Edit3, Eye, GitHub, Trash2 } from "react-feather";
 import { DeleteModal } from "../DeleteModal";
+import { ProjectModal } from "../ProjectModal";
 
 import { Container } from "./styles";
 
@@ -57,9 +58,11 @@ export const Card: React.FC<CardProps> = ({
         )}
       </div>
       <div>
-        <Button size="sm" leftIcon={<Edit3 />} outlined>
-          Editar
-        </Button>
+        <ProjectModal editId={id}>
+          <Button size="sm" leftIcon={<Edit3 />} outlined>
+            Editar
+          </Button>
+        </ProjectModal>
         <DeleteModal
           projectInfo={{
             id,
