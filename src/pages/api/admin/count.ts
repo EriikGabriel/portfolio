@@ -8,9 +8,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const ProjectsSchema = new mongoose.Schema({
     projects: { type: Array, required: true },
   });
+  const SocialsSchema = new mongoose.Schema();
 
   const projectsModel =
     mongoose.models.projects || mongoose.model("projects", ProjectsSchema);
+
+  const socialsModel =
+    mongoose.models.socials || mongoose.model("socials", SocialsSchema);
 
   const projectsCount = await projectsModel.collection
     .countDocuments()
@@ -18,5 +22,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       throw new Error(`Erro: ${err}`);
     });
 
-  res.send({ projects: projectsCount });
+  const socialsCount = await socialsModel.collection
+    .countDocuments()
+    .catch(err => {
+      throw new Error(`Erro: ${err}`);
+    });
+
+  res.send({ projects: projectsCount, socials: socialsCount });
 };

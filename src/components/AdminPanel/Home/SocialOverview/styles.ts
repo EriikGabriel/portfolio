@@ -16,18 +16,16 @@ export const Container = styled("div", {
   },
 
   "> div": {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    gap: 20,
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, 45%)",
+    justifyContent: "start",
+    gap: "$5",
 
     "> div": {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      // alignItems: "center",
-      // backgroundColor: "blue",
-      width: "50%",
+      width: "100%",
       padding: 10,
       gap: 10,
     },

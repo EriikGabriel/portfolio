@@ -1,53 +1,61 @@
+import { useEffect, useState } from "react";
+
 import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
 
 import { GitHub, Instagram, Linkedin, Twitter } from "react-feather";
+import { SocialType } from "../../Social";
+import axios from "axios";
 
 import { Container } from "./styles";
 
 export const SocialOverview: React.FC = () => {
+  const [socials, setSocials] = useState<SocialType[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/admin/socials")
+      .then(res => {
+        setSocials(res.data);
+      })
+      .catch(err => {
+        throw new Error(`Ocorreu um erro: ${err}`);
+      });
+  }, []);
+
+  function switchSocialIcon(social: string) {
+    switch (social) {
+      case "Github":
+        return <GitHub />;
+      case "Instagram":
+        return <Instagram />;
+      case "Twitter":
+        return <Twitter />;
+      case "Linkedin":
+        return <Linkedin />;
+      default:
+        return <GitHub />;
+    }
+  }
+
   return (
     <Container>
       <Heading size="sm">Redes Sociais</Heading>
       <div>
-        <div>
-          <GitHub />
-          <div>
-            <Text size="lg">Erik Gabriel</Text>
-            <Text size="sm">@Erik_Gabriel</Text>
-            <Text size="sm">Seguindo: 10000 </Text>
-            <Text size="sm">Seguidores: 9.200 </Text>
-          </div>
-        </div>
-        <div>
-          <Instagram />
-          <div>
-            <Text size="lg">Erik Gabriel</Text>
-            <Text size="sm">@Erik_Gabriel</Text>
-            <Text size="sm">Seguindo: 10000 </Text>
-            <Text size="sm">Seguidores: 9.200 </Text>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          <Twitter />
-          <div>
-            <Text size="lg">Erik Gabriel</Text>
-            <Text size="sm">@Erik_Gabriel</Text>
-            <Text size="sm">Seguindo: 10000 </Text>
-            <Text size="sm">Seguidores: 9.200 </Text>
-          </div>
-        </div>
-        <div>
-          <Linkedin />
-          <div>
-            <Text size="lg">Erik Gabriel</Text>
-            <Text size="sm">@Erik_Gabriel</Text>
-            <Text size="sm">Seguindo: 10000 </Text>
-            <Text size="sm">Seguidores: 9.200 </Text>
-          </div>
-        </div>
+        {socials.length !== 0 &&
+          socials.map(
+            ({ _id, social, name, username, following, followers }) => (
+              <div key={_id}>
+                {switchSocialIcon(social)}
+                <div>
+                  <Text size="lg">{name}</Text>
+                  <Text size="sm">{username}</Text>
+                  <Text size="sm">Seguindo: {following} </Text>
+                  <Text size="sm">Seguidores: {followers} </Text>
+                </div>
+              </div>
+            )
+          )}
       </div>
     </Container>
   );
