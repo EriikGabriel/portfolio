@@ -43,7 +43,7 @@ export const Projects: React.FC = () => {
           projects.map(({ cover, name, tags, githubUrl, deployUrl, _id }) => (
             <Card
               id={_id}
-              imageName={cover.fileName}
+              imageName={cover?.fileName ?? ""}
               githubUrl={githubUrl}
               deployUrl={deployUrl}
               tags={tags}

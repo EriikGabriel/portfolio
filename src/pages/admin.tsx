@@ -12,7 +12,10 @@ import { Check, XCircle } from "react-feather";
 import { Toast } from "src/components/Toast";
 import { Menu } from "src/components/Menu";
 import { PanelHeader } from "src/components/PanelHeader";
+
 import { Home } from "src/components/AdminPanel/Home";
+import { Projects } from "src/components/AdminPanel/Projects";
+import { Social } from "src/components/AdminPanel/Social";
 import {
   Checkbox,
   LoginBox,
@@ -21,7 +24,6 @@ import {
   Container,
   Content,
 } from "src/styles/admin";
-import { Projects } from "src/components/AdminPanel/Projects";
 
 import axios from "axios";
 
@@ -70,6 +72,8 @@ const Admin: React.FC = () => {
         return <Home />;
       case "#projects":
         return <Projects />;
+      case "#social":
+        return <Social />;
       default:
         return <Home />;
     }
