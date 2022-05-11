@@ -27,7 +27,7 @@ export const Card: React.FC<CardProps> = ({
     <Container glareBorderRadius="" gyroscope>
       <div>
         <Image
-          src="/cover.jpg"
+          src={`/tmp/uploads/${imageSrc}`}
           layout="fill"
           objectFit="cover"
           className="cover"

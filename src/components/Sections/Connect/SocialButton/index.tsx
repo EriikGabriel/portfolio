@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import Image from "next/image";
 
 import IconButton from "@packages/react/Button/IconButton";
 import Text from "@packages/react/Text/Text";
@@ -11,9 +12,9 @@ import {
   HoverCardTrigger,
   ImageWrapper,
 } from "./styles";
-import { SocialType } from "src/components/AdminPanel/Social";
+
+import { SocialType } from "@utils/types/social";
 import { m } from "framer-motion";
-import Image from "next/image";
 
 type SocialButtonProps = {
   children: ReactElement;

@@ -4,7 +4,7 @@ import IconButton from "@packages/react/Button/IconButton";
 import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
 
-import { ProjectType } from "../../Projects";
+import { ProjectType } from "@utils/types/projects";
 
 import { Eye, GitHub } from "react-feather";
 import axios from "axios";

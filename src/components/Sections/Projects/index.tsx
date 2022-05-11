@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
 
 import { Container, BigCircle, SmallCircle } from "./styles";
 import { TypeStage, useTypedText } from "src/hooks/useTypedText";
-import { ProjectType } from "src/components/AdminPanel/Projects";
+import { ProjectType } from "@utils/types/projects";
 import { Carousel } from "./Carousel";
 import { Card } from "./Card";
 import { m } from "framer-motion";
 
 import Link from "next/link";
 import cn from "classnames";
-import axios from "axios";
 
-export const Projects: React.FC = () => {
+type ProjectsProps = {
+  projects: ProjectType[];
+};
+
+export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   const [startTyping, setStartTyping] = useState(false);
-  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   const sectionText = useTypedText({
     texts: ["Alguns projetos desenvolvidos por mim"],
@@ -49,17 +51,6 @@ export const Projects: React.FC = () => {
     hidden: { scale: 0 },
     visible: { scale: 1 },
   };
-
-  useEffect(() => {
-    axios
-      .get("/api/admin/projects")
-      .then(res => {
-        setProjects(res.data);
-      })
-      .catch(error => {
-        throw new Error(error);
-      });
-  }, []);
 
   return (
     <Container id="projects">
@@ -122,7 +113,7 @@ export const Projects: React.FC = () => {
                 key={_id}
               >
                 <Card
-                  imageSrc={cover.path}
+                  imageSrc={cover?.fileName ?? ""}
                   githubUrl={githubUrl}
                   deployUrl={deployUrl}
                   tags={tags}

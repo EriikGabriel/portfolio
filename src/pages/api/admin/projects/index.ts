@@ -58,12 +58,10 @@ function handleCreateProject(req: NextApiRequest, res: NextApiResponse) {
   });
 }
 
-async function handleGetProjects(req: NextApiRequest, res: NextApiResponse) {
+export async function handleGetProjects() {
   await connectToDatabase();
 
-  const ProjectsSchema = new mongoose.Schema({
-    projects: { type: Array, required: true },
-  });
+  const ProjectsSchema = new mongoose.Schema();
 
   const projectsModel =
     mongoose.models.projects || mongoose.model("projects", ProjectsSchema);
@@ -75,7 +73,7 @@ async function handleGetProjects(req: NextApiRequest, res: NextApiResponse) {
       throw new Error(`Erro: ${err}`);
     });
 
-  res.status(200).json(projects);
+  return projects;
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -86,7 +84,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       handleCreateProject(req, res);
       break;
     case "GET":
-      handleGetProjects(req, res);
+      res.status(200).json(await handleGetProjects());
       break;
     default:
       res.setHeader("Allow", ["POST", "GET"]);

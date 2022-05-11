@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { mongoose, connectToDatabase } from "@config/database";
 
-async function handleGetSocials(req: NextApiRequest, res: NextApiResponse) {
+export async function handleGetSocials() {
   await connectToDatabase();
 
   const SocialsSchema = new mongoose.Schema();
@@ -17,7 +17,7 @@ async function handleGetSocials(req: NextApiRequest, res: NextApiResponse) {
       throw new Error(`Erro: ${err}`);
     });
 
-  res.status(200).json(socials);
+  return socials;
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -25,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case "GET":
-      handleGetSocials(req, res);
+      res.status(200).json(await handleGetSocials());
       break;
     default:
       res.setHeader("Allow", ["POST", "GET"]);

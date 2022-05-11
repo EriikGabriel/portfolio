@@ -3,19 +3,21 @@ import { useEffect, useState } from "react";
 import Text from "@packages/react/Text/Text";
 import Heading from "@packages/react/Heading/Heading";
 
+import { SocialType } from "@utils/types/social";
 import { m } from "framer-motion";
 import { Container } from "./styles";
 import { TypeStage, useTypedText } from "src/hooks/useTypedText";
 import { GitHub, Instagram, Linkedin, Twitter } from "react-feather";
 import { SocialButton } from "./SocialButton";
-import { SocialType } from "src/components/AdminPanel/Social";
 
 import cn from "classnames";
-import axios from "axios";
 
-export const Connect: React.FC = () => {
+type ConnectProps = {
+  socials: SocialType[];
+};
+
+export const Connect: React.FC<ConnectProps> = ({ socials }) => {
   const [startTyping, setStartTyping] = useState(false);
-  const [socials, setSocials] = useState<SocialType[]>([]);
 
   const sectionText = useTypedText({
     texts: ["Para quem deseja entrar em contato comigo"],
@@ -33,15 +35,6 @@ export const Connect: React.FC = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
-
-  useEffect(() => {
-    axios
-      .get("/api/admin/socials")
-      .then(res => setSocials(res.data))
-      .catch(err => {
-        throw new Error(`Ocorreu um erro: ${err}`);
-      });
-  }, []);
 
   function switchSocialIcon(social: string) {
     switch (social) {
@@ -100,7 +93,11 @@ export const Connect: React.FC = () => {
         <div>
           {socials.length !== 0 &&
             socials.map((socialData, index) => (
-              <SocialButton socialData={socialData} delay={0.4 + index * 0.1}>
+              <SocialButton
+                socialData={socialData}
+                delay={0.4 + index * 0.1}
+                key={socialData._id}
+              >
                 {switchSocialIcon(socialData.social)}
               </SocialButton>
             ))}

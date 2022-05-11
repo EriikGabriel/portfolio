@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";
 
@@ -11,11 +13,25 @@ import { Skills } from "src/components/Sections/Skills";
 import { Projects } from "src/components/Sections/Projects";
 import { Connect } from "src/components/Sections/Connect";
 
+import { ProjectType } from "@utils/types/projects";
+import { SocialType } from "@utils/types/social";
+
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
 import { Footer } from "src/components/Footer";
+import axios from "axios";
+import { handleGetProjects } from "./api/admin/projects";
+import { handleGetSocials } from "./api/admin/socials";
 
-const Home: React.FC = () => {
+type StaticPropsResponse = {
+  projects: ProjectType[];
+  socials: SocialType[];
+};
+
+const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  projects,
+  socials,
+}) => {
   const { isLoading } = useContext(LoaderContext);
 
   useEffect(() => {
@@ -49,8 +65,8 @@ const Home: React.FC = () => {
               <Introduction />
               <About />
               <Skills />
-              <Projects />
-              <Connect />
+              <Projects projects={projects} />
+              <Connect socials={socials} />
             </>
           )}
         </Main>
@@ -58,6 +74,23 @@ const Home: React.FC = () => {
       </LazyMotion>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<StaticPropsResponse> = async () => {
+  try {
+    const resultProjects = await handleGetProjects();
+    const resultSocial = await handleGetSocials();
+
+    const projects = JSON.stringify(resultProjects);
+    const socials = JSON.stringify(resultSocial);
+
+    return {
+      props: { projects: JSON.parse(projects), socials: JSON.parse(socials) },
+      revalidate: 10 * 60,
+    };
+  } catch (error) {
+    throw new Error(`${error}`);
+  }
 };
 
 export default Home;
