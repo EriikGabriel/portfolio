@@ -79,8 +79,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     if (cover?.file) {
       const data = new FormData();
 
-      console.log(cover.file);
-
       data.append("cover", cover.file, cover.file.name);
       data.append("name", name);
       data.append("tags", JSON.stringify(tags));

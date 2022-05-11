@@ -66,6 +66,7 @@ export const List: React.FC = () => {
         transition={{
           delay: 1.2,
         }}
+        onClick={() => window.open("/resume.pdf", "_blank")}
         outlined
       >
         Currículo
