@@ -2,17 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { mongoose, connectToDatabase } from "@config/database";
 
-export type SocialResponse = {
-  social: string;
-  profileImage: string;
-  name: string;
-  username: string;
-  description: string;
-  following: number;
-  followers: number;
-  url: string;
-};
-
 async function handleGetSocials(req: NextApiRequest, res: NextApiResponse) {
   await connectToDatabase();
 

@@ -19,7 +19,8 @@
     "paths": {
       "@data/*": ["./data/*"],
       "@packages/*": ["./packages/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "allowJs": true,
     "noEmit": true,

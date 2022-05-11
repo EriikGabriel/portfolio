@@ -4,16 +4,12 @@ import IconButton from "@packages/react/Button/IconButton";
 import Heading from "@packages/react/Heading/Heading";
 
 import { Card } from "./Card";
-import { SocialResponse } from "src/pages/api/admin/socials";
+import { SocialType } from "@utils/types/social";
 import { GitHub, Instagram, Linkedin, Twitter } from "react-feather";
 
 import { Container } from "./styles";
 
 import axios from "axios";
-
-export type SocialType = {
-  _id: string;
-} & SocialResponse;
 
 export const Social: React.FC = () => {
   const [socials, setSocials] = useState<SocialType[]>([]);

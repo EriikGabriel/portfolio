@@ -1,33 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import formidable, { File } from "formidable";
 import { mongoose, connectToDatabase } from "@config/database";
+import { FormDataFields, ProjectResponse } from "@utils/types/projects";
+import formidable, { File } from "formidable";
 
 import crypto from "crypto";
 
 export const config = {
   api: { bodyParser: false },
-};
-
-export type FormDataFields = {
-  name: string;
-  tags: string;
-  githubUrl: string;
-  deployUrl: string;
-};
-
-export type ProjectResponse = {
-  cover:
-    | {
-        file: File;
-        path: string;
-        fileName: string;
-      }
-    | undefined;
-  name: string;
-  tags: string[];
-  githubUrl: string;
-  deployUrl: string;
 };
 
 function handleCreateProject(req: NextApiRequest, res: NextApiResponse) {

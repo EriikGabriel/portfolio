@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import formidable, { File } from "formidable";
 import { mongoose, connectToDatabase } from "@config/database";
-import { FormDataFields, ProjectResponse } from ".";
+import { FormDataFields, ProjectResponse } from "@utils/types/projects";
+import formidable, { File } from "formidable";
 
 import crypto from "crypto";
 import fs from "fs";

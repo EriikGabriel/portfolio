@@ -4,8 +4,9 @@ import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
 
 import { GitHub, Instagram, Linkedin, Twitter } from "react-feather";
-import { SocialType } from "../../Social";
+
 import axios from "axios";
+import { SocialType } from "@utils/types/social";
 
 import { Container } from "./styles";
 

@@ -7,15 +7,11 @@ import Heading from "@packages/react/Heading/Heading";
 import { Card } from "./Card";
 import { ProjectModal } from "./ProjectModal";
 import { PlusCircle } from "react-feather";
-import { ProjectResponse } from "src/pages/api/admin/projects";
+import { ProjectType } from "@utils/types/projects";
 
 import { Container } from "./styles";
 
 import axios from "axios";
-
-export type ProjectType = {
-  _id: string;
-} & ProjectResponse;
 
 export const Projects: React.FC = () => {
   const [projects, setProjects] = useState<ProjectType[]>([]);
