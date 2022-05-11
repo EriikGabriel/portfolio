@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 
 import IconButton from "@packages/react/Button/IconButton";
+import Text from "@packages/react/Text/Text";
 
 import {
   Flex,
@@ -10,24 +11,24 @@ import {
   HoverCardTrigger,
   ImageWrapper,
 } from "./styles";
-import Text from "@packages/react/Text/Text";
-import Image from "next/image";
+import { SocialType } from "src/components/AdminPanel/Social";
 import { m } from "framer-motion";
+import Image from "next/image";
 
 type SocialButtonProps = {
   children: ReactElement;
   delay?: number;
+  socialData: SocialType;
 };
 
 export const SocialButton: React.FC<SocialButtonProps> = ({
   children,
   delay = 0.4,
+  socialData,
 }) => {
   const SocialButtonVariants = {
     hidden: { scale: 0 },
-    visible: {
-      scale: 1,
-    },
+    visible: { scale: 1 },
   };
 
   return (
@@ -40,33 +41,36 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
     >
       <HoverCard>
         <HoverCardTrigger>
-          <IconButton size="lg">{children}</IconButton>
+          <IconButton
+            size="lg"
+            onClick={() => (location.href = socialData.url)}
+          >
+            {children}
+          </IconButton>
         </HoverCardTrigger>
         <HoverCardContent sideOffset={1}>
           <ImageWrapper>
-            <Image
-              src="https://avatars.githubusercontent.com/u/61809874?v=4"
-              layout="fill"
-            />
+            <Image src={socialData.profileImage} layout="fill" />
           </ImageWrapper>
           <Flex css={{ flexDirection: "column", gap: 7 }}>
             <Flex css={{ flexDirection: "column", gap: 15 }}>
               <Flex column>
-                <Text css={{ fontWeight: "bold" }}>Erik Gabriel</Text>
-                <Text size="sm">@Erik_Gabriel</Text>
+                <Text css={{ fontWeight: "bold" }}>{socialData.name}</Text>
+                <Text size="sm">{socialData.username}</Text>
               </Flex>
-              <Text>
-                Components, icons, colors, and templates for building
-                high-quality, accessible UI. Free and open-source.
-              </Text>
+              <Text>{socialData.description}</Text>
               <Flex css={{ gap: 15 }}>
                 <Flex css={{ gap: 5 }}>
-                  <Text css={{ fontWeight: "bold" }}>0</Text>{" "}
-                  <Text>Following</Text>
+                  <Text css={{ fontWeight: "bold" }}>
+                    {socialData.following}
+                  </Text>{" "}
+                  <Text>Seguindo</Text>
                 </Flex>
                 <Flex css={{ gap: 5 }}>
-                  <Text css={{ fontWeight: "bold" }}>2,900</Text>{" "}
-                  <Text>Followers</Text>
+                  <Text css={{ fontWeight: "bold" }}>
+                    {socialData.followers}
+                  </Text>{" "}
+                  <Text>Seguidores</Text>
                 </Flex>
               </Flex>
             </Flex>
@@ -77,5 +81,3 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
     </m.div>
   );
 };
-
-export default SocialButton;
