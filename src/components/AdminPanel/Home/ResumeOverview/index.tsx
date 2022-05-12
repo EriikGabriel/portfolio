@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import siteMetadata from "@data/siteMetadata";
-import HeadSeo from "src/components/HeadSeo";
 import IconButton from "@packages/react/Button/IconButton";
 import Heading from "@packages/react/Heading/Heading";
 import Text from "@packages/react/Text/Text";
@@ -27,38 +25,27 @@ export const ResumeOverview: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <HeadSeo
-        title="Erik Gabriel | Currículo"
-        description="Currículo - Erik Gabriel Rodrigo da Silva"
-        canonicalUrl={siteMetadata.siteUrl}
-        ogTwitterImage={siteMetadata.siteLogoSquare}
-        ogImageUrl={siteMetadata.siteLogo}
-        ogType="website"
-      />
-      <Container>
-        <Heading size="sm">Currículo</Heading>
-
+    <Container>
+      <Heading size="sm">Currículo</Heading>
+      <div>
         <div>
-          <div>
-            <FileText size={30} />
-            <Text>{resume?.newFilename}</Text>
-          </div>
-          <div>
-            <IconButton
-              variant="tertiary"
-              onClick={() => window.open("/resume.pdf", "_blank")}
-            >
-              <Eye />
-            </IconButton>
-            <ResumeModal>
-              <IconButton variant="tertiary">
-                <Edit />
-              </IconButton>
-            </ResumeModal>
-          </div>
+          <FileText size={30} />
+          <Text>{resume?.newFilename}</Text>
         </div>
-      </Container>
-    </>
+        <div>
+          <IconButton
+            variant="tertiary"
+            onClick={() => window.open("/resume.pdf", "_blank")}
+          >
+            <Eye />
+          </IconButton>
+          <ResumeModal>
+            <IconButton variant="tertiary">
+              <Edit />
+            </IconButton>
+          </ResumeModal>
+        </div>
+      </div>
+    </Container>
   );
 };

@@ -47,12 +47,12 @@ export const Card: React.FC<CardProps> = ({
       </div>
       <div>
         {githubUrl && (
-          <a href={githubUrl}>
+          <a href={githubUrl} target="_blank">
             <GitHub size={25} />
           </a>
         )}
         {deployUrl && (
-          <a href={deployUrl}>
+          <a href={deployUrl} target="_blank">
             <Eye size={25} />
           </a>
         )}

@@ -140,7 +140,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <Heading size="sm">{editId ? "Editar" : "Adicionar"} projeto</Heading>
           <DialogForm onSubmit={editId ? handleEditProject : handleAddProject}>
             <fieldset>
-              <label htmlFor="dndCover">Cover</label>
+              <label htmlFor="dndCover">
+                Cover - <small>Tamanho recomendado: 420 x 200</small>
+              </label>
               {cover && (
                 <IconButton
                   variant="tertiary"

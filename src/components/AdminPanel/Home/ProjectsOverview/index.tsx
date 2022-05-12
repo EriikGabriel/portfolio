@@ -41,7 +41,7 @@ export const ProjectsOverview: React.FC = () => {
                   {githubUrl && (
                     <IconButton
                       variant="tertiary"
-                      onClick={() => (location.href = githubUrl)}
+                      onClick={() => window.open(githubUrl, "_blank")}
                     >
                       <GitHub />
                     </IconButton>
@@ -49,7 +49,7 @@ export const ProjectsOverview: React.FC = () => {
                   {deployUrl && (
                     <IconButton
                       variant="tertiary"
-                      onClick={() => (location.href = deployUrl)}
+                      onClick={() => window.open(deployUrl, "_blank")}
                     >
                       <Eye />
                     </IconButton>

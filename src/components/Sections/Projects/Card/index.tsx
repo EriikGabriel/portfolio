@@ -42,12 +42,20 @@ export const Card: React.FC<CardProps> = ({
       </div>
       <div>
         {githubUrl && (
-          <a href={githubUrl} aria-label="URL do repositório github do projeto">
+          <a
+            href={githubUrl}
+            aria-label="URL do repositório github do projeto"
+            target="_blank"
+          >
             <GitHub size={25} />
           </a>
         )}
         {deployUrl && (
-          <a href={deployUrl} aria-label="URL do deploy do projeto">
+          <a
+            href={deployUrl}
+            aria-label="URL do deploy do projeto"
+            target="_blank"
+          >
             <Eye size={25} />
           </a>
         )}

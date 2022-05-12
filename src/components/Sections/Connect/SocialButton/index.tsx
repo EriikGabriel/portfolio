@@ -41,7 +41,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
       transition={{ delay, duration: 0.5 }}
     >
       <HoverCard>
-        <HoverCardTrigger href={socialData.url}>
+        <HoverCardTrigger href={socialData.url} target="_blank">
           <IconButton size="lg" aria-label={socialData.social}>
             {children}
           </IconButton>
