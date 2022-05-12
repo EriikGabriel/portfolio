@@ -31,6 +31,7 @@ export const Card: React.FC<CardProps> = ({
           layout="fill"
           objectFit="cover"
           className="cover"
+          alt="Imagem cover do projeto"
         />
       </div>
       <Heading>{children}</Heading>
@@ -41,12 +42,12 @@ export const Card: React.FC<CardProps> = ({
       </div>
       <div>
         {githubUrl && (
-          <a href={githubUrl}>
+          <a href={githubUrl} aria-label="URL do repositório github do projeto">
             <GitHub size={25} />
           </a>
         )}
         {deployUrl && (
-          <a href={deployUrl}>
+          <a href={deployUrl} aria-label="URL do deploy do projeto">
             <Eye size={25} />
           </a>
         )}

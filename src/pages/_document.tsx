@@ -2,6 +2,8 @@ import React from "react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import { getCssText } from "@packages/web/index";
 
+import Script from "next/script";
+
 export default class Document extends NextDocument {
   render() {
     return (
@@ -17,10 +19,7 @@ export default class Document extends NextDocument {
             href="https://fonts.gstatic.com"
             crossOrigin=""
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Rancho&family=Roboto:wght@300;400;500;700&family=Spectral:wght@400;500;700&display=swap"
-            rel="stylesheet"
-          />
+          <Script src="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Rancho&family=Roboto:wght@300;400;500;700&family=Spectral:wght@400;500;700&display=swap" />
           <style
             id="stitches"
             dangerouslySetInnerHTML={{ __html: getCssText() }}

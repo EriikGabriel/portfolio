@@ -73,7 +73,6 @@ export const Connect: React.FC<ConnectProps> = ({ socials }) => {
                 !sectionText.hideCursor,
               ["blinking"]: sectionText.stage !== TypeStage.Holding,
             })}
-            aria-label={sectionText.selectedTexts}
           >
             {sectionText.typedText}
           </Text>

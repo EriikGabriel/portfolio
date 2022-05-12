@@ -65,7 +65,6 @@ export const Skills: React.FC = () => {
                 !sectionText.hideCursor,
               ["blinking"]: sectionText.stage !== TypeStage.Holding,
             })}
-            aria-label={sectionText.selectedTexts}
           >
             {sectionText.typedText}
           </Text>

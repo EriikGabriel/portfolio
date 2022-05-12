@@ -43,7 +43,6 @@ export const About: React.FC = () => {
               ["end-cursor"]: stage !== TypeStage.Deleting && !hideCursor,
               ["blinking"]: stage !== TypeStage.Holding,
             })}
-            aria-label={selectedTexts}
           >
             {typedText}
           </Text>

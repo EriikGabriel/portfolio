@@ -19,7 +19,7 @@ import { SocialType } from "@utils/types/social";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { LoaderContext } from "src/contexts/LoaderContext";
 import { Footer } from "src/components/Footer";
-import axios from "axios";
+
 import { handleGetProjects } from "./api/admin/projects";
 import { handleGetSocials } from "./api/admin/socials";
 

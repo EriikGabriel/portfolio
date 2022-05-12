@@ -41,7 +41,6 @@ export const ResumeOverview: React.FC = () => {
 
         <div>
           <div>
-            {console.log(resume)}
             <FileText size={30} />
             <Text>{resume?.newFilename}</Text>
           </div>

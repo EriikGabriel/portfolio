@@ -41,10 +41,18 @@ export const Carousel: React.FC<CarouselProps> = ({ children }) => {
       {React.Children.map(children, (child, i) => {
         return <SwiperSlide>{child}</SwiperSlide>;
       })}
-      <IconButton variant="tertiary" className="swiper-button-prev">
+      <IconButton
+        variant="tertiary"
+        className="swiper-button-prev"
+        aria-label="Slide Anterior"
+      >
         <ArrowLeftCircle />
       </IconButton>
-      <IconButton variant="tertiary" className="swiper-button-next">
+      <IconButton
+        variant="tertiary"
+        className="swiper-button-next"
+        aria-label="Próximo Slide"
+      >
         <ArrowRightCircle />
       </IconButton>
     </Container>
