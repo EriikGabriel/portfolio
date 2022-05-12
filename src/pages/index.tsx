@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 import HeadSeo from "src/components/HeadSeo";
 import siteMetadata from "@data/siteMetadata";

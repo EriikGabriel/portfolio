@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@alfonmga/react-lottie-light-ts": "^0.0.1",
     "@pdftron/webviewer": "^8.4.1",
     "@radix-ui/react-checkbox": "^0.1.5",
     "@radix-ui/react-dialog": "^0.1.7",
