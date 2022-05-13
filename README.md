@@ -10,7 +10,7 @@ Personal Website<br>
   My personal website <a href="https://erikgabriel.vercel.app" target="_blank">erikgabriel.vercel.app</a> built with <a href="https://nextjs.org/" target="_blank">Next.js</a> and hosted by <a href="https://vercel.com/" target="_blank">Vercel</a>
 </p>
 <p align="center">
-  <a href="LICENCE" target="_blank">
+  <a href="LICENSE" target="_blank">
     <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="License">
   </a>
   
