@@ -10,14 +10,16 @@ Personal Website<br>
   My personal website <a href="https://erikgabriel.vercel.app" target="_blank">erikgabriel.vercel.app</a> built with <a href="https://nextjs.org/" target="_blank">Next.js</a> and hosted by <a href="https://vercel.com/" target="_blank">Vercel</a>
 </p>
 <p align="center">
-  <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=f55a00&labelColor=141212&style=for-the-badge" alt="License">
+  <a href="LICENCE" target="_blank">
+    <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="License">
+  </a>
   
-  <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?label=forks&message=MIT&color=f55a00&labelColor=141212&style=for-the-badge" alt="Forks">
+  <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?label=forks&message=MIT&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="Forks">
 
-  <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?label=stars&message=MIT&color=f55a00&labelColor=141212&style=for-the-badge" alt="Stars" >
+  <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?label=stars&message=MIT&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="Stars" >
 
   <a href="https://vercel.com/eriikgabriel/portfolio" target="_blank">
-    <img src="https://img.shields.io/github/deployments/EriikGabriel/portfolio/production?label=Vercel&logo=vercel&logoColor=white&style=for-the-badge&labelColor=141212" />
+    <img src="https://img.shields.io/github/deployments/EriikGabriel/portfolio/production?label=Vercel&logo=vercel&logoColor=white&style=for-the-badge&labelColor=3c3c3d" />
   </a>
 </p>
 
@@ -34,27 +36,27 @@ Thanks, enjoy the code!
 This project was developed using the following technologies:
 
 <a href="https://nextjs.org/" target="_blank">
-    <img src="https://img.shields.io/badge/next-%2320232a.svg?style=for-the-badge&color=121214&logo=next.js" alt="Next.js"/>
+    <img src="https://img.shields.io/badge/next-%2320232a.svg?style=for-the-badge&color=3c3c3d&logo=next.js" alt="Next.js"/>
 </a>
 <br>
 <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="https://img.shields.io/badge/typescript-%2320232a.svg?style=for-the-badge&color=121214&logo=typescript" alt="Typescript"/>
+    <img src="https://img.shields.io/badge/typescript-%2320232a.svg?style=for-the-badge&color=3c3c3d&logo=typescript" alt="Typescript"/>
 </a>
 <br>
 <a href="https://www.mongodb.com/pt-br" target="_blank">
-    <img src="https://img.shields.io/badge/mongoDB-%2320232a.svg?style=for-the-badge&color=121214&logo=mongodb" alt="MongoDB"/>
+    <img src="https://img.shields.io/badge/mongoDB-%2320232a.svg?style=for-the-badge&color=3c3c3d&logo=mongodb" alt="MongoDB"/>
 </a>
 <br>
 <a href="https://www.framer.com/motion/" target="_blank">
-    <img src="https://img.shields.io/badge/framer motion-%2320232a.svg?style=for-the-badge&color=121214&logo=framer" alt="Framer Motion"/>
+    <img src="https://img.shields.io/badge/framer motion-%2320232a.svg?style=for-the-badge&color=3c3c3d&logo=framer" alt="Framer Motion"/>
 </a>
 <br>
 <a href="https://stitches.dev/" target="_blank">
-    <img src="https://img.shields.io/badge/stitches-%2320232a.svg?style=for-the-badge&color=121214" alt="Stitches"/>
+    <img src="https://img.shields.io/badge/stitches-%2320232a.svg?style=for-the-badge&color=3c3c3d" alt="Stitches"/>
 </a>
 <br>
 <a href="https://www.radix-ui.com/" target="_blank">
-    <img src="https://img.shields.io/badge/radix ui-%2320232a.svg?style=for-the-badge&color=121214" alt="Radix UI"/>
+    <img src="https://img.shields.io/badge/radix ui-%2320232a.svg?style=for-the-badge&color=3c3c3d" alt="Radix UI"/>
 </a>
 
 ## 🛠️ Installation and Setup
