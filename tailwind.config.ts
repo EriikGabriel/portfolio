@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config = {
   darkMode: ["class"],
@@ -109,6 +110,9 @@ const config = {
         "meteor-effect": "meteor 5s linear infinite",
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
+      },
+      fontFamily: {
+        inter: ["var(--font-inter)", ...fontFamily.sans],
       },
     },
   },

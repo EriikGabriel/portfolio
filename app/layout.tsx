@@ -1,7 +1,11 @@
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { Inter as inter } from "next/font/google";
 
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import { cn } from "./lib/utils";
+
+const Inter = inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Erik Gabriel | Fullstack & Game Developer",
@@ -15,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={GeistSans.className}>{children}</body>
+      <body
+        className={cn("min-h-dvh font-sans antialiased", GeistSans.className)}
+      >
+        {children}
+      </body>
     </html>
   );
 }

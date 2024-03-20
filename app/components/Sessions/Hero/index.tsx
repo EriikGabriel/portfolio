@@ -2,6 +2,7 @@ import { Motion } from "@components/Motion";
 import { ButtonAnimatedBorder } from "@ui/button-animated-border";
 import { Sparkles } from "@ui/sparkles";
 import { Spotlight } from "@ui/spotlight";
+import { Meteors } from "../../ui/meteors";
 
 export function Hero() {
   const variants = {
@@ -12,6 +13,7 @@ export function Hero() {
   return (
     <section className="relative flex h-screen w-full flex-col overflow-hidden rounded-md antialiased md:items-center md:justify-center">
       <div className="absolute inset-0 h-screen w-full">
+        <Meteors number={10} className="bg-orange-500 before:from-orange-500" />
         <Sparkles
           background="transparent"
           minSize={0.2}
