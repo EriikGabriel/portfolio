@@ -1,5 +1,5 @@
 import { Motion } from "@components/Motion";
-import { ButtonAnimatedBorder } from "@ui/button-animated-border";
+import { HoverBorderGradient } from "@ui/hover-border-gradient";
 import { Sparkles } from "@ui/sparkles";
 import { Spotlight } from "@ui/spotlight";
 import { Meteors } from "../../ui/meteors";
@@ -47,7 +47,7 @@ export function Hero() {
             transition={{ delay: 0.5 }}
             className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-7xl font-bold text-transparent"
           >
-            <span className="animate-text-gradient bg-gradient-to-r from-neutral-500 via-neutral-300/30 to-neutral-500 bg-[200%_auto] bg-clip-text text-center font-medium text-transparent">
+            <span className="animate-text-gradient bg-gradient-to-r from-neutral-500 via-neutral-300/30 to-neutral-500 bg-[200%_auto] bg-clip-text text-center text-transparent">
               Erik Gabriel
             </span>{" "}
             <br /> Sou Fullstack e Game Developer.
@@ -73,12 +73,13 @@ export function Hero() {
           transition={{ delay: 0.9 }}
           className="pt-10"
         >
-          <ButtonAnimatedBorder
-            className="px-8 py-3"
-            childrenClassName="text-lg"
+          <HoverBorderGradient
+            containerClassName="rounded-lg bg-transparent"
+            as="button"
+            className="flex items-center space-x-5 text-white"
           >
             Veja meus projetos
-          </ButtonAnimatedBorder>
+          </HoverBorderGradient>
         </Motion>
       </div>
     </section>

@@ -101,6 +101,14 @@ const config = {
             transform: "rotate(90deg)",
           },
         },
+        shine: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,6 +116,7 @@ const config = {
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "text-gradient": "text-gradient 3s linear infinite",
         "meteor-effect": "meteor 5s linear infinite",
+        shine: "shine 2s linear infinite",
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
       },

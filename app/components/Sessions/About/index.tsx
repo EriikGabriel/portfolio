@@ -37,7 +37,7 @@ export function About({}: AboutProps) {
 
             <div className="flex h-full w-full flex-col justify-center gap-3 text-start text-white">
               <h1 className="text-bright-primary text-5xl">Olá,</h1>
-              <p className="font-inter pr-5 text-justify text-xl font-normal tracking-tight">
+              <p className="pr-5 text-justify font-inter text-xl font-normal tracking-tight">
                 eu sou Erik Gabriel, desenvolvedor fullstack e desenvolvedor de
                 jogos. Iniciei na área de TI em 2018, onde me formei no ensino
                 técnico em informática da ETEC de Lins e atualmente curso
