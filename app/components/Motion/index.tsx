@@ -20,3 +20,5 @@ export const Motion = forwardRef<React.ElementRef<typeof Wrapper>, MotionProps>(
     );
   },
 );
+
+Motion.displayName = "Motion";

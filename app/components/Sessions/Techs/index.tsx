@@ -1,10 +1,10 @@
 "use client";
 
+import { CardBody, CardContainer, CardItem } from "@ui/3d-card";
 import { Lamp } from "@ui/lamp";
 
 import Image from "next/image";
 import { Motion } from "../../Motion";
-import { CardBody, CardContainer, CardItem } from "../../ui/3d-card";
 
 interface TechsProps {}
 

@@ -1,6 +1,7 @@
 import { About } from "@components/Sessions/About";
 import { Hero } from "@components/Sessions/Hero";
-import { Techs } from "./components/Sessions/Techs";
+import { Projects } from "@components/Sessions/Projects";
+import { Techs } from "@components/Sessions/Techs";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <About />
       <Techs />
+      <Projects />
     </main>
   );
 }
