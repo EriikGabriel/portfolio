@@ -39,7 +39,7 @@ export function Techs({}: TechsProps) {
           {techs.map(({ name, icon }, i) => (
             <CardContainer className="flex w-full flex-col gap-3" key={i}>
               <CardBody className="group/card relative flex aspect-square h-fit w-20 flex-col items-center justify-center  gap-3 rounded-xl border border-foreground/40 bg-neutral-400 bg-opacity-30 bg-clip-padding py-3 backdrop-blur-lg backdrop-filter hover:shadow-lg hover:shadow-neutral-500/[0.1]">
-                <CardItem translateZ="300">
+                <CardItem translateZ="30">
                   <Image
                     src={`/icons/${icon}`}
                     alt={`Ícone do ${name}`}

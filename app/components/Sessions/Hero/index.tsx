@@ -27,8 +27,8 @@ export function Hero() {
         className="-top-40 left-0 md:-top-20 md:left-60"
         fill="white"
       />
-      <div>
-        <article className="relative z-10 flex w-full max-w-7xl flex-col gap-5 py-5 md:pt-0">
+      <div className="w-8/12">
+        <article className="relative z-10 flex w-full flex-col gap-5 py-5 md:pt-0">
           <Motion
             as="p"
             variants={variants}
@@ -49,8 +49,8 @@ export function Hero() {
           >
             <span className="animate-text-gradient bg-gradient-to-r from-neutral-500 via-neutral-300/30 to-neutral-500 bg-[200%_auto] bg-clip-text text-center text-transparent">
               Erik Gabriel
-            </span>{" "}
-            <br /> Sou Fullstack e Game Developer.
+            </span>
+            <p className="text-5xl">Sou Fullstack e Game Developer.</p>
           </Motion>
           <Motion
             as="p"
