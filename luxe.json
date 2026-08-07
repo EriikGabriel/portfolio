@@ -1,0 +1,9 @@
+{
+	"tailwind": {
+		"css": "./app/globals.css"
+	},
+	"aliases": {
+		"components": "@ui/",
+		"utils": "@utils"
+	}
+}

@@ -11,7 +11,7 @@ interface MotionProps extends React.ComponentProps<typeof Wrapper> {
 
 export const Motion = forwardRef<React.ElementRef<typeof Wrapper>, MotionProps>(
   ({ children, as, ...props }, ref) => {
-    const Comp = as ? motion(as) : Wrapper;
+    const Comp = as ? motion.create(as) : Wrapper;
 
     return (
       <Comp ref={ref} {...props}>

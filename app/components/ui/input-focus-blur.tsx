@@ -1,145 +1,146 @@
+/** biome-ignore-all lint/correctness/noUnusedVariables: maybe on future */
 "use client";
 
-import React, { forwardRef, useCallback, useState } from "react";
-
-import { AnimationProps, motion } from "framer-motion";
-
+import { cn } from "@utils/cn";
+import { type MotionProps, motion } from "framer-motion";
+import { AlertCircle } from "lucide-react";
+import type React from "react";
+import { forwardRef, useCallback, useState } from "react";
 import { tv } from "tailwind-variants";
 
-import { cn } from "@/app/lib/utils";
-import { AlertCircle } from "lucide-react";
-
 interface InputFocusBlurProps extends React.ComponentProps<"input"> {
-  feedbackError?: string;
-  widthClassName?: string;
+	feedbackError?: string;
+	widthClassName?: string;
 }
 
 const EIXO_X_PLACEHOLDER = 24;
 const STANDARD_DURATION = 0.3;
 
 const inputFocusBlurStyles = tv({
-  slots: {
-    baseStyle: `w-full h-[42px] px-3 flex items-center rounded-xl border border-neutral-800 focus-within:border-orange-200 
+	slots: {
+		baseStyle: `w-full h-[42px] px-3 flex items-center rounded-xl border border-neutral-800 focus-within:border-orange-200
     bg-neutral-900 transition-all duration-200 relative`,
-    inputStyle: `flex-1 h-full py-2 outline-none text-sm text-neutral-300 bg-transparent relative z-[9999] placeholder:sr-only 
-    disabled:cursor-not-allowed`,
-    placeholderStyle: `text-sm text-neutral-400 absolute left-3 tracking-normal`,
-    feedbackErrorStyle: `flex items-center gap-1 text-xs text-red-300 mt-1`,
-  },
-  variants: {
-    error: {
-      true: {
-        baseStyle: `border-red-300`,
-      },
-    },
-    disabled: {
-      true: {
-        baseStyle: `bg-neutral-800 cursor-not-allowed`,
-      },
-    },
-  },
+		inputStyle: `flex-1 h-full py-2 outline-none text-sm text-neutral-300 bg-transparent relative z-[9999] placeholder:sr-only
+    disabled:cursor-not-allowed placeholder:tracking-wides`,
+		placeholderStyle: `text-sm text-neutral-400 absolute left-3 tracking-normal`,
+		feedbackErrorStyle: `flex items-center gap-1 text-xs text-red-300 mt-1`,
+	},
+	variants: {
+		error: {
+			true: {
+				baseStyle: `border-red-300`,
+			},
+		},
+		disabled: {
+			true: {
+				baseStyle: `bg-neutral-800 cursor-not-allowed`,
+			},
+		},
+	},
 });
 
 const { baseStyle, inputStyle, placeholderStyle, feedbackErrorStyle } =
-  inputFocusBlurStyles();
+	inputFocusBlurStyles();
 
 export const InputFocusBlur = forwardRef<HTMLInputElement, InputFocusBlurProps>(
-  (
-    {
-      placeholder,
-      feedbackError = "",
-      disabled,
-      value,
-      className,
-      widthClassName,
-      ...props
-    },
-    ref,
-  ) => {
-    const [isFocus, setIsFocus] = useState(false);
-    const [internalValue, setInternalValue] = useState("");
+	(
+		{
+			placeholder,
+			feedbackError = "",
+			disabled,
+			value,
+			className,
+			widthClassName,
+			...props
+		},
+		ref,
+	) => {
+		const [isFocus, setIsFocus] = useState(false);
+		const [internalValue, setInternalValue] = useState("");
 
-    const handle = useCallback((type: "focus" | "blur") => {
-      setIsFocus(type === "focus");
-    }, []);
+		const handle = useCallback((type: "focus" | "blur") => {
+			setIsFocus(type === "focus");
+		}, []);
 
-    function observeFieldChange(event: React.ChangeEvent<HTMLInputElement>) {
-      setInternalValue(event.target.value);
-    }
+		function observeFieldChange(event: React.ChangeEvent<HTMLInputElement>) {
+			setInternalValue(event.target.value);
+		}
 
-    const isFilled = internalValue.length > 0 || !!value;
-    const isFocusOrFilled = isFocus || isFilled;
+		const isFilled = internalValue.length > 0 || !!value;
 
-    const isError = feedbackError.length > 0 && !disabled;
+		const isError = feedbackError.length > 0 && !disabled;
 
-    const placeholderAnimation: AnimationProps["animate"] = isFocusOrFilled
-      ? {
-          x: EIXO_X_PLACEHOLDER,
-          filter: "blur(4px)",
-          opacity: 0,
-        }
-      : {
-          x: 0,
-        };
+		const placeholderAnimation: MotionProps["animate"] = isFilled
+			? {
+					x: EIXO_X_PLACEHOLDER,
+					filter: "blur(4px)",
+					opacity: 0,
+				}
+			: {
+					x: 0,
+				};
 
-    return (
-      <div className={cn("w-full", widthClassName)}>
-        <div
-          className={cn(
-            baseStyle({ error: isError, disabled }),
-            className,
-            widthClassName,
-          )}
-          data-filled={isFilled}
-        >
-          <input
-            ref={ref}
-            type="text"
-            className={inputStyle()}
-            placeholder={placeholder}
-            onFocus={() => handle("focus")}
-            onBlur={() => handle("blur")}
-            onChange={observeFieldChange}
-            disabled={disabled}
-            value={value}
-            {...props}
-          />
+		return (
+			<div className={cn("w-full", widthClassName)}>
+				<div
+					className={cn(
+						baseStyle({ error: isError, disabled }),
+						className,
+						widthClassName,
+					)}
+					data-filled={isFilled}
+				>
+					<input
+						ref={ref}
+						type="text"
+						className={cn(
+							inputStyle(),
+							"placeholder:tracking-normal tracking-normal",
+						)}
+						placeholder={placeholder}
+						onFocus={() => handle("focus")}
+						onBlur={() => handle("blur")}
+						onChange={observeFieldChange}
+						disabled={disabled}
+						value={value}
+						{...props}
+					/>
 
-          <motion.span
-            className={placeholderStyle()}
-            initial={{
-              x: 0,
-            }}
-            animate={placeholderAnimation}
-            transition={{
-              easings: ["easeOut"],
-              duration: STANDARD_DURATION,
-            }}
-          >
-            {placeholder}
-          </motion.span>
-        </div>
+					<motion.span
+						className={placeholderStyle()}
+						initial={{
+							x: 0,
+						}}
+						animate={placeholderAnimation}
+						transition={{
+							ease: ["easeOut"],
+							duration: STANDARD_DURATION,
+						}}
+					>
+						{placeholder}
+					</motion.span>
+				</div>
 
-        {isError && (
-          <motion.span
-            className={feedbackErrorStyle()}
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              duration: STANDARD_DURATION,
-            }}
-          >
-            <AlertCircle size={12} />
-            {feedbackError}
-          </motion.span>
-        )}
-      </div>
-    );
-  },
+				{isError && (
+					<motion.span
+						className={feedbackErrorStyle()}
+						initial={{
+							opacity: 0,
+						}}
+						animate={{
+							opacity: 1,
+						}}
+						transition={{
+							duration: STANDARD_DURATION,
+						}}
+					>
+						<AlertCircle size={12} />
+						{feedbackError}
+					</motion.span>
+				)}
+			</div>
+		);
+	},
 );
 
 InputFocusBlur.displayName = "InputFocusBlur";
