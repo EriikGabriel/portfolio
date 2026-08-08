@@ -42,9 +42,10 @@ function useMenuAnimation(isOpen: boolean) {
 	return scope;
 }
 
-type DropdownBlurItem = {
+export type DropdownBlurItem = {
 	icon: React.ReactNode;
 	name: string;
+	value?: string;
 	customStyle?: string;
 };
 
@@ -53,8 +54,8 @@ type DropdownBlurProps = {
 	icon?: React.ReactNode;
 	containerClassName?: string;
 	itemClassName?: string;
-	widthClassName?: string;
 	className?: string;
+	dropClassName?: string;
 	children: React.ReactNode;
 	setFilter?: (filter: string | null) => void;
 	filter?: string | null;
@@ -65,8 +66,8 @@ export function DropdownBlur({
 	icon,
 	containerClassName,
 	itemClassName,
-	widthClassName,
 	className,
+	dropClassName,
 	children,
 	setFilter,
 	filter,
@@ -80,30 +81,29 @@ export function DropdownBlur({
 
 	const handleSelectItem = (item: DropdownBlurItem) => {
 		setSelectedItem(item);
-		if (setFilter) setFilter(item.name);
+		if (setFilter) {
+			console.log(item);
+			item.value ? setFilter(item.value) : setFilter(item.name);
+		}
 		setIsOpen(false);
 	};
 
 	return (
 		<nav
-			className={cn(
-				"w-full space-y-2 tracking-normal",
-				containerClassName,
-				widthClassName,
-			)}
+			className={cn("w-full space-y-2 tracking-normal", containerClassName)}
 			ref={scope}
 		>
 			<motion.button
 				type="button"
 				whileTap={{ scale: 0.97 }}
 				className={cn(
-					"flex w-full items-center justify-between rounded-xl border border-neutral-800 bg-neutral-900 p-2.5",
+					"flex w-full items-center justify-between rounded-xl border border-neutral-800 p-2.5",
 					className,
 				)}
 				onClick={() => setIsOpen((prevState) => !prevState)}
 			>
 				<span className="text-sm font-medium text-neutral-400">
-					{filter || children}
+					{selectedItem.name || children}
 				</span>
 
 				<div className="flex gap-2">
@@ -123,16 +123,15 @@ export function DropdownBlur({
 			</motion.button>
 			<ul
 				className={cn(
-					"absolute z-[1] w-full max-w-[200px] space-y-3 rounded-xl border border-neutral-800 bg-neutral-900 p-2.5",
+					"absolute z-20 w-full max-w-50 space-y-3 rounded-xl border border-neutral-600 supports-backdrop-filter:backdrop-blur-md p-2.5",
 					isOpen ? "pointer-events-auto" : "pointer-events-none",
-					widthClassName,
-					className,
+					dropClassName,
 				)}
 				style={{
 					clipPath: "inset(10% 50% 90% 50% round 12px)",
 				}}
 			>
-				{items.map(({ icon, name, customStyle }) => (
+				{items.map(({ icon, name, value, customStyle }) => (
 					<li key={name}>
 						<button
 							type="button"
@@ -141,7 +140,7 @@ export function DropdownBlur({
 								itemClassName,
 								customStyle,
 							)}
-							onClick={() => handleSelectItem({ icon, name })}
+							onClick={() => handleSelectItem({ icon, name, value })}
 						>
 							<span>{icon}</span>
 							<span className="flex items-center gap-1 text-sm font-medium">

@@ -4,12 +4,12 @@ import { Projects } from "@components/Sessions/Projects";
 import { Techs } from "@components/Sessions/Techs";
 
 export default function Home() {
-  return (
-    <main className="min-h-dvh">
-      <Hero />
-      <About />
-      <Techs />
-      <Projects />
-    </main>
-  );
+	return (
+		<main className="min-h-dvh">
+			<Hero />
+			<About />
+			<Techs />
+			<Projects />
+		</main>
+	);
 }

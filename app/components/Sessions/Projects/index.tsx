@@ -1,8 +1,8 @@
+import { PinContainer } from "@ui/3d-pin-card";
 import { Lamp } from "@ui/lamp";
-
 import Image from "next/image";
 import { Motion } from "../../Motion";
-import { PinCard } from "../../ui/3d-pin-card";
+
 import { AspectRatio } from "../../ui/aspect-ratio";
 import { ProjectForm } from "./project-form";
 
@@ -32,7 +32,7 @@ export function Projects() {
 	];
 
 	return (
-		<section className="flex h-dvh w-full flex-col items-center gap-5 pt-24">
+		<section className="relative flex h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden">
 			<Lamp
 				title="Meus projetos"
 				subtitle="Alguns projetos desenvolvidos por mim"
@@ -49,10 +49,10 @@ export function Projects() {
 				>
 					<div className="flex w-full flex-col gap-5">
 						<ProjectForm />
-						<div className="grid grid-cols-3 grid-rows-2">
+						<div className="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-y-18">
 							{projects.map(({ title, description, href }) => (
-								<PinCard key={title} title={title} href={href}>
-									<div className="flex h-80 w-[20rem] basis-full flex-col p-4 tracking-normal text-slate-100/50 sm:basis-1/2 ">
+								<PinContainer key={title} title={title} href={href}>
+									<div className="flex h-80 w-[20rem] basis-full flex-col py-4 tracking-normal text-slate-100/50 sm:basis-1/2 ">
 										<div>
 											<h3 className="m-0! max-w-xs pb-2! text-base  font-bold text-slate-100">
 												{title}
@@ -66,13 +66,13 @@ export function Projects() {
 											<Image
 												src="/cover.png"
 												alt="cover"
-												className="mt-4 flex h-full w-full flex-1 rounded-lg object-cover"
+												className="mt-4 flex h-full w-full flex-1 rounded-lg object-cover border border-neutral-600"
 												fill
 												sizes="(max-width: 640px) 100vw, 20rem"
 											/>
 										</AspectRatio>
 									</div>
-								</PinCard>
+								</PinContainer>
 							))}
 						</div>
 					</div>

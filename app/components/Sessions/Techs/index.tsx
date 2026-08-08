@@ -36,14 +36,14 @@ export function Techs() {
 				>
 					{techs.map(({ name, icon }) => (
 						<CardContainer className="flex w-full flex-col gap-3" key={name}>
-							<CardBody className="group/card relative flex aspect-square h-fit w-20 flex-col items-center justify-center gap-3 rounded-xl border border-foreground/40 bg-neutral-400/30 py-3 backdrop-blur-lg hover:shadow-lg hover:shadow-neutral-500/10">
+							<CardBody className="group/card relative flex aspect-square h-fit w-20 flex-col items-center justify-center gap-3 rounded-xl border border-foreground/40 bg-neutral-900/20 py-3 backdrop-blur-lg hover:shadow-lg hover:shadow-neutral-500/10">
 								<CardItem translateZ="30">
 									<Image
 										src={`/icons/${icon}`}
 										alt={`Ícone do ${name}`}
 										width={48}
 										height={48}
-										className="h-12 w-12 fill-red-500"
+										className="h-12 w-12"
 									/>
 								</CardItem>
 							</CardBody>

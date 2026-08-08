@@ -1,13 +1,12 @@
-/** biome-ignore-all lint/a11y/noStaticElementInteractions: No need for static element interactions in this context */
+/** biome-ignore-all lint/a11y/noStaticElementInteractions: Necessary for 3D pin effect */
 "use client";
 
 import { cn } from "@utils/cn";
-
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import type React from "react";
 import { useState } from "react";
 
-export const PinCard = ({
+export const PinContainer = ({
 	children,
 	title,
 	href,
@@ -33,13 +32,9 @@ export const PinCard = ({
 
 	return (
 		<div
-			className={cn(
-				"group/pin relative z-50 w-fit cursor-pointer",
-				containerClassName,
-			)}
+			className={cn("relative group/pin z-10", containerClassName)}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
-			// href={href || "/"}
 		>
 			<div
 				style={{
@@ -52,9 +47,9 @@ export const PinCard = ({
 					style={{
 						transform: transform,
 					}}
-					className="absolute left-1/2 top-1/2 flex items-start justify-start overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-4 shadow-[0_8px_16px_rgb(0_0_0/0.4)] backdrop-blur-md transition duration-700 group-hover/pin:border-white/20"
+					className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_32px_rgb(0_0_0/0.5)] bg-neutral-300/10 backdrop-blur-3xl border border-white/25 ring-1 ring-white/10 group-hover/pin:border-orange-200/60 group-hover/pin:bg-white/15 transition duration-700 overflow-hidden"
 				>
-					<div className={cn("relative z-50 ", className)}>{children}</div>
+					<div className={cn(" relative z-50 ", className)}>{children}</div>
 				</div>
 			</div>
 			<PinPerspective title={title} href={href} />
@@ -70,20 +65,20 @@ export const PinPerspective = ({
 	href?: string;
 }) => {
 	return (
-		<motion.div className="pointer-events-none z-60 flex h-80 w-fit items-center justify-center opacity-0 transition duration-500 group-hover/pin:opacity-100">
-			<div className="inset-0 -mt-7 h-full w-full flex-none">
-				<div className="absolute inset-x-0 top-0 flex justify-center">
+		<motion.div className="pointer-events-none w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-60 transition duration-500">
+			<div className=" w-full h-full -mt-7 flex-none  inset-0">
+				<div className="absolute top-0 inset-x-0  flex justify-center">
 					<a
 						href={href}
 						target={"_blank"}
-						className="relative z-10 flex items-center space-x-2 rounded-full bg-zinc-950 px-4 py-0.5 ring-1 ring-white/10 "
+						className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
 						rel="noopener"
 					>
-						<span className="relative z-20 inline-block py-0.5 text-xs font-bold tracking-normal text-white">
+						<span className="relative z-20 text-white text-xs tracking-normal font-bold inline-block py-0.5">
 							{title}
 						</span>
 
-						<span className="absolute bottom-0 left-4.5 h-px w-[calc(100%-2.25rem)] bg-linear-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover/btn:opacity-40"></span>
+						<span className="absolute bottom-0 left-4.5 h-px w-[calc(100%-2.25rem)] bg-linear-to-r from-emerald-400/0 via-orange-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover/btn:opacity-40"></span>
 					</a>
 				</div>
 
@@ -112,7 +107,7 @@ export const PinPerspective = ({
 							repeat: Infinity,
 							delay: 0,
 						}}
-						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-500/8 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-400/12 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
 					></motion.div>
 					<motion.div
 						initial={{
@@ -132,7 +127,7 @@ export const PinPerspective = ({
 							repeat: Infinity,
 							delay: 2,
 						}}
-						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-500/8 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-400/12 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
 					></motion.div>
 					<motion.div
 						initial={{
@@ -152,14 +147,14 @@ export const PinPerspective = ({
 							repeat: Infinity,
 							delay: 4,
 						}}
-						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-500/8 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+						className="absolute left-1/2 top-1/2  h-45 w-45 rounded-[50%] bg-orange-400/12 shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
 					></motion.div>
 				</div>
 
-				<motion.div className="absolute bottom-1/2 right-1/2 h-20 w-px translate-y-3.5 bg-linear-to-b from-transparent to-orange-500 blur-[2px] group-hover/pin:h-40" />
-				<motion.div className="absolute bottom-1/2 right-1/2 h-20 w-px translate-y-3.5 bg-linear-to-b from-transparent to-orange-500 group-hover/pin:h-40  " />
-				<motion.div className="absolute bottom-1/2 right-1/2 z-40 h-1 w-1 translate-x-[1.5px] translate-y-3.5 rounded-full bg-orange-600 blur-[3px]" />
-				<motion.div className="absolute bottom-1/2 right-1/2 z-40 h-0.5 w-0.5 translate-x-[0.5px] translate-y-3.5 rounded-full bg-orange-300 " />
+				<motion.div className="absolute right-1/2 bottom-1/2 bg-linear-to-b from-transparent to-orange-500 translate-y-3.5 w-px h-20 group-hover/pin:h-40 blur-[2px]" />
+				<motion.div className="absolute right-1/2 bottom-1/2 bg-linear-to-b from-transparent to-orange-500 translate-y-3.5 w-px h-20 group-hover/pin:h-40  " />
+				<motion.div className="absolute right-1/2 translate-x-[1.5px] bottom-1/2 bg-orange-600 translate-y-3.5 w-1 h-1 rounded-full z-40 blur-[3px]" />
+				<motion.div className="absolute right-1/2 translate-x-[0.5px] bottom-1/2 bg-orange-300 translate-y-3.5 w-0.5 h-0.5 rounded-full z-40 " />
 			</div>
 		</motion.div>
 	);

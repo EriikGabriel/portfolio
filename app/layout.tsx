@@ -1,3 +1,5 @@
+import { ShootingStars } from "@components/ui/shooting-stars";
+import { StarsBackground } from "@components/ui/stars-background";
 import { cn } from "@utils/cn";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
@@ -28,7 +30,14 @@ export default function RootLayout({
 					Inter.variable,
 				)}
 			>
-				<NuqsAdapter>{children}</NuqsAdapter>
+				<NuqsAdapter>
+					<div className="relative min-h-dvh">
+						<div className="pointer-events-none absolute inset-0 z-0">
+							<StarsBackground />
+						</div>
+						<div className="relative z-10">{children}</div>
+					</div>
+				</NuqsAdapter>
 			</body>
 		</html>
 	);
