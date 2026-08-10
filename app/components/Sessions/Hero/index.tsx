@@ -1,8 +1,9 @@
 import { Motion } from "@components/Motion";
-import { HoverBorderGradient } from "@ui/hover-border-gradient";
+
 import { Sparkles } from "@ui/sparkles";
 import { Spotlight } from "@ui/spotlight";
 import { Meteors } from "../../ui/meteors";
+import SpecularButton from "../../ui/specular-button";
 
 export function Hero() {
 	const variants = {
@@ -74,13 +75,25 @@ export function Hero() {
 					transition={{ delay: 0.9 }}
 					className="pt-10"
 				>
-					<HoverBorderGradient
-						containerClassName="rounded-lg bg-transparent"
-						as="button"
-						className="flex items-center space-x-5 text-white"
+					<SpecularButton
+						size="lg"
+						radius={18}
+						tint="#ffffff"
+						tintOpacity={0}
+						blur={0}
+						textColor="#f5f5f5"
+						lineColor="#f67800"
+						baseColor="#525252"
+						intensity={1}
+						shineSize={10}
+						shineFade={40}
+						thickness={1}
+						speed={0.35}
+						followMouse
+						proximity={250}
 					>
 						Veja meus projetos
-					</HoverBorderGradient>
+					</SpecularButton>
 				</Motion>
 			</div>
 		</section>

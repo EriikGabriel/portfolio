@@ -31,7 +31,7 @@ export function ProjectForm() {
 			<InputFocusBlur
 				name="search-project"
 				placeholder="Pesquisar projetos..."
-				className="bg-neutral-900/10 border-neutral-600 supports-backdrop-filter:backdrop-blur-md [@-moz-document_url-prefix()]:bg-neutral-900/10 [@-moz-document_url-prefix()]:backdrop-blur-md placeholder:font-geist placeholder:tracking-normal"
+				className="bg-white/10 backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors placeholder:font-geist placeholder:tracking-normal"
 				widthClassName="w-full max-w-[500px]"
 				onChange={(e) => setSearch(e.currentTarget.value || null)}
 				autoComplete="off"
@@ -42,9 +42,9 @@ export function ProjectForm() {
 					<FilterIcon size={14} className="text-neutral-400" id="filter-icon" />
 				}
 				items={dropdownItems}
-				className="bg-neutral-900/10 border-neutral-600 supports-backdrop-filter:backdrop-blur-md"
+				className="bg-white/10 backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors"
 				containerClassName="w-full max-w-[200px]"
-				dropClassName="bg-neutral-500/10"
+				dropClassName="bg-white/10 backdrop-blur-md border-white/10"
 				setFilter={setFilter}
 				filter={filter}
 			>

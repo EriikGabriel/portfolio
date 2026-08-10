@@ -1,15 +1,16 @@
-import { PinContainer } from "@ui/3d-pin-card";
 import { Lamp } from "@ui/lamp";
-import Image from "next/image";
 import { Motion } from "../../Motion";
-
-import { AspectRatio } from "../../ui/aspect-ratio";
+import { ProjectCard } from "./project-card";
 import { ProjectForm } from "./project-form";
 
 type ProjectsType = {
 	title: string;
 	description: string;
 	href: string;
+	github?: string;
+	cover?: string;
+	tags?: string[];
+	featured?: boolean;
 };
 
 export function Projects() {
@@ -18,63 +19,43 @@ export function Projects() {
 			title: "teste1",
 			description: "teste1",
 			href: "https://twitter.com/mannupaaji",
+			github: "https://github.com",
+			tags: ["Next.js", "TypeScript", "Tailwind"],
+			featured: true,
 		},
 		{
 			title: "teste2",
 			description: "teste2",
 			href: "https://twitter.com/mannupaaji",
+			tags: ["React", "Node.js"],
 		},
 		{
 			title: "teste3",
 			description: "teste3",
 			href: "https://twitter.com/mannupaaji",
+			github: "https://github.com",
+			tags: ["C#", "Unity"],
 		},
 	];
 
 	return (
-		<section className="relative flex h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden">
+		<section className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden">
 			<Lamp
 				title="Meus projetos"
 				subtitle="Alguns projetos desenvolvidos por mim"
 			>
 				<Motion
-					initial={{ opacity: 0.5, y: 100 }}
+					initial={{ opacity: 0, y: 40 }}
 					whileInView={{ opacity: 1, y: 0 }}
-					transition={{
-						delay: 0.3,
-						duration: 0.8,
-						ease: "easeInOut",
-					}}
-					className="mt-8 flex w-3/5 justify-center gap-5 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text py-4 text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+					transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
+					className="mt-8 flex w-full max-w-4xl flex-col gap-6 px-4"
 				>
-					<div className="flex w-full flex-col gap-5">
-						<ProjectForm />
-						<div className="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-y-18">
-							{projects.map(({ title, description, href }) => (
-								<PinContainer key={title} title={title} href={href}>
-									<div className="flex h-80 w-[20rem] basis-full flex-col py-4 tracking-normal text-slate-100/50 sm:basis-1/2 ">
-										<div>
-											<h3 className="m-0! max-w-xs pb-2! text-base  font-bold text-slate-100">
-												{title}
-											</h3>
-											<div className="m-0! p-0! text-base font-normal">
-												<span className="text-slate-500 ">{description}</span>
-											</div>
-										</div>
+					<ProjectForm />
 
-										<AspectRatio ratio={16 / 9}>
-											<Image
-												src="/cover.png"
-												alt="cover"
-												className="mt-4 flex h-full w-full flex-1 rounded-lg object-cover border border-neutral-600"
-												fill
-												sizes="(max-width: 640px) 100vw, 20rem"
-											/>
-										</AspectRatio>
-									</div>
-								</PinContainer>
-							))}
-						</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						{projects.map((project, i) => (
+							<ProjectCard key={project.title} {...project} index={i} />
+						))}
 					</div>
 				</Motion>
 			</Lamp>
