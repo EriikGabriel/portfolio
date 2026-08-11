@@ -1,6 +1,6 @@
 import { Lamp } from "@ui/lamp";
+import MagicBento from "@ui/magic-bento";
 import { Motion } from "../../Motion";
-import { ProjectCard } from "./project-card";
 import { ProjectForm } from "./project-form";
 
 type ProjectsType = {
@@ -13,33 +13,41 @@ type ProjectsType = {
 	featured?: boolean;
 };
 
-export function Projects() {
-	const projects: ProjectsType[] = [
-		{
-			title: "teste1",
-			description: "teste1",
-			href: "https://twitter.com/mannupaaji",
-			github: "https://github.com",
-			tags: ["Next.js", "TypeScript", "Tailwind"],
-			featured: true,
-		},
-		{
-			title: "teste2",
-			description: "teste2",
-			href: "https://twitter.com/mannupaaji",
-			tags: ["React", "Node.js"],
-		},
-		{
-			title: "teste3",
-			description: "teste3",
-			href: "https://twitter.com/mannupaaji",
-			github: "https://github.com",
-			tags: ["C#", "Unity"],
-		},
-	];
+const projects: ProjectsType[] = [
+	{
+		title: "teste1",
+		description: "teste1",
+		href: "https://twitter.com/mannupaaji",
+		github: "https://github.com",
+		tags: ["Next.js", "TypeScript", "Tailwind"],
+		featured: true,
+	},
+	{
+		title: "teste2",
+		description: "teste2",
+		href: "https://twitter.com/mannupaaji",
+		tags: ["React", "Node.js"],
+	},
+	{
+		title: "teste3",
+		description: "teste3",
+		href: "https://twitter.com/mannupaaji",
+		github: "https://github.com",
+		tags: ["C#", "Unity"],
+	},
+	{
+		title: "teste4",
+		description: "teste3",
+		href: "https://twitter.com/mannupaaji",
+		github: "https://github.com",
+		tags: ["C#", "Unity"],
+		featured: true,
+	},
+];
 
+export function Projects() {
 	return (
-		<section className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden">
+		<section className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24">
 			<Lamp
 				title="Meus projetos"
 				subtitle="Alguns projetos desenvolvidos por mim"
@@ -52,11 +60,18 @@ export function Projects() {
 				>
 					<ProjectForm />
 
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						{projects.map((project, i) => (
-							<ProjectCard key={project.title} {...project} index={i} />
-						))}
-					</div>
+					<MagicBento
+						projects={projects}
+						glowColor="246, 120, 0"
+						spotlightRadius={400}
+						particleCount={12}
+						enableTilt={false}
+						enableStars
+						enableMagnetism
+						enableSpotlight
+						enableBorderGlow
+						textAutoHide
+					/>
 				</Motion>
 			</Lamp>
 		</section>

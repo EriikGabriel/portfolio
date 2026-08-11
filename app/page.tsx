@@ -5,7 +5,7 @@ import { Projects } from "@components/Sessions/Projects";
 import { Social } from "@components/Sessions/Social";
 import { Techs } from "@components/Sessions/Techs";
 import GradualBlurMemo from "@ui/gradual-blur";
-import { WavyBackground } from "./components/ui/wavy-background";
+import { WavyBackground } from "@ui/wavy-background";
 
 export default function Home() {
 	return (
