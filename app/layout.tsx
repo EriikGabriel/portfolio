@@ -1,6 +1,6 @@
-import { ShootingStars } from "@components/ui/shooting-stars";
 import { StarsBackground } from "@components/ui/stars-background";
 import { cn } from "@utils/cn";
+import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { Inter as inter } from "next/font/google";
@@ -28,6 +28,7 @@ export default function RootLayout({
 					GeistSans.variable,
 					GeistSans.className,
 					Inter.variable,
+					GeistMono.variable,
 				)}
 			>
 				<NuqsAdapter>

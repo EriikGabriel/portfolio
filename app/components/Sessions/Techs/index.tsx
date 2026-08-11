@@ -4,7 +4,6 @@ import {
 	SiCss,
 	SiGit,
 	SiHtml5,
-	SiMysql,
 	SiNextdotjs,
 	SiNodedotjs,
 	SiPhp,

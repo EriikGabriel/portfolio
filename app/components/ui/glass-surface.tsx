@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
@@ -388,7 +390,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 				</defs>
 			</svg>
 
-			<div className="w-full h-full flex items-center justify-center p-2 rounded-[inherit] relative z-10">
+			<div className="w-full h-full flex items-center justify-center rounded-[inherit] relative z-10">
 				{children}
 			</div>
 		</div>
