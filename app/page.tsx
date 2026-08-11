@@ -1,9 +1,11 @@
+import { Footer } from "@components/Footer";
 import { About } from "@components/Sessions/About";
 import { Hero } from "@components/Sessions/Hero";
 import { Projects } from "@components/Sessions/Projects";
 import { Social } from "@components/Sessions/Social";
 import { Techs } from "@components/Sessions/Techs";
 import GradualBlurMemo from "@ui/gradual-blur";
+import { WavyBackground } from "./components/ui/wavy-background";
 
 export default function Home() {
 	return (
@@ -13,6 +15,8 @@ export default function Home() {
 			<Techs />
 			<Projects />
 			<Social />
+			<WavyBackground />
+			<Footer />
 
 			<GradualBlurMemo
 				target="page"

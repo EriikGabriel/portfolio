@@ -3,7 +3,8 @@
 import type React from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-export interface GlassSurfaceProps {
+export interface GlassSurfaceProps
+	extends React.HTMLAttributes<HTMLDivElement> {
 	children?: React.ReactNode;
 	width?: number | string;
 	height?: number | string;
@@ -40,8 +41,6 @@ export interface GlassSurfaceProps {
 		| "luminosity"
 		| "plus-darker"
 		| "plus-lighter";
-	className?: string;
-	style?: React.CSSProperties;
 }
 
 const useDarkMode = () => {
@@ -63,8 +62,8 @@ const useDarkMode = () => {
 
 const GlassSurface: React.FC<GlassSurfaceProps> = ({
 	children,
-	width = 200,
-	height = 80,
+	width,
+	height,
 	borderRadius = 20,
 	borderWidth = 0.07,
 	brightness = 50,
@@ -82,6 +81,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 	mixBlendMode = "difference",
 	className = "",
 	style = {},
+	...props
 }) => {
 	const uniqueId = useId().replace(/:/g, "-");
 	const filterId = `glass-filter-${uniqueId}`;
@@ -303,6 +303,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 			ref={containerRef}
 			className={`${glassSurfaceClasses} ${focusVisibleClasses} ${className}`}
 			style={getContainerStyles()}
+			{...props}
 		>
 			<svg
 				aria-hidden="true"

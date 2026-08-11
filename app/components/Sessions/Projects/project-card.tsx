@@ -26,7 +26,7 @@ export function ProjectCard({
 	description,
 	href,
 	github,
-	cover = "/cover.png",
+	cover = "/assets/cover.png",
 	tags = [],
 	featured = false,
 	index = 0,

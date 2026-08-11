@@ -25,7 +25,7 @@ export function About() {
 
 						<EvervaultCard className="h-96 w-3/4">
 							<Image
-								src="/me.jpeg"
+								src="/assets/me.jpeg"
 								alt="Me"
 								width={200}
 								height={200}
