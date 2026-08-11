@@ -1,0 +1,126 @@
+/* ==================================================
+   Bento
+================================================== */
+
+.card-responsive {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	width: 100%;
+}
+
+@media (min-width: 640px) {
+	.card-responsive {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.card-responsive .card--featured {
+		grid-column: span 2;
+	}
+
+	.card-responsive .card:not(.card--featured) {
+		grid-column: span 1;
+	}
+}
+
+/* ==================================================
+   Border Glow
+================================================== */
+
+.card--border-glow {
+	--glow-x: 50%;
+	--glow-y: 50%;
+	--glow-intensity: 0;
+	--glow-radius: 300px;
+}
+
+.card--border-glow::after {
+	content: "";
+
+	position: absolute;
+	inset: 0;
+	padding: 1px;
+
+	background: radial-gradient(
+		circle var(--glow-radius) at var(--glow-x) var(--glow-y),
+		rgba(var(--glow-color), var(--glow-intensity)) 0%,
+		rgba(var(--glow-color), calc(var(--glow-intensity) * 0.6)) 25%,
+		rgba(var(--glow-color), calc(var(--glow-intensity) * 0.2)) 50%,
+		transparent 70%
+	);
+
+	border-radius: inherit;
+
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+
+	-webkit-mask-composite: xor;
+
+	mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+
+	mask-composite: exclude;
+
+	pointer-events: none;
+	z-index: 15;
+}
+
+.card--border-glow {
+	box-shadow: 0 4px 20px rgb(0 0 0 / 0.4);
+}
+
+/* ==================================================
+   Particles
+================================================== */
+
+.particle {
+	will-change: transform, opacity;
+}
+
+.particle::before {
+	content: "";
+
+	position: absolute;
+	inset: -2px;
+
+	background: rgb(var(--glow-color) / 0.2);
+
+	border-radius: 50%;
+
+	z-index: -1;
+}
+
+/* ==================================================
+   Text Clamp
+================================================== */
+
+.text-clamp-1,
+.text-clamp-2 {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.text-clamp-1 {
+	-webkit-line-clamp: 1;
+	line-clamp: 1;
+}
+
+.text-clamp-2 {
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+}
+
+/* ==================================================
+   Mobile
+================================================== */
+
+@media (max-width: 639px) {
+	.card-responsive .card {
+		width: 100%;
+		min-height: 200px;
+	}
+}
