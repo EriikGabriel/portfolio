@@ -87,7 +87,7 @@ export function Footer() {
 
 			<Image
 				ref={revealImgRef}
-				src="/assets/cover.png"
+				src="/assets/cover-pattern.png"
 				alt="Reveal effect"
 				width={1920}
 				height={1080}
