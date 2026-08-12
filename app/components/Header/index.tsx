@@ -27,8 +27,6 @@ const navItems = [
 	},
 ];
 
-const MotionLogo = motion.create(Logo);
-
 export function Header() {
 	const { isLoading, headerLogoRef } = useLoading();
 

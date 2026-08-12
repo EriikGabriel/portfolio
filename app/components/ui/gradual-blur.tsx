@@ -112,6 +112,7 @@ const CURVE_FUNCTIONS: Record<string, (p: number) => number> = {
 const mergeConfigs = (
 	...configs: Partial<GradualBlurProps>[]
 ): Partial<GradualBlurProps> => {
+	// biome-ignore lint/performance/noAccumulatingSpread: Necessary for merging configs
 	return configs.reduce((acc, config) => ({ ...acc, ...config }), {});
 };
 
@@ -145,12 +146,12 @@ const useResponsiveDimension = (
 			let v: any = config[key];
 			const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 			const k = cap(key as string);
-			if (w <= 480 && (config as any)["mobile" + k])
-				v = (config as any)["mobile" + k];
-			else if (w <= 768 && (config as any)["tablet" + k])
-				v = (config as any)["tablet" + k];
-			else if (w <= 1024 && (config as any)["desktop" + k])
-				v = (config as any)["desktop" + k];
+			if (w <= 480 && (config as any)[`mobile${k}`])
+				v = (config as any)[`mobile${k}`];
+			else if (w <= 768 && (config as any)[`tablet${k}`])
+				v = (config as any)[`tablet${k}`];
+			else if (w <= 1024 && (config as any)[`desktop${k}`])
+				v = (config as any)[`desktop${k}`];
 			setVal(v);
 		};
 		const deb = debounce(calc, 100);

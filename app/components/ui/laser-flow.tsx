@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/style/noNonNullAssertion: No need for non-null assertion here */
+
 import type React from "react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
