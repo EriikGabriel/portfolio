@@ -15,7 +15,7 @@ import { navItems, scrollToSection } from "@utils/nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { Logo } from "../Logo";
+import { Logo } from "./logo";
 
 export function Footer() {
 	const revealImgRef = useRef<HTMLImageElement>(null);

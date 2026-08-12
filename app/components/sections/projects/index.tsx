@@ -1,6 +1,6 @@
 import { Lamp } from "@ui/lamp";
 import MagicBento from "@ui/magic-bento";
-import { Motion } from "../../Motion";
+import { Motion } from "../../motion";
 import { ProjectForm } from "./project-form";
 
 type ProjectsType = {

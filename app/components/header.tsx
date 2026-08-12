@@ -6,8 +6,8 @@ import { navItems, scrollToSection } from "@utils/nav";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
-import { Logo } from "../Logo";
-import { Motion } from "../Motion";
+import { Logo } from "./logo";
+import { Motion } from "./motion";
 
 export function Header() {
 	const { isLoading, headerLogoRef } = useLoading();

@@ -1,12 +1,12 @@
 "use client";
 
-import { gsap } from "gsap";
-import type React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	type MagicBentoProject,
 	ProjectCard,
-} from "../Sessions/Projects/project-card";
+} from "@sections/projects/project-card";
+import { gsap } from "gsap";
+import type React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface BentoProps {
 	projects: MagicBentoProject[];

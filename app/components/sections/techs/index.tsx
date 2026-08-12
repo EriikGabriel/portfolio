@@ -21,7 +21,7 @@ import GlassSurface from "@ui/glass-surface";
 import { Lamp } from "@ui/lamp";
 import Image from "next/image";
 import type { ComponentType, SVGProps } from "react";
-import { Motion } from "../../Motion";
+import { Motion } from "../../motion";
 
 type Tech = {
 	name: string;

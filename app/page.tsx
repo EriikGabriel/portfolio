@@ -1,9 +1,9 @@
-import { Footer } from "@components/Footer";
-import { About } from "@components/Sessions/About";
-import { Hero } from "@components/Sessions/Hero";
-import { Projects } from "@components/Sessions/Projects";
-import { Social } from "@components/Sessions/Social";
-import { Techs } from "@components/Sessions/Techs";
+import { Footer } from "@components/footer";
+import { About } from "@sections/about";
+import { Hero } from "@sections/hero";
+import { Projects } from "@sections/projects";
+import { Social } from "@sections/social";
+import { Techs } from "@sections/techs";
 import GradualBlurMemo from "@ui/gradual-blur";
 import { WavyBackground } from "@ui/wavy-background";
 

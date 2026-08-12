@@ -1,4 +1,4 @@
-import { Motion } from "@components/Motion";
+import { Motion } from "@components/motion";
 import { EvervaultCard, Icon } from "@ui/evervault-card";
 import { Lamp } from "@ui/lamp";
 import Image from "next/image";

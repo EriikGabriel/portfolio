@@ -1,6 +1,6 @@
 import { EncryptedText } from "@ui/encrypted-text";
 import { Lamp } from "@ui/lamp";
-import { Motion } from "../../Motion";
+import { Motion } from "../../motion";
 import { SocialMedias } from "./social-medias";
 
 export function Social() {
