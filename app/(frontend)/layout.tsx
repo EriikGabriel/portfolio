@@ -9,9 +9,9 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
 import { Header } from "@components/header";
+import { MainContentGate } from "@components/main-content-gate";
+import { SplashScreen } from "@components/splash-screen";
 import { LoadingProvider } from "@contexts/loading";
-import { MainContentGate } from "@/app/components/main-content-gate";
-import { SplashScreen } from "@/app/components/splash-screen";
 
 const Inter = inter({ subsets: ["latin"], variable: "--font-inter" });
 
