@@ -1,8 +1,14 @@
-type LogoProps = React.SVGProps<SVGSVGElement>;
+import { forwardRef } from "react";
 
-export function Logo({ className, ...props }: LogoProps) {
+export type LogoProps = React.SVGProps<SVGSVGElement>;
+
+export const Logo = forwardRef<SVGSVGElement, LogoProps>(function Logo(
+	{ className, ...props },
+	ref,
+) {
 	return (
 		<svg
+			ref={ref}
 			viewBox="0 0 239 203"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +32,4 @@ export function Logo({ className, ...props }: LogoProps) {
 			/>
 		</svg>
 	);
-}
+});

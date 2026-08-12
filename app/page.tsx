@@ -1,5 +1,4 @@
 import { Footer } from "@components/Footer";
-import { Header } from "@components/Header";
 import { About } from "@components/Sessions/About";
 import { Hero } from "@components/Sessions/Hero";
 import { Projects } from "@components/Sessions/Projects";
@@ -11,8 +10,6 @@ import { WavyBackground } from "@ui/wavy-background";
 export default function Home() {
 	return (
 		<main className="min-h-dvh">
-			<Header />
-
 			<Hero />
 			<About />
 			<Techs />

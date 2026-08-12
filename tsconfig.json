@@ -27,7 +27,8 @@
 			"@ui/*": ["./app/components/ui/*"],
 			"@helpers/*": ["./app/helpers/*"],
 			"@@types/*": ["./app/types/*"],
-			"@hooks/*": ["./app/hooks/*"]
+			"@hooks/*": ["./app/hooks/*"],
+			"@contexts/*": ["./app/contexts/*"]
 		},
 		"target": "ES2017"
 	},

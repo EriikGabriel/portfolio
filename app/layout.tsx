@@ -8,6 +8,11 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import "./globals.css";
 
+import { Header } from "@components/Header";
+import { MainContentGate } from "@components/MainContentGate";
+import { SplashScreen } from "@components/SplashScreen";
+import { LoadingProvider } from "@contexts/loading";
+
 const Inter = inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
@@ -32,12 +37,17 @@ export default function RootLayout({
 				)}
 			>
 				<NuqsAdapter>
-					<div className="relative min-h-dvh">
-						<div className="pointer-events-none absolute inset-0 z-0">
-							<StarsBackground />
+					<LoadingProvider>
+						<div className="relative min-h-dvh">
+							<div className="pointer-events-none absolute inset-0 z-0">
+								<StarsBackground />
+							</div>
+
+							<SplashScreen />
+							<Header />
+							<MainContentGate>{children}</MainContentGate>
 						</div>
-						<div className="relative z-10">{children}</div>
-					</div>
+					</LoadingProvider>
 				</NuqsAdapter>
 			</body>
 		</html>
