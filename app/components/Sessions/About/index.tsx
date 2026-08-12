@@ -5,7 +5,10 @@ import Image from "next/image";
 
 export function About() {
 	return (
-		<section className="flex h-dvh w-full flex-col items-center gap-5 pt-24">
+		<section
+			className="flex h-dvh w-full flex-col items-center gap-5 pt-24"
+			id="about"
+		>
 			<Lamp title="Quem sou?" subtitle="Um pouco sobre mim">
 				<Motion
 					initial={{ opacity: 0.5, y: 100 }}

@@ -2,30 +2,12 @@
 
 import { useLoading } from "@contexts/loading";
 import SpecularButton from "@ui/specular-button";
+import { navItems, scrollToSection } from "@utils/nav";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
 import { Logo } from "../Logo";
 import { Motion } from "../Motion";
-
-const navItems = [
-	{
-		label: "Quem sou",
-		href: "#home",
-	},
-	{
-		label: "Skills",
-		href: "#skills",
-	},
-	{
-		label: "Projetos",
-		href: "#projects",
-	},
-	{
-		label: "Conecte-se",
-		href: "#contact",
-	},
-];
 
 export function Header() {
 	const { isLoading, headerLogoRef } = useLoading();
@@ -96,13 +78,14 @@ export function Header() {
 					{/* Navegação */}
 					<nav className="hidden items-center gap-6 md:flex">
 						{navItems.map((item) => (
-							<Link
-								key={item.href}
-								href={item.href}
+							<button
+								key={item.id}
+								type="button"
+								onClick={() => scrollToSection(item.id)}
 								className="text-md text-white/60 transition-colors hover:text-primary"
 							>
 								{item.label}
-							</Link>
+							</button>
 						))}
 					</nav>
 					{/* Logo central */}

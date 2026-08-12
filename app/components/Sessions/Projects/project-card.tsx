@@ -2,7 +2,6 @@
 
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Badge } from "@ui/badge";
-
 import GlassSurface from "@ui/glass-surface";
 
 import { ExternalLinkIcon } from "lucide-react";
@@ -23,15 +22,19 @@ interface ProjectCardProps {
 	textAutoHide?: boolean;
 }
 
+const blackPlaceholder =
+	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23000000'/%3E%3C/svg%3E";
+
 export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 	return (
 		<div className="group relative h-full w-full">
 			<Image
-				src={project.cover ?? "/assets/cover.png"}
+				src={project.cover || blackPlaceholder}
 				alt={`Preview de ${project.title}`}
-				fill
 				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 				className="scale-[1.06] object-cover opacity-30 transition-all duration-700 ease-out group-hover:scale-100 group-hover:opacity-50"
+				unoptimized={!project.cover}
+				fill
 			/>
 
 			<div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/55 to-neutral-950/10 transition-opacity duration-500 group-hover:opacity-80" />
@@ -43,7 +46,7 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 					backgroundOpacity={0.05}
 					borderRadius={0}
 				>
-					<div className="flex w-full flex-col items-start gap-3 mb-1 px-2 py-1">
+					<div className="mb-1 flex w-full flex-col items-start gap-3 px-2 py-1">
 						<div>
 							<h3
 								className={`text-sm leading-snug font-semibold text-white ${

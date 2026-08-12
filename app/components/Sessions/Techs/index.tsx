@@ -55,7 +55,10 @@ export function Techs() {
 	];
 
 	return (
-		<section className="flex h-dvh w-full flex-col items-center gap-5 pt-24">
+		<section
+			className="flex h-dvh w-full flex-col items-center gap-5 pt-24"
+			id="skills"
+		>
 			<Lamp
 				title="Minhas skills"
 				subtitle="Algumas das tecnologias que utilizo"

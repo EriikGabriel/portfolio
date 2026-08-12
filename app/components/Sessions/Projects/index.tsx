@@ -47,7 +47,10 @@ const projects: ProjectsType[] = [
 
 export function Projects() {
 	return (
-		<section className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24">
+		<section
+			className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24"
+			id="projects"
+		>
 			<Lamp
 				title="Meus projetos"
 				subtitle="Alguns projetos desenvolvidos por mim"

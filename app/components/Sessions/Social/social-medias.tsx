@@ -20,6 +20,7 @@ const medias = [
 		url: "https://www.instagram.com/eriikgaabriel/",
 		title: "Instagram",
 		desc: "@eriikgaabriel",
+		imageSrc: "/assets/instagram-mock.png",
 	},
 	{
 		icon: <SiX className="size-14 p-2 object-contain text-white/60" />,
@@ -34,6 +35,7 @@ const medias = [
 		url: "https://www.linkedin.com/in/erikgabrielsilva/",
 		title: "LinkedIn",
 		desc: "erikgabrielsilva",
+		imageSrc: "/assets/linkedin-mock.png",
 	},
 ];
 
@@ -49,6 +51,14 @@ export function SocialMedias() {
 					}}
 					key={media.title}
 					url={media.url}
+					{...(media.imageSrc
+						? {
+								imageSrc: media.imageSrc,
+								isStatic: true as const,
+							}
+						: {
+								isStatic: false as const,
+							})}
 				>
 					<AnimatedTooltip
 						hover={{

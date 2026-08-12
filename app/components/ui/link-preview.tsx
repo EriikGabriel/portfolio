@@ -1,4 +1,5 @@
 "use client";
+
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import { cn } from "@utils/cn";
 import {
@@ -24,8 +25,14 @@ type LinkPreviewProps = {
 	quality?: number;
 	layout?: string;
 } & (
-	| { isStatic: true; imageSrc: string }
-	| { isStatic?: false; imageSrc?: never }
+	| {
+			isStatic: true;
+			imageSrc: string;
+	  }
+	| {
+			isStatic?: false;
+			imageSrc?: never;
+	  }
 );
 
 export const LinkPreview = ({
@@ -35,11 +42,24 @@ export const LinkPreview = ({
 	width = 200,
 	height = 125,
 	isStatic = false,
-	imageSrc = "",
+	imageSrc,
 	hover,
 }: LinkPreviewProps) => {
-	let src: string | undefined;
-	if (!isStatic) {
+	const [isOpen, setOpen] = React.useState(false);
+
+	const springConfig = {
+		stiffness: 100,
+		damping: 15,
+	};
+
+	const x = useMotionValue(0);
+	const translateX = useSpring(x, springConfig);
+
+	const src = React.useMemo(() => {
+		if (isStatic) {
+			return imageSrc;
+		}
+
 		const params = encode({
 			url,
 			screenshot: true,
@@ -51,99 +71,90 @@ export const LinkPreview = ({
 			"viewport.width": width * 3,
 			"viewport.height": height * 3,
 		});
-		src = `https://api.microlink.io/?${params}`;
-	} else {
-		src = imageSrc;
-	}
 
-	const [isOpen, setOpen] = React.useState(false);
+		return `https://api.microlink.io/?${params}`;
+	}, [isStatic, imageSrc, url, width, height]);
 
-	const [isMounted, setIsMounted] = React.useState(false);
-
-	React.useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
-	const springConfig = { stiffness: 100, damping: 15 };
-	const x = useMotionValue(0);
-
-	const translateX = useSpring(x, springConfig);
-
-	const handleMouseMove = (event: any) => {
-		const targetRect = event.target.getBoundingClientRect();
+	const handleMouseMove = (event: React.MouseEvent<HTMLAnchorElement>) => {
+		const targetRect = event.currentTarget.getBoundingClientRect();
 		const eventOffsetX = event.clientX - targetRect.left;
-		const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
+		const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2;
+
 		x.set(offsetFromCenter);
 	};
 
 	return (
-		<>
-			{isMounted ? (
-				<div className="hidden">
-					<Image src={src} width={width} height={height} alt="hidden image" />
-				</div>
-			) : null}
-
-			<HoverCardPrimitive.Root
-				openDelay={50}
-				closeDelay={100}
-				onOpenChange={(open) => {
-					setOpen(open);
-				}}
+		<HoverCardPrimitive.Root
+			openDelay={50}
+			closeDelay={100}
+			onOpenChange={setOpen}
+		>
+			<HoverCardPrimitive.Trigger
+				onMouseMove={handleMouseMove}
+				className={cn("text-white", className)}
+				href={url}
 			>
-				<HoverCardPrimitive.Trigger
-					onMouseMove={handleMouseMove}
-					className={cn("text-white", className)}
-					href={url}
-				>
-					{children}
-				</HoverCardPrimitive.Trigger>
+				{children}
+			</HoverCardPrimitive.Trigger>
 
-				<HoverCardPrimitive.Content
-					className="origin-(--radix-hover-card-content-transform-origin) pb-3"
-					side="top"
-					align="center"
-					onMouseEnter={() => hover.setIndex(hover.index)}
-					onMouseLeave={() => hover.setIndex(null)}
-				>
-					<AnimatePresence>
-						{isOpen && (
-							<motion.div
-								initial={{ opacity: 0, y: 20, scale: 0.6 }}
-								animate={{
-									opacity: 1,
-									y: 0,
-									scale: 1,
-									transition: {
-										type: "spring",
-										stiffness: 260,
-										damping: 20,
-									},
-								}}
-								exit={{ opacity: 0, y: 20, scale: 0.6 }}
-								className="shadow-xl rounded-xl"
+			<HoverCardPrimitive.Content
+				className="origin-(--radix-hover-card-content-transform-origin) pb-3"
+				side="top"
+				align="center"
+				onMouseEnter={() => hover.setIndex(hover.index)}
+				onMouseLeave={() => hover.setIndex(null)}
+			>
+				<AnimatePresence>
+					{isOpen && (
+						<motion.div
+							initial={{
+								opacity: 0,
+								y: 20,
+								scale: 0.6,
+							}}
+							animate={{
+								opacity: 1,
+								y: 0,
+								scale: 1,
+								transition: {
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								},
+							}}
+							exit={{
+								opacity: 0,
+								y: 20,
+								scale: 0.6,
+							}}
+							className="rounded-xl shadow-xl"
+							style={{
+								x: translateX,
+							}}
+						>
+							<a
+								href={url}
+								className="block rounded-xl bg-neutral-400 p-1 shadow hover:border-neutral-200 dark:hover:border-neutral-800"
 								style={{
-									x: translateX,
+									fontSize: 0,
+									width,
+									height,
 								}}
 							>
-								<a
-									href={url}
-									className="block p-1 bg-neutral-400  shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
-									style={{ fontSize: 0 }}
-								>
+								<div className="relative size-full overflow-hidden rounded-lg">
 									<Image
-										src={isStatic ? imageSrc : src}
-										width={width}
-										height={height}
+										src={src ?? ""}
 										alt="preview image"
-										className="rounded-lg"
+										fill
+										sizes={`${width}px`}
+										className="object-cover"
 									/>
-								</a>
-							</motion.div>
-						)}
-					</AnimatePresence>
-				</HoverCardPrimitive.Content>
-			</HoverCardPrimitive.Root>
-		</>
+								</div>
+							</a>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</HoverCardPrimitive.Content>
+		</HoverCardPrimitive.Root>
 	);
 };

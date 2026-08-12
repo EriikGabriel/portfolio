@@ -1,9 +1,8 @@
 import { Motion } from "@components/Motion";
-
+import { Meteors } from "@ui/meteors";
 import { Sparkles } from "@ui/sparkles";
 import { Spotlight } from "@ui/spotlight";
-import { Meteors } from "../../ui/meteors";
-import SpecularButton from "../../ui/specular-button";
+import { ProjectsButton } from "../../ProjectsButton";
 
 export function Hero() {
 	const variants = {
@@ -75,25 +74,7 @@ export function Hero() {
 					transition={{ delay: 0.9 }}
 					className="pt-10"
 				>
-					<SpecularButton
-						size="lg"
-						radius={18}
-						tint="#ffffff"
-						tintOpacity={0}
-						blur={0}
-						textColor="#f5f5f5"
-						lineColor="#f67800"
-						baseColor="#525252"
-						intensity={1}
-						shineSize={10}
-						shineFade={40}
-						thickness={1}
-						speed={0.35}
-						followMouse
-						proximity={250}
-					>
-						Veja meus projetos
-					</SpecularButton>
+					<ProjectsButton />
 				</Motion>
 			</div>
 		</section>

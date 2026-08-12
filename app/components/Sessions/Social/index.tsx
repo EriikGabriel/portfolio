@@ -5,7 +5,10 @@ import { SocialMedias } from "./social-medias";
 
 export function Social() {
 	return (
-		<section className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden">
+		<section
+			className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24 overflow-hidden"
+			id="connect"
+		>
 			<Lamp
 				title="Conecte-se comigo"
 				subtitle="Para quem deseja entrar em contato comigo"
