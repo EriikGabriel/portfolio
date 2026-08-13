@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     techs: Tech;
     projects: Project;
+    tags: Tag;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     techs: TechsSelect<false> | TechsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -182,17 +184,13 @@ export interface Media {
  */
 export interface Tech {
   id: number;
+  _order?: string | null;
   name: string;
   url: string;
-  type: 'icon' | 'image';
   /**
-   * Nome do ícone da tecnologia. O nome deve ser o mesmo do ícone disponível em Iconify
+   * Nome do ícone da tecnologia. O nome deve ser o mesmo do ícone disponível no Iconify
    */
-  icon?: string | null;
-  /**
-   * Imagem representando o ícone da tecnologia.
-   */
-  image?: (number | null) | Media;
+  icon: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -202,16 +200,17 @@ export interface Tech {
  */
 export interface Project {
   id: number;
+  _order?: string | null;
   title: string;
   description: string;
   /**
    * Marque se o projeto deve ser exibido como destaque.
    */
   featured: boolean;
-  tags: {
-    name: string;
-    id?: string | null;
-  }[];
+  /**
+   * Tags associadas ao projeto.
+   */
+  tags: (number | Tag)[];
   /**
    * Imagem cover do projeto. Recomenda-se uma imagem com proporção 16:9.
    */
@@ -224,6 +223,21 @@ export interface Project {
    * Link para a demonstração do projeto.
    */
   demo?: string | null;
+  enabled?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  title: string;
+  /**
+   * Tags vinculadas a tecnologias são gerenciadas automaticamente.
+   */
+  tech?: (number | null) | Tech;
   updatedAt: string;
   createdAt: string;
 }
@@ -266,6 +280,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -355,11 +373,10 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "techs_select".
  */
 export interface TechsSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   url?: T;
-  type?: T;
   icon?: T;
-  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -368,18 +385,25 @@ export interface TechsSelect<T extends boolean = true> {
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
+  _order?: T;
   title?: T;
   description?: T;
   featured?: T;
-  tags?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
+  tags?: T;
   image?: T;
   github?: T;
   demo?: T;
+  enabled?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  title?: T;
+  tech?: T;
   updatedAt?: T;
   createdAt?: T;
 }

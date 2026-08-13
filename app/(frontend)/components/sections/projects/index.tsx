@@ -1,16 +1,15 @@
-import configPromise from "@payload-config";
+import { findPopulated } from "@frontend/utils/payload";
 import { Lamp } from "@ui/lamp";
 import MagicBento from "@ui/magic-bento";
-import { getPayload } from "payload";
 import { Motion } from "../../motion";
 import { ProjectForm } from "./project-form";
 
 export async function Projects() {
-	const payload = await getPayload({ config: configPromise });
-	const projects = await payload.find({
+	const projects = await findPopulated({
 		collection: "projects",
 		depth: 1,
 		limit: 5,
+		where: { enabled: { equals: true } },
 	});
 
 	return (

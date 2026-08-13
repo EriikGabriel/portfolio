@@ -1,64 +1,27 @@
 "use client";
 
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { AnimatedTooltip } from "@ui/animated-tooltip";
 import { LinkPreview } from "@ui/link-preview";
+import { socialMedias } from "@utils/social";
 import { useState } from "react";
 import { SocialCard } from "./social-card";
 
-const medias = [
-	{
-		icon: <SiGithub className="size-14 p-2 object-contain text-white/60" />,
-		url: "https://github.com/EriikGabriel",
-		title: "Github",
-		desc: "EriikGabriel",
-	},
-	{
-		icon: <SiInstagram className="size-14 p-2 object-contain text-white/60" />,
-		url: "https://www.instagram.com/eriikgaabriel/",
-		title: "Instagram",
-		desc: "@eriikgaabriel",
-		imageSrc: "/assets/instagram-mock.png",
-	},
-	{
-		icon: <SiX className="size-14 p-2 object-contain text-white/60" />,
-		url: "https://www.x.com/canopuskire/",
-		title: "X",
-		desc: "@canopuskire",
-	},
-	{
-		icon: (
-			<FontAwesomeIcon icon={faLinkedin} className="size-12! text-white/60" />
-		),
-		url: "https://www.linkedin.com/in/erikgabrielsilva/",
-		title: "LinkedIn",
-		desc: "erikgabrielsilva",
-		imageSrc: "/assets/linkedin-mock.png",
-	},
-];
-
 export function SocialMedias() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
 	return (
 		<div className="flex justify-center gap-12 w-full">
-			{medias.map((media, i) => (
+			{socialMedias.map((media, i) => (
 				<LinkPreview
 					hover={{
 						index: i,
 						setIndex: setHoveredIndex,
 					}}
-					key={media.title}
+					key={media.name}
 					url={media.url}
 					{...(media.imageSrc
-						? {
-								imageSrc: media.imageSrc,
-								isStatic: true as const,
-							}
-						: {
-								isStatic: false as const,
-							})}
+						? { imageSrc: media.imageSrc, isStatic: true }
+						: { isStatic: false })}
 				>
 					<AnimatedTooltip
 						hover={{
@@ -68,7 +31,7 @@ export function SocialMedias() {
 						items={[
 							{
 								id: i,
-								title: media.title,
+								title: media.name,
 								desc: media.desc,
 								url: media.url,
 							},

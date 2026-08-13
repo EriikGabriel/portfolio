@@ -2,16 +2,11 @@
 
 "use client";
 
-import {
-	faGithub,
-	faInstagram,
-	faLinkedin,
-	faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icon } from "@iconify/react";
 import { BackgroundBeamsWithCollision } from "@ui/background-beams-with-collision";
 import LaserFlow from "@ui/laser-flow";
 import { navItems, scrollToSection } from "@utils/nav";
+import { socialMedias } from "@utils/social";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -20,29 +15,33 @@ import { Logo } from "./logo";
 export function Footer() {
 	const revealImgRef = useRef<HTMLImageElement>(null);
 
+	const handleMouseMove = (e: React.MouseEvent) => {
+		const rect = e.currentTarget.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+
+		const el = revealImgRef.current;
+
+		if (el) {
+			el.style.setProperty("--mx", `${x}px`);
+			el.style.setProperty("--my", `${y + rect.height * 0.5}px`);
+		}
+	};
+
+	const handleMouseLeave = () => {
+		const el = revealImgRef.current;
+
+		if (el) {
+			el.style.setProperty("--mx", "-9999px");
+			el.style.setProperty("--my", "-9999px");
+		}
+	};
+
 	return (
 		<footer
 			className="relative min-h-200 overflow-hidden"
-			onMouseMove={(e) => {
-				const rect = e.currentTarget.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-
-				const el = revealImgRef.current;
-
-				if (el) {
-					el.style.setProperty("--mx", `${x}px`);
-					el.style.setProperty("--my", `${y + rect.height * 0.5}px`);
-				}
-			}}
-			onMouseLeave={() => {
-				const el = revealImgRef.current;
-
-				if (el) {
-					el.style.setProperty("--mx", "-9999px");
-					el.style.setProperty("--my", "-9999px");
-				}
-			}}
+			onMouseMove={handleMouseMove}
+			onMouseLeave={handleMouseLeave}
 		>
 			<BackgroundBeamsWithCollision className="h-full">
 				<LaserFlow
@@ -76,41 +75,17 @@ export function Footer() {
 					<span className="text-sm">Erik Gabriel © 2026</span>
 
 					<div className="flex gap-4">
-						<Link
-							href="https://github.com/EriikGabriel"
-							className="*:size-6!"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FontAwesomeIcon icon={faGithub} />
-						</Link>
-
-						<Link
-							href="https://www.instagram.com/eriikgaabriel/"
-							className="*:size-6!"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FontAwesomeIcon icon={faInstagram} />
-						</Link>
-
-						<Link
-							href="https://www.x.com/canopuskire/"
-							className="*:size-6!"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FontAwesomeIcon icon={faXTwitter} />
-						</Link>
-
-						<Link
-							href="https://www.linkedin.com/in/erikgabrielsilva/"
-							className="*:size-6!"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FontAwesomeIcon icon={faLinkedin} />
-						</Link>
+						{socialMedias.map((media) => (
+							<Link
+								key={media.name}
+								href={media.url}
+								className="*:size-6!"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Icon icon={media.icon} />
+							</Link>
+						))}
 					</div>
 				</div>
 			</div>

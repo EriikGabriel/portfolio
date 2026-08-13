@@ -1,9 +1,11 @@
 import type { CollectionConfig } from "payload";
+
 import { anyone } from "../access/anyone";
 import { authenticated } from "../access/authenticated";
 
 export const Techs: CollectionConfig = {
 	slug: "techs",
+	orderable: true,
 	labels: {
 		singular: "Tecnologia",
 		plural: "Tecnologias",
@@ -17,6 +19,75 @@ export const Techs: CollectionConfig = {
 		read: anyone,
 		update: authenticated,
 		delete: authenticated,
+	},
+
+	hooks: {
+		afterChange: [
+			async ({ doc, req }) => {
+				// Procura a Tag vinculada a esta Tech
+				const existingTag = await req.payload.find({
+					collection: "tags",
+					where: {
+						tech: {
+							equals: doc.id,
+						},
+					},
+					limit: 1,
+					depth: 0,
+				});
+
+				// A Tech já possui uma Tag vinculada
+				if (existingTag.docs.length > 0) {
+					const tag = existingTag.docs[0];
+
+					// Só atualiza se realmente precisar
+					if (tag.title !== doc.name) {
+						await req.payload.update({
+							collection: "tags",
+							id: tag.id,
+							data: {
+								title: doc.name,
+							},
+						});
+					}
+
+					return;
+				}
+
+				// A Tech ainda não possui uma Tag
+				await req.payload.create({
+					collection: "tags",
+					data: {
+						title: doc.name,
+						tech: doc.id,
+					},
+				});
+			},
+		],
+
+		afterDelete: [
+			async ({ id, req }) => {
+				const existingTag = await req.payload.find({
+					collection: "tags",
+					where: {
+						tech: {
+							equals: id,
+						},
+					},
+					limit: 1,
+					depth: 0,
+				});
+
+				if (existingTag.docs.length === 0) {
+					return;
+				}
+
+				await req.payload.delete({
+					collection: "tags",
+					id: existingTag.docs[0].id,
+				});
+			},
+		],
 	},
 	fields: [
 		{
@@ -39,23 +110,6 @@ export const Techs: CollectionConfig = {
 			},
 		},
 		{
-			name: "type",
-			label: "Tipo",
-			type: "select",
-			options: [
-				{
-					label: "Ícone",
-					value: "icon",
-				},
-				{
-					label: "Imagem",
-					value: "image",
-				},
-			],
-			required: true,
-		},
-
-		{
 			name: "icon",
 			label: "Ícone",
 			type: "text",
@@ -63,23 +117,7 @@ export const Techs: CollectionConfig = {
 			admin: {
 				placeholder: "Ex: simple-icons:react",
 				description:
-					"Nome do ícone da tecnologia. O nome deve ser o mesmo do ícone disponível em Iconify",
-				condition: (_, siblingData) => siblingData?.type === "icon",
-			},
-		},
-
-		{
-			name: "image",
-			label: "Imagem",
-			type: "upload",
-			relationTo: "media",
-			required: true,
-			filterOptions: {
-				mimeType: { equals: "image/svg+xml" },
-			},
-			admin: {
-				description: "Imagem representando o ícone da tecnologia.",
-				condition: (_, siblingData) => siblingData?.type === "image",
+					"Nome do ícone da tecnologia. O nome deve ser o mesmo do ícone disponível no Iconify",
 			},
 		},
 	],

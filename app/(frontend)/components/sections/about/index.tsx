@@ -1,16 +1,14 @@
 import { Motion } from "@components/motion";
-import configPromise from "@payload-config";
+import { findPopulatedGlobal } from "@frontend/utils/payload";
 import { EvervaultCard, Icon } from "@ui/evervault-card";
 import { Lamp } from "@ui/lamp";
 import Image from "next/image";
-import { getPayload } from "payload";
-import type { Tech } from "@/app/(payload)/payload-types";
 
 export async function About() {
-	const payload = await getPayload({ config: configPromise });
-
-	const about = await payload.findGlobal({ slug: "about", depth: 1 });
-	const techs = about.techs as Tech[];
+	const about = await findPopulatedGlobal({
+		slug: "about",
+		depth: 1,
+	});
 
 	return (
 		<section
@@ -48,12 +46,15 @@ export async function About() {
 							<h1 className="text-bright-primary text-5xl">{about.greeting}</h1>
 							<p className="pr-5 font-geist text-xl font-normal tracking-tight">
 								{about.description}{" "}
-								{techs.map((tech, i) => (
-									<a key={tech.id} className="text-primary" href={tech.url}>
-										{tech.name}
-										{i !== techs.length - 1 && ", "}
-									</a>
+								{about.techs.map((tech, i) => (
+									<span key={tech.id}>
+										<a key={tech.id} className="text-primary" href={tech.url}>
+											{tech.name}
+										</a>
+										<span>{i !== about.techs.length - 1 && ", "}</span>
+									</span>
 								))}
+								.
 							</p>
 						</div>
 					</div>

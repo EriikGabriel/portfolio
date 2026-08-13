@@ -1,8 +1,9 @@
+import { Icon } from "@iconify/react";
 import { GlareCard } from "@ui/glare-card";
 import GlassSurface from "@ui/glass-surface";
 
 interface SocialCardProps {
-	icon: React.ReactNode;
+	icon: string;
 }
 
 export function SocialCard({ icon }: SocialCardProps) {
@@ -14,7 +15,10 @@ export function SocialCard({ icon }: SocialCardProps) {
 			className="absolute inset-0 size-20!"
 		>
 			<GlareCard className="flex h-full w-full items-center justify-center py-3">
-				{icon}
+				<Icon
+					icon={icon}
+					className="size-16 p-2 object-contain text-white/60"
+				/>
 			</GlareCard>
 		</GlassSurface>
 	);

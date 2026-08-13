@@ -1,14 +1,15 @@
 "use client";
 
+import type { Populated } from "@frontend/utils/payload";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import type { Project } from "@payload/payload-types";
-import { Badge } from "@ui/badge";
 import GlassSurface from "@ui/glass-surface";
 import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
+import { ProjectTags } from "./project-tags";
 
 interface ProjectCardProps {
-	project: Project;
+	project: Populated<Project>;
 	textAutoHide?: boolean;
 }
 
@@ -19,7 +20,7 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 	return (
 		<div className="group relative h-full w-full">
 			<Image
-				src={blackPlaceholder}
+				src={project.image?.url ?? blackPlaceholder}
 				alt={`Preview de ${project.title}`}
 				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 				className="scale-[1.06] object-cover opacity-30 transition-all duration-700 ease-out group-hover:scale-100 group-hover:opacity-50"
@@ -56,17 +57,7 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 						</div>
 
 						{project.tags && project.tags.length > 0 && (
-							<div className="flex flex-wrap gap-2">
-								{project.tags.map((tag) => (
-									<Badge
-										variant="rotate-border"
-										key={tag.id}
-										className="rounded-full border border-white/8 bg-neutral-800/60 px-2 py-0.5 text-[10px] text-neutral-400"
-									>
-										{tag.name}
-									</Badge>
-								))}
-							</div>
+							<ProjectTags tags={project.tags} />
 						)}
 
 						<div className="flex w-full gap-2">

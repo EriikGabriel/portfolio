@@ -726,7 +726,7 @@ const MagicBento: React.FC<BentoProps> = ({
 	// Card Classes
 	// ----------------------------------------------------------
 
-	const baseClassName = (project: MagicBentoProject) =>
+	const baseClassName = (project: Project) =>
 		`
 		card
 		relative
@@ -743,7 +743,7 @@ const MagicBento: React.FC<BentoProps> = ({
 		ease-in-out
 		hover:-translate-y-0.5
 		${enableBorderGlow ? "card--border-glow" : ""}
-		${project.featured ? "card--featured aspect-[16/6]" : "aspect-[10/6]"}
+		${project.featured ? "card--featured aspect-[16/5]" : "aspect-[16/4]"}
 	`;
 
 	// ----------------------------------------------------------

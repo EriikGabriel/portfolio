@@ -3,29 +3,19 @@ import type { CollectionConfig } from "payload";
 
 import { anyone } from "../access/anyone";
 import { authenticated } from "../access/authenticated";
-import { processMedia } from "../hooks/process-media";
 
 export const Media: CollectionConfig = {
 	slug: "media",
-
 	labels: {
 		singular: "Mídia",
 		plural: "Mídias",
 	},
-
 	admin: {
 		useAsTitle: "filename",
 		group: "Uploads",
 	},
-
 	upload: {
-		mimeTypes: [
-			"image/png",
-			"image/jpeg",
-			"image/webp",
-			"image/svg+xml",
-			"application/xml",
-		],
+		mimeTypes: ["image/png", "image/jpeg", "image/webp"],
 		resizeOptions: {
 			width: 2560,
 			withoutEnlargement: true,
@@ -38,7 +28,6 @@ export const Media: CollectionConfig = {
 		delete: authenticated,
 	},
 	hooks: {
-		beforeOperation: [processMedia],
 		afterChange: [
 			({ doc }) => {
 				revalidatePath("/");

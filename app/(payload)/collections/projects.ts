@@ -4,6 +4,7 @@ import { authenticated } from "../access/authenticated";
 
 export const Projects: CollectionConfig = {
 	slug: "projects",
+	orderable: true,
 	labels: {
 		singular: "Projeto",
 		plural: "Projetos",
@@ -50,15 +51,13 @@ export const Projects: CollectionConfig = {
 		{
 			name: "tags",
 			label: "Tags",
-			type: "array",
+			type: "relationship",
 			required: true,
-			fields: [
-				{
-					name: "name",
-					type: "text",
-					required: true,
-				},
-			],
+			hasMany: true,
+			relationTo: "tags",
+			admin: {
+				description: "Tags associadas ao projeto.",
+			},
 		},
 		{
 			name: "image",
@@ -89,6 +88,15 @@ export const Projects: CollectionConfig = {
 			admin: {
 				placeholder: "https://...",
 				description: "Link para a demonstração do projeto.",
+			},
+		},
+		{
+			name: "enabled",
+			label: "Exibir",
+			type: "checkbox",
+			defaultValue: true,
+			admin: {
+				position: "sidebar",
 			},
 		},
 	],

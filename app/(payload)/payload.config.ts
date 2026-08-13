@@ -5,7 +5,7 @@ import path from "path";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
-import { Media, Projects, Techs, Users } from "./collections";
+import { Media, Projects, Tags, Techs, Users } from "./collections";
 import { About } from "./globals";
 
 const filename = fileURLToPath(import.meta.url);
@@ -25,7 +25,7 @@ export default buildConfig({
 		},
 	},
 	editor: lexicalEditor(),
-	collections: [Users, Media, Techs, Projects],
+	collections: [Users, Media, Techs, Projects, Tags],
 	globals: [About],
 	secret: process.env.PAYLOAD_SECRET || "",
 	typescript: {
@@ -35,7 +35,9 @@ export default buildConfig({
 		pool: {
 			connectionString: process.env.POSTGRES_URL || "",
 		},
+		migrationDir: path.resolve(dirname, "migrations"),
 	}),
+
 	sharp,
 	plugins: [],
 });
