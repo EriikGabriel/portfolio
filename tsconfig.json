@@ -24,6 +24,7 @@
 			"@payload/*": ["./app/(payload)/*"],
 			"@payload-config": ["./app/(payload)/payload.config.ts"],
 			"@collections/*": ["./app/(payload)/collections/*"],
+			"@globals/*": ["./app/(payload)/globals/*"],
 			"@sections/*": ["./app/(frontend)/components/sections/*"],
 			"@lib/*": ["./app/(frontend)/utils/*"],
 			"@utils/*": ["./app/(frontend)/utils/*"],

@@ -1,24 +1,14 @@
 "use client";
 
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import type { Project } from "@payload/payload-types";
 import { Badge } from "@ui/badge";
 import GlassSurface from "@ui/glass-surface";
-
 import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 
-export interface MagicBentoProject {
-	title: string;
-	description: string;
-	href: string;
-	github?: string;
-	cover?: string;
-	tags?: string[];
-	featured?: boolean;
-}
-
 interface ProjectCardProps {
-	project: MagicBentoProject;
+	project: Project;
 	textAutoHide?: boolean;
 }
 
@@ -29,11 +19,11 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 	return (
 		<div className="group relative h-full w-full">
 			<Image
-				src={project.cover || blackPlaceholder}
+				src={blackPlaceholder}
 				alt={`Preview de ${project.title}`}
 				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 				className="scale-[1.06] object-cover opacity-30 transition-all duration-700 ease-out group-hover:scale-100 group-hover:opacity-50"
-				unoptimized={!project.cover}
+				unoptimized={!project.image}
 				fill
 			/>
 
@@ -70,39 +60,39 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 								{project.tags.map((tag) => (
 									<Badge
 										variant="rotate-border"
-										key={tag}
+										key={tag.id}
 										className="rounded-full border border-white/8 bg-neutral-800/60 px-2 py-0.5 text-[10px] text-neutral-400"
 									>
-										{tag}
+										{tag.name}
 									</Badge>
 								))}
 							</div>
 						)}
 
 						<div className="flex w-full gap-2">
-							<a
-								href={project.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								onClick={(e) => e.stopPropagation()}
-								className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-amber-500/25 bg-orange-500/15 px-2.5 py-1 text-sm text-orange-300 transition-colors hover:bg-amber-500/25"
-							>
-								<ExternalLinkIcon size={12} />
-								Demo
-							</a>
-
-							{project.github && (
+							{project.demo && (
 								<a
-									href={project.github}
+									href={project.demo}
 									target="_blank"
 									rel="noopener noreferrer"
 									onClick={(e) => e.stopPropagation()}
-									className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/7 px-2.5 py-1 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/12"
+									className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-amber-500/25 bg-orange-500/15 px-2.5 py-1 text-sm text-orange-300 transition-colors hover:bg-amber-500/25"
 								>
-									<SiGithub size={12} />
-									GitHub
+									<ExternalLinkIcon size={12} />
+									Demo
 								</a>
 							)}
+
+							<a
+								href={project.github}
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={(e) => e.stopPropagation()}
+								className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/7 px-2.5 py-1 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/12"
+							>
+								<SiGithub size={12} />
+								GitHub
+							</a>
 						</div>
 					</div>
 				</GlassSurface>

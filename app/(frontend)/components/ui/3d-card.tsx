@@ -14,15 +14,18 @@ const MouseEnterContext = createContext<
 	[boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
 >(undefined);
 
+interface CardContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+	children?: React.ReactNode;
+	className?: string;
+	containerClassName?: string;
+}
+
 export const CardContainer = ({
 	children,
 	className,
 	containerClassName,
-}: {
-	children?: React.ReactNode;
-	className?: string;
-	containerClassName?: string;
-}) => {
+	...props
+}: CardContainerProps) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isMouseEntered, setIsMouseEntered] = useState(false);
 
@@ -52,6 +55,7 @@ export const CardContainer = ({
 				style={{
 					perspective: "35px",
 				}}
+				{...props}
 			>
 				<div
 					ref={containerRef}

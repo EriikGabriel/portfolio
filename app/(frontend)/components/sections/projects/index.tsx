@@ -1,51 +1,18 @@
+import configPromise from "@payload-config";
 import { Lamp } from "@ui/lamp";
 import MagicBento from "@ui/magic-bento";
+import { getPayload } from "payload";
 import { Motion } from "../../motion";
 import { ProjectForm } from "./project-form";
 
-type ProjectsType = {
-	title: string;
-	description: string;
-	href: string;
-	github?: string;
-	cover?: string;
-	tags?: string[];
-	featured?: boolean;
-};
+export async function Projects() {
+	const payload = await getPayload({ config: configPromise });
+	const projects = await payload.find({
+		collection: "projects",
+		depth: 1,
+		limit: 5,
+	});
 
-const projects: ProjectsType[] = [
-	{
-		title: "teste1",
-		description: "teste1",
-		href: "https://twitter.com/mannupaaji",
-		github: "https://github.com",
-		tags: ["Next.js", "TypeScript", "Tailwind"],
-		featured: true,
-	},
-	{
-		title: "teste2",
-		description: "teste2",
-		href: "https://twitter.com/mannupaaji",
-		tags: ["React", "Node.js"],
-	},
-	{
-		title: "teste3",
-		description: "teste3",
-		href: "https://twitter.com/mannupaaji",
-		github: "https://github.com",
-		tags: ["C#", "Unity"],
-	},
-	{
-		title: "teste4",
-		description: "teste3",
-		href: "https://twitter.com/mannupaaji",
-		github: "https://github.com",
-		tags: ["C#", "Unity"],
-		featured: true,
-	},
-];
-
-export function Projects() {
 	return (
 		<section
 			className="relative flex min-h-dvh w-full flex-col items-center gap-5 pt-24"
@@ -64,7 +31,7 @@ export function Projects() {
 					<ProjectForm />
 
 					<MagicBento
-						projects={projects}
+						projects={projects.docs}
 						glowColor="246, 120, 0"
 						spotlightRadius={400}
 						particleCount={12}

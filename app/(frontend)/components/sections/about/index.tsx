@@ -1,9 +1,17 @@
 import { Motion } from "@components/motion";
+import configPromise from "@payload-config";
 import { EvervaultCard, Icon } from "@ui/evervault-card";
 import { Lamp } from "@ui/lamp";
 import Image from "next/image";
+import { getPayload } from "payload";
+import type { Tech } from "@/app/(payload)/payload-types";
 
-export function About() {
+export async function About() {
+	const payload = await getPayload({ config: configPromise });
+
+	const about = await payload.findGlobal({ slug: "about", depth: 1 });
+	const techs = about.techs as Tech[];
+
 	return (
 		<section
 			className="flex h-dvh w-full flex-col items-center gap-5 pt-24"
@@ -37,17 +45,15 @@ export function About() {
 						</EvervaultCard>
 
 						<div className="flex h-full w-full flex-col justify-center gap-3 text-start text-white">
-							<h1 className="text-bright-primary text-5xl">Olá,</h1>
+							<h1 className="text-bright-primary text-5xl">{about.greeting}</h1>
 							<p className="pr-5 font-geist text-xl font-normal tracking-tight">
-								eu sou Erik Gabriel, desenvolvedor fullstack e desenvolvedor de
-								jogos. Iniciei na área de TI em 2018, onde me formei no ensino
-								técnico em informática da ETEC de Lins e atualmente curso
-								Ciência da Computação pela UFSCar. Gosto de estudar novas
-								tecnologias e estou sempre disposto a novos desafios! Trabalho
-								principalmente com tecnologias como{" "}
-								<span className="text-primary">React</span>,{" "}
-								<span className="text-primary">Typescript</span> e{" "}
-								<span className="text-primary">Unity</span>.
+								{about.description}{" "}
+								{techs.map((tech, i) => (
+									<a key={tech.id} className="text-primary" href={tech.url}>
+										{tech.name}
+										{i !== techs.length - 1 && ", "}
+									</a>
+								))}
 							</p>
 						</div>
 					</div>
