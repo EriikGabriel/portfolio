@@ -1,66 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-<h1 align="center">
-  Personal Website<br>
-  erikgabriel.vercel.app
-</h1>
+  <img src=".github/logo.svg" alt="Erik Gabriel" width="100" />
 
-<p align="center">
-  My personal website and developer portfolio built with
-  <a href="https://nextjs.org/" target="_blank">Next.js</a>,
-  <a href="https://payloadcms.com/" target="_blank">Payload CMS</a>
-  and
-  <a href="https://vercel.com/" target="_blank">Vercel</a>.
-</p>
+  <h1>Personal Website</h1>
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/static/v1?label=license&message=MIT&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="License"></a>
-  <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?label=forks&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="Forks">
-  <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?label=stars&color=f55a00&labelColor=3c3c3d&style=for-the-badge" alt="Stars">
-  <a href="https://vercel.com/eriikgabriel/portfolio" target="_blank"><img src="https://img.shields.io/github/deployments/EriikGabriel/portfolio/production?label=Vercel&logo=vercel&logoColor=white&style=for-the-badge&labelColor=3c3c3d" alt="Vercel"></a>
-</p>
+  <p>
+    <strong>erikgabriel.vercel.app</strong>
+  </p>
 
-![cover](.github/cover.svg)
+  <p>
+    Personal website and developer portfolio built with
+    <strong>Next.js</strong>, <strong>Payload CMS</strong> and <strong>Vercel</strong>.
+  </p>
 
-## ✨ About
+  <p>
+    <a href="https://github.com/EriikGabriel/portfolio">
+      <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&label=Stars" alt="GitHub Stars" />
+    </a>
+    <a href="https://github.com/EriikGabriel/portfolio/forks">
+      <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&label=Forks" alt="GitHub Forks" />
+    </a>
+    <a href="LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-f55a00?style=for-the-badge" alt="MIT License" />
+    </a>
+    <a href="https://vercel.com/eriikgabriel/portfolio">
+      <img src="https://img.shields.io/github/deployments/EriikGabriel/portfolio/production?label=Vercel&style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Deployment" />
+    </a>
+  </p>
 
-This repository contains my personal website and developer portfolio.
+  <p>
+    <a href="https://erikgabriel.vercel.app">Live Website</a>
+    ·
+    <a href="https://github.com/EriikGabriel/portfolio">Repository</a>
+  </p>
 
-The project is built as a full-stack application using **Next.js App Router** and **Payload CMS**, combining the public portfolio, content management system, API and database layer into a single codebase.
-
-The website focuses on an interactive and animated experience while keeping the application architecture modular and maintainable.
-
-🌐 **Live website:**
-https://erikgabriel.vercel.app
+</div>
 
 ---
 
-## 🏗️ Architecture
+## About
 
-The application is organized into two main areas inside the Next.js App Router:
+This repository contains my personal website and developer portfolio.
+
+The project is built as a full-stack application using the **Next.js App Router** and **Payload CMS**, combining the public website, content management system, API, database layer and administrative interface into a single application.
+
+The website focuses on an interactive and animated experience while keeping the underlying architecture modular and maintainable.
+
+**Live:** https://erikgabriel.vercel.app
+
+---
+
+## Architecture
+
+The application is organized around two main areas inside the Next.js App Router:
 
 ```text
-                    ┌─────────────────────┐
-                    │      Next.js        │
-                    │     App Router      │
-                    └──────────┬──────────┘
-                               │
-             ┌─────────────────┴─────────────────┐
-             │                                   │
-             ▼                                   ▼
-     ┌────────────────┐                 ┌────────────────┐
-     │    Frontend    │                 │  Payload CMS   │
-     │                │                 │                │
-     │ Hero           │                 │ Admin          │
-     │ About          │                 │ API            │
-     │ Projects       │◄───────────────►│ Collections    │
-     │ Social         │                 │ Globals        │
-     │ Techs          │                 │ Access Control │
-     └────────────────┘                 └───────┬────────┘
-                                                │
-                              ┌─────────────────┼─────────────────┐
-                              ▼                 ▼                 ▼
-                         PostgreSQL           Media          Migrations
+                                ┌─────────────────────┐
+                                │       Next.js       │
+                                │      App Router     │
+                                └──────────┬──────────┘
+                                           │
+                     ┌─────────────────────┴─────────────────────┐
+                     │                                           │
+                     ▼                                           ▼
+             ┌────────────────┐                         ┌────────────────┐
+             │    Frontend    │                         │  Payload CMS   │
+             │                │◄───────────────────────►│                │
+             │ Hero           │                         │ Admin          │
+             │ About          │                         │ API            │
+             │ Projects       │                         │ Collections    │
+             │ Social         │                         │ Globals        │
+             │ Technologies   │                         │ Access Control │
+             └────────────────┘                         │ Migrations     │
+                                                        └───────┬────────┘
+                                                                │
+                                             ┌──────────────────┼──────────────────┐
+                                             ▼                  ▼                  ▼
+                                       PostgreSQL             Media            Migrations
 ```
 
 ### Frontend
@@ -123,13 +139,13 @@ app/(payload)/
 └── payload-types.ts
 ```
 
-This architecture allows the project to manage portfolio content dynamically without requiring a separate backend application.
+This architecture allows the portfolio content to be managed dynamically without requiring a separate backend application.
 
 ---
 
-## 🗂️ Content Model
+## Content Model
 
-The portfolio content is managed through Payload collections and globals.
+Portfolio content is managed through Payload collections and globals.
 
 ### Collections
 
@@ -142,27 +158,15 @@ collections/
 └── users.ts
 ```
 
-#### Projects
+| Collection | Purpose                                              |
+| ---------- | ---------------------------------------------------- |
+| `projects` | Stores projects displayed on the portfolio           |
+| `tags`     | Categorizes projects and provides filtering          |
+| `tech`     | Stores technologies displayed throughout the website |
+| `media`    | Handles uploaded assets used by the CMS and website  |
+| `users`    | Handles Payload users and CMS authentication         |
 
-Stores the portfolio projects displayed on the website.
-
-Projects can be associated with technologies and tags and are consumed by the frontend to build the projects section.
-
-#### Tags
-
-Provides categorization for projects and makes it possible to filter the project list.
-
-#### Tech
-
-Stores technologies displayed throughout the portfolio.
-
-#### Media
-
-Handles uploaded assets used by the CMS and website.
-
-#### Users
-
-Handles Payload users and authentication for the CMS.
+Projects can be associated with both technologies and tags, allowing the frontend to build a dynamic and filterable projects section.
 
 ### Globals
 
@@ -171,17 +175,13 @@ globals/
 └── about.ts
 ```
 
-Globals are used for content that is not tied to a specific collection item.
-
-The `about` global contains the site's main personal/about content.
+The `about` global stores content that is not tied to a specific collection item, such as the main personal/about section.
 
 ---
 
-## 🎨 Frontend
+## Frontend
 
 The frontend is divided into reusable sections and UI primitives.
-
-### Sections
 
 ```text
 components/sections/
@@ -192,7 +192,7 @@ components/sections/
 └── techs/
 ```
 
-The **Projects** section is the most modular part of the application and includes:
+The Projects section is the most modular part of the application:
 
 ```text
 projects/
@@ -205,27 +205,25 @@ projects/
 └── project-tags.tsx
 ```
 
-This separation allows project rendering, filtering, forms, tags and layout to evolve independently.
+This separation keeps project rendering, filtering, forms, tags and layout independent and easier to maintain.
 
 ---
 
-## 🧩 UI System
+## UI System
 
-The project includes a collection of reusable visual components under:
+Reusable visual components are located under:
 
 ```text
 app/(frontend)/components/ui/
 ```
 
-These components are used to build the interactive visual language of the website.
-
-The UI layer is intentionally separated from the page sections so that visual components can be reused across the application.
+The UI layer is intentionally separated from page sections so that components can be reused throughout the application without coupling them to a specific page.
 
 ---
 
-## 🔄 State & Transitions
+## State & Transitions
 
-The frontend uses React contexts for application-level interaction states:
+Application-level interaction state is handled through React contexts:
 
 ```text
 components/contexts/
@@ -233,93 +231,77 @@ components/contexts/
 └── projects-transition.tsx
 ```
 
-These contexts handle global loading behavior and transitions related to the projects experience.
+These contexts coordinate global loading behavior and transitions related to the projects experience.
 
-The project also includes dedicated components such as:
-
-* `main-content-gate.tsx`
-* `splash-screen.tsx`
-* `motion.tsx`
-
-to coordinate the initial loading and animated page experience.
-
----
-
-## 🔍 SEO
-
-SEO and crawler configuration are handled natively through Next.js.
+The project also includes dedicated components for the initial visual experience:
 
 ```text
-app/
-├── robots.ts
-└── sitemap.ts
+main-content-gate.tsx
+splash-screen.tsx
+motion.tsx
 ```
-
-### Robots
-
-`robots.ts` generates the application's `robots.txt` configuration.
-
-It controls which routes can be crawled by search engines and references the application's sitemap.
-
-### Sitemap
-
-`sitemap.ts` generates the sitemap dynamically through Next.js.
-
-There is **no manually maintained `sitemap.xml` file** in the repository.
-
-Next.js generates the XML endpoint automatically from the `sitemap.ts` configuration.
 
 ---
 
-## 🛠️ Technologies
+## Technologies
 
 ### Framework & Language
 
-* **Next.js**
-* **React**
-* **TypeScript**
+<p>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+</p>
 
 ### Backend & CMS
 
-* **Payload CMS**
-* **PostgreSQL**
-* **GraphQL**
-* **REST API**
-* **Lexical**
+<p>
+  <img src="https://img.shields.io/badge/Payload_CMS-000000?style=for-the-badge&logo=payloadcms&logoColor=white" alt="Payload CMS" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white" alt="GraphQL" />
+  <img src="https://img.shields.io/badge/REST_API-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="REST API" />
+  <img src="https://img.shields.io/badge/Lexical-000000?style=for-the-badge" alt="Lexical" />
+</p>
 
 ### Styling & UI
 
-* **Tailwind CSS**
-* **Radix UI**
-* **Tailwind Variants**
-* **Tailwind Merge**
-* **Lucide React**
+<p>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radixui&logoColor=white" alt="Radix UI" />
+  <img src="https://img.shields.io/badge/Tailwind_Variants-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind Variants" />
+  <img src="https://img.shields.io/badge/Tailwind_Merge-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind Merge" />
+  <img src="https://img.shields.io/badge/Lucide-000000?style=for-the-badge&logo=lucide&logoColor=white" alt="Lucide React" />
+</p>
 
 ### Animation & Graphics
 
-* **Framer Motion**
-* **Motion**
-* **GSAP**
-* **Three.js**
-* **React Three Fiber**
-* **React Three Drei**
-* **OGL**
-* **tsParticles**
-* **Simplex Noise**
-* **maath**
-* **Rough Notation**
+<p>
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
+  <img src="https://img.shields.io/badge/Motion-000000?style=for-the-badge&logo=motion&logoColor=white" alt="Motion" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=111111" alt="GSAP" />
+  <img src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/React_Three_Fiber-000000?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Three Fiber" />
+  <img src="https://img.shields.io/badge/React_Three_Drei-000000?style=for-the-badge&logo=threedotjs&logoColor=white" alt="React Three Drei" />
+  <img src="https://img.shields.io/badge/OGL-000000?style=for-the-badge" alt="OGL" />
+  <img src="https://img.shields.io/badge/tsParticles-000000?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="tsParticles" />
+  <img src="https://img.shields.io/badge/Simplex_Noise-000000?style=for-the-badge" alt="Simplex Noise" />
+  <img src="https://img.shields.io/badge/maath-000000?style=for-the-badge" alt="maath" />
+  <img src="https://img.shields.io/badge/Rough_Notation-000000?style=for-the-badge" alt="Rough Notation" />
+</p>
 
 ### Developer Experience
 
-* **Biome**
-* **ESLint**
-* **Prettier**
-* **PostCSS**
-* **Bun**
+<p>
+  <img src="https://img.shields.io/badge/Biome-60A5FA?style=for-the-badge&logo=biome&logoColor=white" alt="Biome" />
+  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=111111" alt="Prettier" />
+  <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white" alt="PostCSS" />
+  <img src="https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white" alt="Bun" />
+</p>
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 portfolio/
@@ -364,21 +346,38 @@ portfolio/
 
 ---
 
-## 🛠️ Installation
+## SEO
+
+SEO and crawler configuration are handled natively through Next.js.
+
+```text
+app/
+├── robots.ts
+└── sitemap.ts
+```
+
+### Robots
+
+`robots.ts` generates the application's `robots.txt` configuration and controls which routes can be crawled by search engines.
+
+### Sitemap
+
+`sitemap.ts` dynamically generates the application's sitemap.
+
+There is no manually maintained `sitemap.xml` file in the repository. Next.js generates the XML endpoint from the `sitemap.ts` configuration.
+
+---
+
+## Installation
 
 ### 1. Clone the repository
 
 ```bash
 git clone https://github.com/EriikGabriel/portfolio.git
-```
-
-### 2. Access the project
-
-```bash
 cd portfolio
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
 
 Using Bun:
 
@@ -392,21 +391,23 @@ Or using npm:
 npm install
 ```
 
-### 4. Configure environment variables
+### 3. Configure environment variables
 
-Create an environment file based on the variables required by the application.
+Create an environment file with the variables required by the application.
 
-The project requires the appropriate configuration for the Payload CMS and database environment.
+The project requires the appropriate configuration for Payload CMS and the database environment.
 
 > Never commit production credentials or secrets to the repository.
 
-### 5. Start the development server
+### 4. Start the development server
+
+Using Bun:
 
 ```bash
 bun dev
 ```
 
-Or:
+Or using npm:
 
 ```bash
 npm run dev
@@ -420,7 +421,7 @@ http://localhost:3000
 
 ---
 
-## ⚙️ Development
+## Development
 
 The main development workflow is centered around Next.js.
 
@@ -428,9 +429,13 @@ The main development workflow is centered around Next.js.
 bun dev
 ```
 
-The Payload admin panel is available through the application's `/admin` route.
+The Payload CMS admin panel is available at:
 
-The API is exposed through the Payload API route:
+```text
+/admin
+```
+
+The Payload API is exposed through:
 
 ```text
 /api
@@ -438,7 +443,7 @@ The API is exposed through the Payload API route:
 
 ---
 
-## 🗃️ Database Migrations
+## Database Migrations
 
 Database migrations are versioned inside:
 
@@ -452,7 +457,7 @@ This allows database changes to be tracked and reproduced across environments.
 
 ---
 
-## 🧬 Generated Types
+## Generated Types
 
 Payload generates TypeScript definitions based on the configured collections and globals.
 
@@ -462,22 +467,23 @@ The generated types are stored in:
 app/(payload)/payload-types.ts
 ```
 
-This provides type safety between the CMS configuration and the application consuming its data.
+These types provide type safety between the CMS configuration and the application consuming its data.
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
-The project is deployed on **Vercel**.
+The project is deployed on Vercel.
 
-🌐 **Production:**
+**Production:**
+
 https://erikgabriel.vercel.app
 
 The architecture is designed to run the Next.js application and Payload CMS together while connecting the application to its configured database and storage services.
 
 ---
 
-## 🔗 Forking This Repository
+## Forking
 
 You're welcome to use this project as a reference or starting point for your own website.
 
@@ -491,20 +497,18 @@ or mentioning the original repository:
 
 Please don't present the original design or implementation as your own work.
 
-Thanks, and enjoy the code!
-
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the **MIT License**.
 
-See the [LICENSE](LICENSE) file for details.
+See [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-Developed by **Erik Gabriel** 🚀
+Developed by **Erik Gabriel**
 
 </div>
