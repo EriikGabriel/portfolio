@@ -48,7 +48,7 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 
 							<p
 								className={`mt-0.5 text-xs leading-relaxed text-neutral-400 ${
-									textAutoHide ? "text-clamp-2" : ""
+									textAutoHide ? "text-clamp-1" : ""
 								}`}
 							>
 								{project.description}
