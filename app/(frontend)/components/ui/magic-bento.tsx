@@ -2,12 +2,13 @@
 
 import type { Project } from "@payload/payload-types";
 import { ProjectCard } from "@sections/projects/project-card";
+import type { Populated } from "@utils/payload";
 import { gsap } from "gsap";
 import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface BentoProps {
-	projects: Project[];
+	projects: Populated<Project>[];
 	textAutoHide?: boolean;
 	enableStars?: boolean;
 	enableSpotlight?: boolean;
@@ -726,7 +727,7 @@ const MagicBento: React.FC<BentoProps> = ({
 	// Card Classes
 	// ----------------------------------------------------------
 
-	const baseClassName = (project: Project) =>
+	const baseClassName = (project: Populated<Project>) =>
 		`
 		card
 		relative
