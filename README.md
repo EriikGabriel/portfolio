@@ -33,6 +33,8 @@
 
 </div>
 
+![cover](.github/cover.svg)
+
 ---
 
 ## About
