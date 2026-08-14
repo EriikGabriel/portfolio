@@ -26,9 +26,16 @@ const requiredEnv = (name: string): string => {
 	return value;
 };
 
+const serverURL =
+	process.env.NODE_ENV === "production"
+		? requiredEnv("NEXT_PUBLIC_SERVER_URL")
+		: process.env.NEXT_PUBLIC_SERVER_URL;
 const payloadSecret = requiredEnv("PAYLOAD_SECRET");
 const databaseUrl = requiredEnv("DATABASE_URL");
-const blobToken = requiredEnv("BLOB_READ_WRITE_TOKEN");
+const blobToken =
+	process.env.NODE_ENV === "production"
+		? requiredEnv("BLOB_READ_WRITE_TOKEN")
+		: process.env.BLOB_READ_WRITE_TOKEN;
 
 if (isVercelDeployment && !blobToken) {
 	throw new Error(
@@ -37,6 +44,7 @@ if (isVercelDeployment && !blobToken) {
 }
 
 export default buildConfig({
+	serverURL: serverURL || "http://localhost:3000",
 	i18n: {
 		supportedLanguages: { pt, en },
 		fallbackLanguage: "pt",
@@ -69,7 +77,9 @@ export default buildConfig({
 					vercelBlobStorage({
 						enabled: true,
 						collections: {
-							media: true,
+							media: {
+								disablePayloadAccessControl: true,
+							},
 						},
 						token: blobToken,
 					}),

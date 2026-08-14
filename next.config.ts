@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
 				protocol: "https",
 				hostname: "api.microlink.io",
 			},
+			{
+				protocol: "http",
+				hostname: "localhost",
+				port: "3000",
+				pathname: "/media/**",
+			},
+			{
+				protocol: "https",
+				hostname: "*.public.blob.vercel-storage.com",
+			},
 		],
 	},
 };
