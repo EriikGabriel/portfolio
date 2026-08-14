@@ -26,6 +26,10 @@ const requiredEnv = (name: string): string => {
 	return value;
 };
 
+const serverURL =
+	process.env.NODE_ENV === "production"
+		? requiredEnv("NEXT_PUBLIC_SERVER_URL")
+		: process.env.NEXT_PUBLIC_SERVER_URL;
 const payloadSecret = requiredEnv("PAYLOAD_SECRET");
 const databaseUrl = requiredEnv("DATABASE_URL");
 const blobToken =
@@ -40,6 +44,7 @@ if (isVercelDeployment && !blobToken) {
 }
 
 export default buildConfig({
+	serverURL: serverURL || "http://localhost:3000",
 	i18n: {
 		supportedLanguages: { pt, en },
 		fallbackLanguage: "pt",
