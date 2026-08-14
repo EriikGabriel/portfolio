@@ -23,8 +23,10 @@ export const Techs: CollectionConfig = {
 
 	hooks: {
 		afterChange: [
-			async ({ doc, req }) => {
-				// Procura a Tag vinculada a esta Tech
+			async ({ doc, req, context }) => {
+				if (context.skipTechTagSync) {
+					return;
+				}
 				const existingTag = await req.payload.find({
 					collection: "tags",
 					where: {
@@ -34,13 +36,10 @@ export const Techs: CollectionConfig = {
 					},
 					limit: 1,
 					depth: 0,
+					req,
 				});
-
-				// A Tech já possui uma Tag vinculada
 				if (existingTag.docs.length > 0) {
 					const tag = existingTag.docs[0];
-
-					// Só atualiza se realmente precisar
 					if (tag.title !== doc.name) {
 						await req.payload.update({
 							collection: "tags",
@@ -48,25 +47,32 @@ export const Techs: CollectionConfig = {
 							data: {
 								title: doc.name,
 							},
+							context: {
+								skipTechTagSync: true,
+							},
+							req,
 						});
 					}
-
 					return;
 				}
-
-				// A Tech ainda não possui uma Tag
 				await req.payload.create({
 					collection: "tags",
 					data: {
 						title: doc.name,
 						tech: doc.id,
 					},
+					context: {
+						skipTechTagSync: true,
+					},
+					req,
 				});
 			},
 		],
-
-		afterDelete: [
-			async ({ id, req }) => {
+		beforeDelete: [
+			async ({ id, req, context }) => {
+				if (context.skipTechTagSync) {
+					return;
+				}
 				const existingTag = await req.payload.find({
 					collection: "tags",
 					where: {
@@ -76,15 +82,19 @@ export const Techs: CollectionConfig = {
 					},
 					limit: 1,
 					depth: 0,
+					req,
 				});
-
-				if (existingTag.docs.length === 0) {
+				const tag = existingTag.docs[0];
+				if (!tag) {
 					return;
 				}
-
 				await req.payload.delete({
 					collection: "tags",
-					id: existingTag.docs[0].id,
+					id: tag.id,
+					context: {
+						skipTechTagSync: true,
+					},
+					req,
 				});
 			},
 		],

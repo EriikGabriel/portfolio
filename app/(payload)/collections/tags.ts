@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload";
-
+import { Forbidden } from "payload";
 import { anyone } from "../access/anyone";
 import { authenticated } from "../access/authenticated";
 
@@ -17,55 +17,35 @@ export const Tags: CollectionConfig = {
 	access: {
 		create: authenticated,
 		read: anyone,
-		update: async ({ id, req }) => {
-			if (!id) {
-				return authenticated({ req });
-			}
-
-			const tag = await req.payload.findByID({
-				collection: "tags",
-				id,
-				depth: 0,
-			});
-
-			if (tag.tech) {
-				return false;
-			}
-
-			return authenticated({ req });
-		},
-		delete: async ({ id, req }) => {
-			if (!id) {
-				return authenticated({ req });
-			}
-
-			const tag = await req.payload.findByID({
-				collection: "tags",
-				id,
-				depth: 0,
-			});
-
-			if (tag.tech) {
-				return false;
-			}
-
-			return authenticated({ req });
-		},
+		update: authenticated,
+		delete: authenticated,
 	},
-
 	hooks: {
+		beforeChange: [
+			async ({ originalDoc, req, context }) => {
+				if (context.skipTechTagSync) {
+					return;
+				}
+
+				if (originalDoc?.tech) {
+					throw new Forbidden(req.t);
+				}
+			},
+		],
 		beforeDelete: [
-			async ({ id, req }) => {
+			async ({ id, req, context }) => {
+				if (context.skipTechTagSync) {
+					return;
+				}
 				const tag = await req.payload.findByID({
 					collection: "tags",
 					id,
 					depth: 0,
+					req,
 				});
 
-				if (tag.tech) {
-					throw new Error(
-						"Tags vinculadas a tecnologias não podem ser excluídas diretamente.",
-					);
+				if (tag?.tech) {
+					throw new Forbidden(req.t);
 				}
 			},
 		],
