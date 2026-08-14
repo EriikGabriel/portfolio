@@ -46,7 +46,7 @@ export async function About() {
 							<h1 className="text-bright-primary text-5xl">{about.greeting}</h1>
 							<p className="pr-5 font-geist text-xl font-normal tracking-tight">
 								{about.description}{" "}
-								{about.techs.map((tech, i) => (
+								{about?.techs?.map((tech, i) => (
 									<span key={tech.id}>
 										<a key={tech.id} className="text-primary" href={tech.url}>
 											{tech.name}
