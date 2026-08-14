@@ -18,6 +18,12 @@ export const Media: CollectionConfig = {
 		mimeTypes: ["image/png", "image/jpeg", "image/webp"],
 		staticDir: "public/media",
 		disableLocalStorage: process.env.VERCEL === "1",
+		formatOptions: {
+			format: "webp",
+			options: {
+				quality: 80,
+			},
+		},
 		resizeOptions: {
 			width: 2560,
 			withoutEnlargement: true,
