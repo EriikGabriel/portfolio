@@ -28,7 +28,10 @@ const requiredEnv = (name: string): string => {
 
 const payloadSecret = requiredEnv("PAYLOAD_SECRET");
 const databaseUrl = requiredEnv("DATABASE_URL");
-const blobToken = requiredEnv("BLOB_READ_WRITE_TOKEN");
+const blobToken =
+	process.env.NODE_ENV === "production"
+		? requiredEnv("BLOB_READ_WRITE_TOKEN")
+		: process.env.BLOB_READ_WRITE_TOKEN;
 
 if (isVercelDeployment && !blobToken) {
 	throw new Error(
