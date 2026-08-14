@@ -17,6 +17,7 @@ export const Media: CollectionConfig = {
 	upload: {
 		mimeTypes: ["image/png", "image/jpeg", "image/webp"],
 		staticDir: "public/media",
+		disableLocalStorage: process.env.VERCEL === "1",
 		resizeOptions: {
 			width: 2560,
 			withoutEnlargement: true,
