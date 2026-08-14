@@ -1,5 +1,7 @@
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { en } from "@payloadcms/translations/languages/en";
 import { pt } from "@payloadcms/translations/languages/pt";
 import path from "path";
 import { buildConfig } from "payload";
@@ -10,12 +12,34 @@ import { About } from "./globals";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+const isVercelDeployment = process.env.VERCEL === "1";
+
+const requiredEnv = (name: string): string => {
+	const value = process.env[name];
+
+	if (!value) {
+		throw new Error(
+			`[payload.config] Missing required environment variable: ${name}`,
+		);
+	}
+
+	return value;
+};
+
+const payloadSecret = requiredEnv("PAYLOAD_SECRET");
+const databaseUrl = requiredEnv("DATABASE_URL");
+const blobToken = requiredEnv("BLOB_READ_WRITE_TOKEN");
+
+if (isVercelDeployment && !blobToken) {
+	throw new Error(
+		"[payload.config] Missing BLOB_READ_WRITE_TOKEN in production. Connect Vercel Blob to the project or add the token in Vercel Environment Variables.",
+	);
+}
 
 export default buildConfig({
 	i18n: {
-		supportedLanguages: {
-			pt,
-		},
+		supportedLanguages: { pt, en },
+		fallbackLanguage: "pt",
 	},
 	admin: {
 		theme: "dark",
@@ -27,17 +51,29 @@ export default buildConfig({
 	editor: lexicalEditor(),
 	collections: [Users, Media, Techs, Projects, Tags],
 	globals: [About],
-	secret: process.env.PAYLOAD_SECRET || "",
+	secret: payloadSecret,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},
 	db: vercelPostgresAdapter({
 		pool: {
-			connectionString: process.env.POSTGRES_URL || "",
+			connectionString: databaseUrl,
 		},
 		migrationDir: path.resolve(dirname, "migrations"),
 	}),
 
 	sharp,
-	plugins: [],
+	plugins: [
+		...(blobToken
+			? [
+					vercelBlobStorage({
+						enabled: true,
+						collections: {
+							media: true,
+						},
+						token: blobToken,
+					}),
+				]
+			: []),
+	],
 });

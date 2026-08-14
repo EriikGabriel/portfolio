@@ -456,7 +456,7 @@ export interface About {
   /**
    * Uma foto de perfil.
    */
-  image: number | Media;
+  image?: (number | null) | Media;
   /**
    * Saudação de destaque exibida na seção.
    */

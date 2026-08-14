@@ -13,7 +13,6 @@ export const About: GlobalConfig = {
 			type: "upload",
 			label: "Foto",
 			relationTo: "media",
-			required: true,
 			admin: {
 				description: "Uma foto de perfil.",
 			},

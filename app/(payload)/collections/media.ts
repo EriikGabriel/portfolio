@@ -16,6 +16,7 @@ export const Media: CollectionConfig = {
 	},
 	upload: {
 		mimeTypes: ["image/png", "image/jpeg", "image/webp"],
+		staticDir: "public/media",
 		resizeOptions: {
 			width: 2560,
 			withoutEnlargement: true,
