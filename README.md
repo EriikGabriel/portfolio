@@ -5,7 +5,7 @@
   <h1>Personal Website</h1>
 
   <p>
-    <strong>erikgabriel.vercel.app</strong>
+    <h3>erikgabriel.vercel.app</h3>
   </p>
 
   <p>
@@ -15,10 +15,10 @@
 
   <p>
     <a href="https://github.com/EriikGabriel/portfolio">
-      <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&label=Stars" alt="GitHub Stars" />
+      <img src="https://img.shields.io/github/stars/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&color=f55a00&label=Stars" alt="GitHub Stars" />
     </a>
     <a href="https://github.com/EriikGabriel/portfolio/forks">
-      <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&label=Forks" alt="GitHub Forks" />
+      <img src="https://img.shields.io/github/forks/EriikGabriel/portfolio?style=for-the-badge&logo=github&logoColor=white&color=f55a00&label=Forks" alt="GitHub Forks" />
     </a>
     <a href="LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-f55a00?style=for-the-badge" alt="MIT License" />
