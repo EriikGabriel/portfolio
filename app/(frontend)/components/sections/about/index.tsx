@@ -34,8 +34,8 @@ export async function About() {
 
 						<EvervaultCard className="h-96 w-3/4">
 							<Image
-								src="/assets/me.jpeg"
-								alt="Me"
+								src={about.image?.url ?? "/assets/me.jpeg"}
+								alt={about.image?.alt ?? "Me"}
 								width={200}
 								height={200}
 								className="h-full w-full rounded-full shadow-lg shadow-orange-500/20"
