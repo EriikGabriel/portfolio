@@ -12,6 +12,7 @@ export const Projects: CollectionConfig = {
 	admin: {
 		useAsTitle: "title",
 		group: "Conteúdos",
+		defaultColumns: ["title", "description", "featured", "tags", "enabled"],
 	},
 	access: {
 		create: authenticated,

@@ -4,12 +4,14 @@
 
 import type { Project } from "@payload/payload-types";
 import { Badge } from "@ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
+import type { Populated } from "@utils/payload";
 import { useLayoutEffect, useRef, useState } from "react";
 
 const badgeClassName =
 	"shrink-0 rounded-full border border-white/8 bg-neutral-800/60 px-2 py-0.5 text-[10px] text-neutral-400";
 
-export function ProjectTags({ tags }: { tags: NonNullable<Project["tags"]> }) {
+export function ProjectTags({ tags }: { tags: Populated<Project["tags"]> }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const measurementRef = useRef<HTMLDivElement>(null);
 	const [visibleCount, setVisibleCount] = useState(tags.length);
@@ -81,14 +83,29 @@ export function ProjectTags({ tags }: { tags: NonNullable<Project["tags"]> }) {
 						key={tag.id}
 						className={badgeClassName}
 					>
-						{tag.name}
+						{tag.title}
 					</Badge>
 				))}
 
 				{hiddenCount > 0 && (
-					<Badge variant="rotate-border" className={badgeClassName}>
-						+{hiddenCount}
-					</Badge>
+					<Tooltip>
+						<TooltipTrigger className="cursor-default">
+							<Badge variant="rotate-border" className={badgeClassName}>
+								+{hiddenCount}
+							</Badge>
+						</TooltipTrigger>
+						<TooltipContent className="bg-transparent flex gap-1">
+							{tags.slice(visibleCount).map((tag) => (
+								<Badge
+									variant="rotate-border"
+									key={tag.id}
+									className={badgeClassName}
+								>
+									{tag.title}
+								</Badge>
+							))}
+						</TooltipContent>
+					</Tooltip>
 				)}
 			</div>
 
@@ -105,7 +122,7 @@ export function ProjectTags({ tags }: { tags: NonNullable<Project["tags"]> }) {
 						data-tag-width
 						className={badgeClassName}
 					>
-						{tag.name}
+						{tag.title}
 					</Badge>
 				))}
 

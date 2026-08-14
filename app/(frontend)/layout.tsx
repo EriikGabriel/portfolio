@@ -12,6 +12,7 @@ import { Header } from "@components/header";
 import { MainContentGate } from "@components/main-content-gate";
 import { SplashScreen } from "@components/splash-screen";
 import { LoadingProvider } from "@contexts/loading";
+import { TooltipProvider } from "@ui/tooltip";
 
 const Inter = inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -38,15 +39,17 @@ export default function RootLayout({
 			>
 				<NuqsAdapter>
 					<LoadingProvider>
-						<div className="relative min-h-dvh">
-							<div className="pointer-events-none absolute inset-0 z-0">
-								<StarsBackground />
-							</div>
+						<TooltipProvider>
+							<div className="relative min-h-dvh">
+								<div className="pointer-events-none absolute inset-0 z-0">
+									<StarsBackground />
+								</div>
 
-							<SplashScreen />
-							<Header />
-							<MainContentGate>{children}</MainContentGate>
-						</div>
+								<SplashScreen />
+								<Header />
+								<MainContentGate>{children}</MainContentGate>
+							</div>
+						</TooltipProvider>
 					</LoadingProvider>
 				</NuqsAdapter>
 			</body>
