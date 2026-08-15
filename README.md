@@ -3,7 +3,7 @@
   <img src=".github/logo.svg" alt="Erik Gabriel" width="100" />
 
   <h1>Personal Website</h1>
-  <h3>erikgabriel.vercel.app</h3>
+  <h3>erikgabriel.dev</h3>
 
   <p>
     Personal website and developer portfolio built with
@@ -26,7 +26,7 @@
   </p>
 
   <p>
-    <a href="https://erikgabriel.vercel.app">Live Website</a>
+    <a href="https://www.erikgabriel.dev/">Live Website</a>
     ·
     <a href="https://github.com/EriikGabriel/portfolio">Repository</a>
   </p>
@@ -44,8 +44,6 @@ This repository contains v2 of my personal website and developer portfolio.
 The project is built as a full-stack application using the Next.js App Router and Payload CMS, combining the public website, content management system, API, database layer and administrative interface into a single application.
 
 This second version was built with a stronger focus on modularity, maintainability, performance and interactive experiences, evolving the original portfolio into a more complete and flexible platform for showcasing my work and projects.
-
-**Live:** https://erikgabriel.vercel.app
 
 ---
 
