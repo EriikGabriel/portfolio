@@ -10,7 +10,7 @@ export function SocialMedias() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
 	return (
-		<div className="flex justify-center gap-12 w-full">
+		<div className="flex justify-center gap-6 md:gap-12 w-full">
 			{socialMedias.map((media, i) => (
 				<LinkPreview
 					hover={{

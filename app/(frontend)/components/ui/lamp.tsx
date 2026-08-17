@@ -18,19 +18,30 @@ export const Lamp = ({
 	return (
 		<div
 			className={cn(
-				"relative z-0 flex min-h-screen w-full flex-col items-center rounded-md bg-transparent",
+				"relative z-0 flex min-h-dvh w-full flex-col items-center rounded-md bg-transparent",
 				className,
 			)}
 		>
 			{(title || subtitle) && (
-				<div className="relative z-10 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text pt-4 pb-20 text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-					<div className="inline-flex h-fit items-center justify-center gap-6 before:h-px before:w-20 before:bg-linear-to-l before:from-orange-500/60 before:content-[''] after:h-px after:w-20 after:bg-linear-to-r after:from-orange-500/60 after:content-['']">
-						<span className="text-bright-primary text-xl tracking-wide">
+				<div
+					className="relative z-10 flex flex-col items-center gap-2 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text pt-4 pb-20 text-center font-medium tracking-tight text-transparent"
+					style={{ fontSize: "clamp(1.875rem, 5vw, 4.5rem)" }}
+				>
+					<div className="inline-flex h-fit items-center justify-center gap-3 md:gap-6 before:h-px before:w-10 md:before:w-20 before:bg-linear-to-l before:from-orange-500/60 before:content-[''] after:h-px after:w-10 md:after:w-20 after:bg-linear-to-r after:from-orange-500/60 after:content-['']">
+						<span
+							className="text-bright-primary tracking-wide"
+							style={{ fontSize: "clamp(0.875rem, 2vw, 1.25rem)" }}
+						>
 							{subtitle}
 						</span>
 					</div>
 
-					<h1 className="text-bright-white text-5xl tracking-wide">{title}</h1>
+					<h1
+						className="text-bright-white tracking-wide"
+						style={{ fontSize: "clamp(1.875rem, 4vw, 3rem)" }}
+					>
+						{title}
+					</h1>
 				</div>
 			)}
 
@@ -48,7 +59,7 @@ export const Lamp = ({
 						backgroundImage:
 							"conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
 					}}
-					className="bg-gradient-conic absolute right-1/2 h-56 w-120 from-orange-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+					className="bg-gradient-conic absolute right-1/2 h-36 md:h-56 w-40 md:w-120 from-orange-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
 				/>
 
 				<motion.div
@@ -63,10 +74,10 @@ export const Lamp = ({
 						backgroundImage:
 							"conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
 					}}
-					className="bg-gradient-conic absolute left-1/2 h-56 w-120 from-transparent via-transparent to-orange-500 text-white [--conic-position:from_290deg_at_center_top]"
+					className="bg-gradient-conic absolute left-1/2 h-36 md:h-56 w-40 md:w-120 from-transparent via-transparent to-orange-500 text-white [--conic-position:from_290deg_at_center_top]"
 				/>
 
-				<div className="absolute z-50 h-24 w-md -translate-y-1/2 rounded-full bg-orange-500 opacity-50 blur-2xl" />
+				<div className="absolute z-50 h-24 w-sm md:w-md -translate-y-1/2 rounded-full bg-orange-500 opacity-50 blur-2xl" />
 
 				<motion.div
 					initial={{ width: "15rem" }}
@@ -76,7 +87,7 @@ export const Lamp = ({
 						duration: 0.8,
 						ease: "easeInOut",
 					}}
-					className="absolute z-50 h-0.5 w-120 -translate-y-28 bg-orange-400"
+					className="absolute z-50 h-0.5 w-40 md:w-120 -translate-y-28 bg-orange-400"
 				/>
 			</div>
 

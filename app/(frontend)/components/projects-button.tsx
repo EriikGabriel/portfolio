@@ -8,7 +8,7 @@ export function ProjectsButton() {
 		<SpecularButton
 			onClick={() => scrollToSection("projects")}
 			size="lg"
-			radius={18}
+			radius={12}
 			tint="#ffffff"
 			tintOpacity={0}
 			blur={0}
@@ -22,6 +22,7 @@ export function ProjectsButton() {
 			speed={0.35}
 			followMouse
 			proximity={250}
+			className="text-[0.9rem]! px-6! py-3! md:text-[1.15rem]! md:px-10! md:py-4.5!"
 		>
 			Veja meus projetos
 		</SpecularButton>

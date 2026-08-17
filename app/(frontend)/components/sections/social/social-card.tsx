@@ -12,12 +12,12 @@ export function SocialCard({ icon }: SocialCardProps) {
 			distortionScale={1}
 			borderRadius={12}
 			backgroundOpacity={1}
-			className="absolute inset-0 size-20!"
+			className="absolute inset-0 size-16 md:size-20!"
 		>
-			<GlareCard className="flex h-full w-full items-center justify-center py-3">
+			<GlareCard className="flex h-full w-full items-center justify-center py-2 md:py-3">
 				<Icon
 					icon={icon}
-					className="size-16 p-2 object-contain text-white/60"
+					className="size-12 md:size-16 p-2 object-contain text-white/60"
 				/>
 			</GlareCard>
 		</GlassSurface>

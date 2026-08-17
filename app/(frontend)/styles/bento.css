@@ -23,6 +23,20 @@
 	}
 }
 
+@media (min-width: 1024px) {
+	.card-responsive {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.card-responsive .card--featured {
+		grid-column: span 2;
+	}
+
+	.card-responsive .card:not(.card--featured) {
+		grid-column: span 1;
+	}
+}
+
 /* ==================================================
    Border Glow
 ================================================== */

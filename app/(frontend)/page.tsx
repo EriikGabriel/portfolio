@@ -25,8 +25,11 @@ export default async function Home({ searchParams }: HomeProps) {
 			<GradualBlurMemo
 				target="page"
 				position="bottom"
-				height="7rem"
-				strength={3}
+				height="5rem"
+				responsive
+				mobileHeight="2rem"
+				tabletHeight="3.5rem"
+				strength={2}
 				divCount={5}
 				curve="bezier"
 				exponential

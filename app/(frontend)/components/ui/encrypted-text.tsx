@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 type EncryptedTextProps = {
 	text: string;
 	className?: string;
+	style?: React.CSSProperties;
 	/**
 	 * Time in milliseconds between revealing each subsequent real character.
 	 * Lower is faster. Defaults to 50ms per character.
@@ -53,6 +54,7 @@ function generateGibberishPreservingSpaces(
 export const EncryptedText: React.FC<EncryptedTextProps> = ({
 	text,
 	className,
+	style,
 	revealDelayMs = 50,
 	charset = DEFAULT_CHARSET,
 	flipDelayMs = 50,
@@ -142,7 +144,7 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
 	if (!text) return null;
 
 	return (
-		<motion.span ref={ref} className={cn(className)} aria-label={text}>
+		<motion.span ref={ref} className={cn(className)} style={style} aria-label={text}>
 			{text.split("").map((char, index) => {
 				const isRevealed = index < revealCount;
 

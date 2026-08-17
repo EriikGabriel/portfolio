@@ -39,11 +39,11 @@ export function Footer() {
 
 	return (
 		<footer
-			className="relative min-h-200 overflow-hidden"
+			className="relative min-h-114 md:min-h-208 overflow-hidden pb-20 md:pb-52"
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 		>
-			<BackgroundBeamsWithCollision className="h-full">
+			<BackgroundBeamsWithCollision className="absolute inset-0 min-h-full">
 				<LaserFlow
 					horizontalBeamOffset={0.1}
 					color="#e36c0b"
@@ -53,11 +53,15 @@ export function Footer() {
 
 			<div
 				id="beam-collision-target"
-				className="absolute top-1/2 left-1/2 z-6 flex h-[60%] w-[86%] -translate-x-1/2 flex-col items-center justify-center gap-4 rounded-[20px] border border-[#e36c0b] bg-background pb-12 text-[2rem] text-white"
+				className="absolute top-1/2 left-1/2 z-6 flex h-[75%] md:h-[60%] w-[95%] md:w-[86%] -translate-x-1/2 flex-col items-center justify-center gap-2 md:gap-4 rounded-xl md:rounded-[20px] border border-[#e36c0b] bg-background pb-4 md:pb-12 px-4 text-white"
+				style={{ fontSize: "clamp(0.875rem, 2vw, 2rem)" }}
 			>
-				<Logo className="size-24 text-primary" />
+				<Logo className="size-12 md:size-24 text-primary" />
 
-				<nav className="flex gap-3 *:p-2 *:text-lg *:text-primary">
+				<nav
+					className="flex flex-wrap justify-center gap-1 md:gap-3 *:p-0.5 md:*:p-2 *:text-primary"
+					style={{ fontSize: "clamp(0.8rem, 2.5vw, 1.125rem)" }}
+				>
 					{navItems.map((item) => (
 						<button
 							key={item.id}
@@ -71,15 +75,17 @@ export function Footer() {
 
 				<div className="h-px w-3/4 border border-dashed bg-primary/20" />
 
-				<div className="flex w-3/4 items-center justify-between px-8 font-geist-mono text-primary">
-					<span className="text-sm">Erik Gabriel © 2026</span>
+				<div className="flex w-full md:w-3/4 items-center justify-between px-2 md:px-8 font-geist-mono text-primary">
+					<span style={{ fontSize: "clamp(0.65rem, 1.8vw, 0.875rem)" }}>
+						Erik Gabriel © 2026
+					</span>
 
-					<div className="flex gap-4">
+					<div className="flex gap-2 md:gap-4">
 						{socialMedias.map((media) => (
 							<Link
 								key={media.name}
 								href={media.url}
-								className="*:size-6!"
+								className="*:size-3.5 md:*:size-6!"
 								target="_blank"
 								rel="noopener noreferrer"
 							>

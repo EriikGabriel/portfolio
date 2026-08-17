@@ -14,7 +14,7 @@ export async function Techs() {
 
 	return (
 		<section
-			className="flex h-dvh w-full flex-col items-center gap-5 pt-24"
+			className="flex min-h-dvh w-full flex-col items-center gap-5 pt-24"
 			id="skills"
 		>
 			<Lamp
@@ -29,7 +29,7 @@ export async function Techs() {
 						duration: 0.8,
 						ease: "easeInOut",
 					}}
-					className="mt-8 grid grid-cols-8 w-3/5  flex-wrap justify-center  gap-y-10"
+					className="mt-8 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-8 w-full md:w-3/5 justify-items-center gap-x-1 gap-y-6 md:gap-x-2 md:gap-y-10"
 				>
 					{techs.docs.map((tech) => (
 						<TechCard tech={tech} key={tech.name} />

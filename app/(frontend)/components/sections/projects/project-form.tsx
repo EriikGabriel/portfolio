@@ -19,12 +19,12 @@ export function ProjectForm({ dropdownItems }: ProjectFormProps) {
 	});
 
 	return (
-		<div className="flex justify-center gap-5">
+		<div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-5">
 			<InputFocusBlur
 				name="search-project"
 				placeholder="Pesquisar projetos..."
 				className="bg-white/10 backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors placeholder:font-geist placeholder:tracking-normal"
-				widthClassName="w-full max-w-[500px]"
+				widthClassName="w-full sm:max-w-[500px]"
 				onChange={(e) => setParams({ search: e.currentTarget.value || null })}
 				autoComplete="off"
 				value={search || ""}
@@ -35,7 +35,7 @@ export function ProjectForm({ dropdownItems }: ProjectFormProps) {
 				}
 				items={dropdownItems}
 				className="bg-white/10 backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors"
-				containerClassName="w-full max-w-[200px]"
+				containerClassName="w-full sm:max-w-[200px]"
 				dropClassName="bg-white/10 backdrop-blur-md border-white/10"
 				setFilter={(value) => setParams({ filter: value })}
 				filter={filter}

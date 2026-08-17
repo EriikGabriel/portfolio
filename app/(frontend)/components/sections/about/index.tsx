@@ -12,7 +12,7 @@ export async function About() {
 
 	return (
 		<section
-			className="flex h-dvh w-full flex-col items-center gap-5 pt-24"
+			className="flex min-h-dvh w-full flex-col items-center gap-5 pt-24"
 			id="about"
 		>
 			<Lamp title="Quem sou?" subtitle="Um pouco sobre mim">
@@ -24,15 +24,16 @@ export async function About() {
 						duration: 0.8,
 						ease: "easeInOut",
 					}}
-					className="mt-8 w-3/5 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text py-4 text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+					className="mt-8 w-full md:w-3/5 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text py-4 text-center font-medium tracking-tight text-transparent"
+					style={{ fontSize: "clamp(1.875rem, 5vw, 4.5rem)" }}
 				>
-					<div className="relative flex w-full items-center gap-10 border border-white/20 p-4">
+					<div className="relative flex flex-col md:flex-row w-full items-center gap-6 md:gap-10 border border-white/20 p-4">
 						<Icon className="absolute -left-3 -top-3 h-6 w-6 text-white" />
 						<Icon className="absolute -bottom-3 -left-3 h-6 w-6 text-white" />
 						<Icon className="absolute -right-3 -top-3 h-6 w-6 text-white" />
 						<Icon className="absolute -bottom-3 -right-3 h-6 w-6 text-white" />
 
-						<EvervaultCard className="h-96 w-3/4">
+						<EvervaultCard className="h-64 md:h-96 w-full md:w-3/4">
 							<Image
 								src={about.image?.url ?? "/assets/me.jpeg"}
 								alt={about.image?.alt ?? "Me"}
@@ -43,8 +44,8 @@ export async function About() {
 						</EvervaultCard>
 
 						<div className="flex h-full w-full flex-col justify-center gap-3 text-start text-white">
-							<h1 className="text-bright-primary text-5xl">{about.greeting}</h1>
-							<p className="pr-5 font-geist text-xl font-normal tracking-tight">
+							<h1 className="text-bright-primary" style={{ fontSize: "clamp(1.875rem, 4vw, 3rem)" }}>{about.greeting}</h1>
+							<p className="pr-0 md:pr-5 font-geist font-normal tracking-tight" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}>
 								{about.description}{" "}
 								{about?.techs?.map((tech, i) => (
 									<span key={tech.id}>

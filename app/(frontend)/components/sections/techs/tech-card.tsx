@@ -13,7 +13,7 @@ interface TechCardProps {
 export function TechCard({ tech }: TechCardProps) {
 	return (
 		<CardContainer
-			className="flex flex-col gap-3 cursor-pointer"
+			className="flex flex-col gap-2 md:gap-3 cursor-pointer"
 			key={tech.name}
 			onClick={() => window.open(tech.url, "_blank", "noopener,noreferrer")}
 		>
@@ -27,7 +27,7 @@ export function TechCard({ tech }: TechCardProps) {
 				animated={false}
 				colors={["#eec29f", "#ee6f35", "#d97706"]}
 			>
-				<CardBody className="group/card relative aspect-square h-fit w-20 rounded-xl hover:shadow-lg hover:shadow-neutral-500/10">
+				<CardBody className="group/card relative aspect-square h-fit w-14 lg:w-20 md:w-14 sm:w-14 rounded-xl hover:shadow-lg hover:shadow-neutral-500/10">
 					<GlassSurface
 						width="100%"
 						height="100%"
@@ -38,14 +38,24 @@ export function TechCard({ tech }: TechCardProps) {
 					>
 						<CardItem
 							translateZ="30"
-							className="flex h-full w-full items-center justify-center py-3"
+							className="flex h-full w-full items-center justify-center py-2 md:py-3"
 						>
-							{tech.icon && <Icon icon={tech.icon} fontSize={40} />}
+							{tech.icon && (
+								<Icon
+									icon={tech.icon}
+									className="text-[28px] lg:text-[40px] md:text-[32px]"
+								/>
+							)}
 						</CardItem>
 					</GlassSurface>
 				</CardBody>
 			</BorderGlow>
-			<h3 className="text-lg font-medium text-neutral-300">{tech.name}</h3>
+			<h3
+				className="font-medium text-neutral-300 truncate"
+				style={{ fontSize: "clamp(0.7rem, 1.1vw, 1.125rem)" }}
+			>
+				{tech.name}
+			</h3>
 		</CardContainer>
 	);
 }
