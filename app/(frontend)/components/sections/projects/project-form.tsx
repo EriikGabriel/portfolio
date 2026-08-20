@@ -34,9 +34,9 @@ export function ProjectForm({ dropdownItems }: ProjectFormProps) {
 					<FilterIcon size={14} className="text-neutral-400" id="filter-icon" />
 				}
 				items={dropdownItems}
-				className="bg-white/10 backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors"
+				className="bg-white/10 w-full backdrop-blur-md border-white/10 hover:bg-white/12 transition-colors"
 				containerClassName="w-full sm:max-w-[200px]"
-				dropClassName="bg-white/10 backdrop-blur-md border-white/10"
+				dropClassName="bg-white/10 backdrop-blur-md max-w-[calc(100vw-5rem)] sm:max-w-50 border-white/10"
 				setFilter={(value) => setParams({ filter: value })}
 				filter={filter}
 			>

@@ -59,17 +59,17 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 							<ProjectTags tags={project.tags} />
 						)}
 
-						<div className="flex w-full gap-2">
+						<div className="card-actions flex w-full gap-2">
 							{project.demo && (
 								<a
 									href={project.demo}
 									target="_blank"
 									rel="noopener noreferrer"
 									onClick={(e) => e.stopPropagation()}
-									className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-amber-500/25 bg-orange-500/15 px-2.5 py-1 text-sm text-orange-300 transition-colors hover:bg-amber-500/25"
+									className="flex h-8 flex-1 min-w-0 items-center justify-center gap-2 rounded-lg border border-amber-500/25 bg-orange-500/15 px-2.5 py-1 text-sm text-orange-300 transition-colors hover:bg-amber-500/25"
 								>
-									<Icon icon="gridicons:external" fontSize={12} />
-									Demo
+								<Icon icon="gridicons:external" fontSize={12} />
+								<span>Demo</span>
 								</a>
 							)}
 
@@ -78,10 +78,10 @@ export function ProjectCard({ project, textAutoHide }: ProjectCardProps) {
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={(e) => e.stopPropagation()}
-								className="flex h-8 min-w-30 w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/7 px-2.5 py-1 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/12"
+								className="flex h-8 flex-1 min-w-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/7 px-2.5 py-1 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/12"
 							>
-								<Icon icon="simple-icons:github" fontSize={12} />
-								GitHub
+							<Icon icon="simple-icons:github" fontSize={12} />
+							<span>GitHub</span>
 							</a>
 						</div>
 					</div>

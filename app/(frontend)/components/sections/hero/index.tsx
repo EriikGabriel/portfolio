@@ -53,7 +53,9 @@ export function Hero() {
 						<span className="animate-text-gradient bg-linear-to-r from-neutral-500 via-neutral-300/30 to-neutral-500 bg-size-[200%_auto] bg-clip-text text-center text-transparent">
 							Erik Gabriel
 						</span>
-						<p style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}>Sou Fullstack e Game Developer.</p>
+						<p style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}>
+							Sou Fullstack e Game Developer.
+						</p>
 					</Motion>
 					<Motion
 						as="p"
