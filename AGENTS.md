@@ -9,8 +9,8 @@ Next.js 16 + Payload CMS 3 portfolio site. Full-stack: frontend, CMS admin, API,
 ```bash
 bun dev              # Start dev server (localhost:3000)
 bun run build        # Production build
-bun run lint         # ESLint (flat config, core-web-vitals equivalent)
-bun run lint:fix     # ESLint with --fix
+bun run lint         # Biome lint
+bun run lint:fix     # Biome lint with safe fixes
 bun run payload      # Payload CLI
 bun run migrate:create   # Create new migration
 bun run generate:types   # Regenerate payload-types.ts
@@ -71,10 +71,9 @@ Shared root files: `robots.ts`, `sitemap.ts`, `favicon.ico`.
 
 ## Tooling
 
-- **Biome**: Installed but minimal config (CSS tailwind directives only)
-- **ESLint**: Flat config in `eslint.config.mjs` replicating `next/core-web-vitals` via `@next/eslint-plugin-next` + `react-hooks` + `jsx-a11y`, with Babel parser. `eslint-config-next` is NOT used — its `typescript-eslint` dependency doesn't support the project's TypeScript 7 yet; `eslint-plugin-react` is omitted (no ESLint 10 support). Revisit when typescript-eslint ships TS 7 support
+- **Biome**: Primary linter — `biome.json` (recommended rules + React domain, tabs). Generated files excluded from lint (`payload-types.ts`, `migrations/`). Suppressions are inline `biome-ignore` comments with justification
 - **Prettier**: With `prettier-plugin-tailwindcss` for class sorting
-- **Package manager**: Bun preferred (also has `package-lock.json`)
+- **Package manager**: Bun only (`bun.lockb`; no npm lockfile — Vercel installs with bun)
 
 ## Gotchas
 
