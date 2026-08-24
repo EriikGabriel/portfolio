@@ -1,0 +1,22 @@
+{
+	"languages": {
+		"JavaScript": {
+			"language_servers": ["!eslint", "..."]
+		},
+		"JSX": {
+			"language_servers": ["!eslint", "..."]
+		},
+		"TypeScript": {
+			"language_servers": ["!eslint", "..."]
+		},
+		"TSX": {
+			"language_servers": ["!eslint", "..."]
+		},
+		"JSON": {
+			"language_servers": ["!eslint", "..."]
+		},
+		"JSONC": {
+			"language_servers": ["!eslint", "..."]
+		}
+	}
+}
