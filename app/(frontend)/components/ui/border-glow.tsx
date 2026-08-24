@@ -265,7 +265,6 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 					].join(", "),
 					opacity: borderOpacity,
 					maskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
-					WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
 					transition: isVisible
 						? "opacity 0.25s ease-out"
 						: "opacity 0.75s ease-in-out",
@@ -288,18 +287,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 							"radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)",
 							`conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
 						].join(", "),
-						WebkitMaskImage: [
-							"linear-gradient(to bottom, black, black)",
-							"radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%)",
-							"radial-gradient(ellipse at 66% 66%, black 5%, transparent 40%)",
-							"radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%)",
-							"radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%)",
-							"radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)",
-							`conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
-						].join(", "),
 						maskComposite: "subtract, add, add, add, add, add",
-						WebkitMaskComposite:
-							"source-out, source-over, source-over, source-over, source-over, source-over",
 						opacity: borderOpacity * fillOpacity,
 						mixBlendMode: "soft-light",
 						transition: isVisible
@@ -316,7 +304,6 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 					{
 						inset: `${-glowRadius}px`,
 						maskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
-						WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
 						opacity: glowOpacity,
 						mixBlendMode: "plus-lighter",
 						transition: isVisible

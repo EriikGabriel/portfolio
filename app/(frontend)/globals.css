@@ -117,6 +117,9 @@
 		color-scheme: dark;
 		background: var(--background);
 		scroll-behavior: smooth;
+
+		scrollbar-width: thin;
+		scrollbar-color: var(--primary) var(--background);
 	}
 
 	body {

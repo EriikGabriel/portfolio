@@ -88,6 +88,13 @@ export function DropdownBlur({
 		setIsOpen(false);
 	};
 
+	const clearSelection = () => {
+		if (selectedItem.icon) {
+			setSelectedItem({} as DropdownBlurItem);
+			if (setFilter) setFilter(null);
+		}
+	};
+
 	return (
 		<nav
 			className={cn("w-full space-y-2 tracking-normal", containerClassName)}
@@ -107,18 +114,26 @@ export function DropdownBlur({
 				</span>
 
 				<div className="flex gap-2">
-					<div
-						onClick={() => {
-							if (selectedItem.icon) {
-								setSelectedItem({} as DropdownBlurItem);
-								if (setFilter) setFilter(null);
+					<span
+						role="button"
+						tabIndex={0}
+						aria-label="Limpar filtro selecionado"
+						onClick={(e) => {
+							e.stopPropagation();
+							clearSelection();
+						}}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === " ") {
+								e.preventDefault();
+								e.stopPropagation();
+								clearSelection();
 							}
 						}}
 						style={{ transformOrigin: "50% 55%" }}
-						className="p-1 text-neutral-400"
+						className="cursor-pointer p-1 text-neutral-400"
 					>
 						{filter ? <CircleXIcon size={16} /> : icon}
-					</div>
+					</span>
 				</div>
 			</motion.button>
 			<ul

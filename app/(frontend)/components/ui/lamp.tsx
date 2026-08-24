@@ -24,7 +24,7 @@ export const Lamp = ({
 		>
 			{(title || subtitle) && (
 				<div
-					className="relative z-10 flex flex-col items-center gap-2 bg-linear-to-br from-slate-300 to-slate-500 bg-clip-text pt-4 pb-20 text-center font-medium tracking-tight text-transparent"
+					className="relative z-10 flex flex-col items-center gap-2 pt-4 pb-20 text-center font-medium tracking-tight"
 					style={{ fontSize: "clamp(1.875rem, 5vw, 4.5rem)" }}
 				>
 					<div className="inline-flex h-fit items-center justify-center gap-3 md:gap-6 before:h-px before:w-10 md:before:w-20 before:bg-linear-to-l before:from-orange-500/60 before:content-[''] after:h-px after:w-10 md:after:w-20 after:bg-linear-to-r after:from-orange-500/60 after:content-['']">
