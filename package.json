@@ -1,6 +1,12 @@
 {
 	"name": "portfolio",
 	"version": "2.0",
+	"author": {
+		"name": "Erik Gabriel Rodrigo da Silva",
+		"email": "erikgabriel.work@gmail.com",
+		"url": "https://erikgabriel.dev"
+	},
+	"license": "MIT",
 	"private": true,
 	"type": "module",
 	"scripts": {
