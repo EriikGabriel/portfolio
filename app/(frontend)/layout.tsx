@@ -11,6 +11,7 @@ import "./globals.css";
 import { Header } from "@components/header";
 import { MainContentGate } from "@components/main-content-gate";
 import { MotionProvider } from "@components/motion-provider";
+import { SmoothScroll } from "@components/smooth-scroll";
 import { SplashScreen } from "@components/splash-screen";
 import { LoadingProvider } from "@contexts/loading";
 import { TooltipProvider } from "@ui/tooltip";
@@ -40,19 +41,21 @@ export default function RootLayout({
 			>
 				<NuqsAdapter>
 					<LoadingProvider>
-						<MotionProvider>
-							<TooltipProvider>
-								<div className="relative min-h-dvh">
-									<div className="pointer-events-none absolute inset-0 z-0">
-										<StarsBackground />
-									</div>
+						<SmoothScroll>
+							<MotionProvider>
+								<TooltipProvider>
+									<div className="relative min-h-dvh">
+										<div className="pointer-events-none absolute inset-0 z-0">
+											<StarsBackground />
+										</div>
 
-									<SplashScreen />
-									<Header />
-									<MainContentGate>{children}</MainContentGate>
-								</div>
-							</TooltipProvider>
-						</MotionProvider>
+										<SplashScreen />
+										<Header />
+										<MainContentGate>{children}</MainContentGate>
+									</div>
+								</TooltipProvider>
+							</MotionProvider>
+						</SmoothScroll>
 					</LoadingProvider>
 				</NuqsAdapter>
 			</body>

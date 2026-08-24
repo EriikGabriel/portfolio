@@ -1,3 +1,5 @@
+import { lenisRef } from "@utils/lenis";
+
 export const navItems = [
 	{
 		label: "Quem sou",
@@ -19,9 +21,20 @@ export const navItems = [
 
 export const scrollToSection = (id: string) => {
 	const element = document.getElementById(id);
+	if (!element) return;
 
-	element?.scrollIntoView({
-		behavior: "smooth",
+	const lenis = lenisRef.current;
+	if (lenis) {
+		lenis.scrollTo(element, { duration: 1.2 });
+		return;
+	}
+
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	element.scrollIntoView({
+		behavior: prefersReducedMotion ? "auto" : "smooth",
 		block: "start",
 	});
 };
