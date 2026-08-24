@@ -3,10 +3,11 @@
 import { useLoading } from "@contexts/loading";
 import { LOGO_PATHS } from "@utils/logo";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const SPLASH_DURATION_MS = 3500;
 const FLIGHT_DURATION_S = 0.8;
+const SPLASH_FAILSAFE_MS = SPLASH_DURATION_MS + FLIGHT_DURATION_S * 1000 + 1500;
 
 const pathTransitions = [
 	{ duration: 1.8, delay: 0.3, ease: "easeInOut" },
@@ -19,21 +20,46 @@ export function SplashScreen() {
 	const [isLeaving, setIsLeaving] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const controls = useAnimation();
+	const hasCompletedRef = useRef(false);
+
+	const complete = useCallback(() => {
+		if (hasCompletedRef.current) return;
+		hasCompletedRef.current = true;
+		document.body.style.overflow = "";
+		setIsLoading(false);
+	}, [setIsLoading]);
 
 	useEffect(() => {
+		const previousOverflow = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
-		const timeout = setTimeout(() => setIsLeaving(true), SPLASH_DURATION_MS);
-		return () => clearTimeout(timeout);
-	}, []);
+
+		const leaveTimeout = setTimeout(
+			() => setIsLeaving(true),
+			SPLASH_DURATION_MS,
+		);
+		const failsafeTimeout = setTimeout(complete, SPLASH_FAILSAFE_MS);
+
+		return () => {
+			clearTimeout(leaveTimeout);
+			clearTimeout(failsafeTimeout);
+			document.body.style.overflow = previousOverflow;
+		};
+	}, [complete]);
 
 	useEffect(() => {
-		if (!isLeaving) return;
+		if (!isLeaving || hasCompletedRef.current) return;
+
+		// rAF is paused in hidden tabs — finish immediately instead of freezing.
+		if (document.visibilityState === "hidden") {
+			complete();
+			return;
+		}
 
 		const originEl = wrapperRef.current;
 		const targetEl = headerLogoRef.current;
 
 		if (!originEl || !targetEl) {
-			setIsLoading(false);
+			complete();
 			return;
 		}
 
@@ -57,11 +83,8 @@ export function SplashScreen() {
 				scale,
 				transition: { duration: FLIGHT_DURATION_S, ease: [0.65, 0, 0.35, 1] },
 			})
-			.then(() => {
-				setIsLoading(false);
-				document.body.style.overflow = "visible";
-			});
-	}, [isLeaving, controls, headerLogoRef, setIsLoading]);
+			.then(complete, complete);
+	}, [isLeaving, controls, headerLogoRef, complete]);
 
 	return (
 		<AnimatePresence>

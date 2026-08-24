@@ -16,8 +16,9 @@ export function Social() {
 				className="min-h-auto! pb-28"
 			>
 				<Motion
-					initial={{ opacity: 0, y: 40 }}
-					whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: 40 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
 					transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
 					className="mt-12 flex w-full max-w-4xl flex-col gap-6 px-4"
 				>

@@ -127,10 +127,31 @@ const CollisionMechanism = React.forwardRef<
 
 	const [beamKey, setBeamKey] = useState(0);
 	const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
+	const isVisibleRef = useRef(true);
+
+	// Skip collision checks while the beams are scrolled out of view.
+	useEffect(() => {
+		const parent = parentRef.current;
+		if (!parent) return;
+
+		const visibilityObserver = new IntersectionObserver(([entry]) => {
+			isVisibleRef.current = entry.isIntersecting;
+		});
+		visibilityObserver.observe(parent);
+
+		return () => {
+			visibilityObserver.disconnect();
+		};
+	}, [parentRef]);
 
 	useEffect(() => {
 		const checkCollision = () => {
-			if (!beamRef.current || !parentRef.current || cycleCollisionDetected) {
+			if (
+				!isVisibleRef.current ||
+				!beamRef.current ||
+				!parentRef.current ||
+				cycleCollisionDetected
+			) {
 				return;
 			}
 

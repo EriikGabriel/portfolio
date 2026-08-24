@@ -48,8 +48,9 @@ export const Lamp = ({
 			{/* Efeitos da lâmpada */}
 			<div className="pointer-events-none absolute top-20 isolate z-0 mt-36 flex h-24 w-full items-center justify-center">
 				<motion.div
-					initial={{ opacity: 0.5, width: "15rem" }}
-					whileInView={{ opacity: 1, width: "30rem" }}
+					initial={{ opacity: 0.5, scaleX: 0.5 }}
+					whileInView={{ opacity: 1, scaleX: 1 }}
+					viewport={{ once: true }}
 					transition={{
 						delay: 0.3,
 						duration: 0.8,
@@ -58,13 +59,15 @@ export const Lamp = ({
 					style={{
 						backgroundImage:
 							"conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
+						originX: 1,
 					}}
 					className="bg-gradient-conic absolute right-1/2 h-36 md:h-56 w-40 md:w-120 from-orange-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
 				/>
 
 				<motion.div
-					initial={{ opacity: 0.5, width: "15rem" }}
-					whileInView={{ opacity: 1, width: "30rem" }}
+					initial={{ opacity: 0.5, scaleX: 0.5 }}
+					whileInView={{ opacity: 1, scaleX: 1 }}
+					viewport={{ once: true }}
 					transition={{
 						delay: 0.3,
 						duration: 0.8,
@@ -73,6 +76,7 @@ export const Lamp = ({
 					style={{
 						backgroundImage:
 							"conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
+						originX: 0,
 					}}
 					className="bg-gradient-conic absolute left-1/2 h-36 md:h-56 w-40 md:w-120 from-transparent via-transparent to-orange-500 text-white [--conic-position:from_290deg_at_center_top]"
 				/>
@@ -80,8 +84,9 @@ export const Lamp = ({
 				<div className="absolute z-50 h-24 w-sm md:w-md -translate-y-1/2 rounded-full bg-orange-500 opacity-50 blur-2xl" />
 
 				<motion.div
-					initial={{ width: "15rem" }}
-					whileInView={{ width: "30rem" }}
+					initial={{ scaleX: 0.5 }}
+					whileInView={{ scaleX: 1 }}
+					viewport={{ once: true }}
 					transition={{
 						delay: 0.3,
 						duration: 0.8,

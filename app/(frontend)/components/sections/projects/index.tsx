@@ -70,8 +70,9 @@ export async function Projects({ searchParams }: ProjectsProps) {
 				subtitle="Alguns projetos desenvolvidos por mim"
 			>
 				<Motion
-					initial={{ opacity: 0, y: 40 }}
-					whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: 40 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
 					transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
 					className="mt-8 flex w-full max-w-4xl flex-col gap-6 px-4"
 				>

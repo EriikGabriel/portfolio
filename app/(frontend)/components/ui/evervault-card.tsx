@@ -4,7 +4,11 @@
 import { cn } from "@utils/cn";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+// Regenerating the scramble string is expensive (2k chars -> text node diff),
+// so cap it well below the pointermove event rate.
+const REGENERATION_INTERVAL_MS = 100;
 
 export const EvervaultCard = ({
 	children,
@@ -17,6 +21,7 @@ export const EvervaultCard = ({
 	const mouseY = useMotionValue(0);
 
 	const [randomString, setRandomString] = useState("");
+	const lastRegenerationRef = useRef(0);
 
 	const strSize = 2000;
 
@@ -30,8 +35,11 @@ export const EvervaultCard = ({
 		mouseX.set(clientX - left);
 		mouseY.set(clientY - top);
 
-		const str = generateRandomString(strSize);
-		setRandomString(str);
+		const now = performance.now();
+		if (now - lastRegenerationRef.current < REGENERATION_INTERVAL_MS) return;
+		lastRegenerationRef.current = now;
+
+		setRandomString(generateRandomString(strSize));
 	}
 
 	return (

@@ -530,15 +530,21 @@ const GlobalSpotlight: React.FC<{
 		});
 
 		// --------------------------------------------------------
-		// Mouse Move
+		// Mouse Move (coalesced to one update per animation frame)
 		// --------------------------------------------------------
 
-		const handleMouseMove = (e: MouseEvent) => {
-			if (!spotlightRef.current) {
+		const cards = Array.from(grid.querySelectorAll<HTMLElement>(".card"));
+		const section = grid.closest(".bento-section");
+
+		let frame = 0;
+		let lastEvent: MouseEvent | null = null;
+
+		const processMouseMove = () => {
+			frame = 0;
+			const e = lastEvent;
+			if (!e || !spotlightRef.current) {
 				return;
 			}
-
-			const section = grid.closest(".bento-section");
 
 			const sectionRect = section?.getBoundingClientRect();
 
@@ -551,8 +557,6 @@ const GlobalSpotlight: React.FC<{
 				e.clientX <= sectionRect.right &&
 				e.clientY >= sectionRect.top &&
 				e.clientY <= sectionRect.bottom;
-
-			const cards = grid.querySelectorAll<HTMLElement>(".card");
 
 			if (!mouseInside) {
 				opacityTo(0);
@@ -617,6 +621,13 @@ const GlobalSpotlight: React.FC<{
 			opacityTo(targetOpacity);
 		};
 
+		const handleMouseMove = (e: MouseEvent) => {
+			lastEvent = e;
+			if (!frame) {
+				frame = requestAnimationFrame(processMouseMove);
+			}
+		};
+
 		// --------------------------------------------------------
 		// Mouse Leave
 		// --------------------------------------------------------
@@ -624,7 +635,7 @@ const GlobalSpotlight: React.FC<{
 		const handleMouseLeave = () => {
 			opacityTo(0);
 
-			grid.querySelectorAll<HTMLElement>(".card").forEach((card) => {
+			cards.forEach((card) => {
 				card.style.setProperty("--glow-intensity", "0");
 			});
 		};
@@ -638,6 +649,10 @@ const GlobalSpotlight: React.FC<{
 		// --------------------------------------------------------
 
 		return () => {
+			if (frame) {
+				cancelAnimationFrame(frame);
+			}
+
 			document.removeEventListener("mousemove", handleMouseMove);
 
 			document.removeEventListener("mouseleave", handleMouseLeave);

@@ -22,8 +22,9 @@ export async function Techs() {
 				subtitle="Algumas das tecnologias que utilizo"
 			>
 				<Motion
-					initial={{ opacity: 0.5, y: 100 }}
-					whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0.5, y: 100 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
 					transition={{
 						delay: 0.3,
 						duration: 0.8,

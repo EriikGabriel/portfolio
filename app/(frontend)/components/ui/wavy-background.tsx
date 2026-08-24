@@ -29,6 +29,7 @@ export const WavyBackground = ({
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const animationIdRef = useRef<number>(0);
+	const isVisibleRef = useRef(true);
 	const [isSafari, setIsSafari] = useState(false);
 	useEffect(() => {
 		setIsSafari(
@@ -84,6 +85,11 @@ export const WavyBackground = ({
 			}
 		};
 		const render = () => {
+			// Stop the loop while offscreen; the IntersectionObserver restarts it.
+			if (!isVisibleRef.current) {
+				animationIdRef.current = 0;
+				return;
+			}
 			ctx.clearRect(0, 0, w, h);
 			ctx.globalAlpha = waveOpacity;
 			ctx.fillStyle = backgroundFill ?? "transparent";
@@ -91,12 +97,22 @@ export const WavyBackground = ({
 			drawWave(5);
 			animationIdRef.current = requestAnimationFrame(render);
 		};
+		const visibilityObserver = new IntersectionObserver(([entry]) => {
+			const wasVisible = isVisibleRef.current;
+			isVisibleRef.current = entry.isIntersecting;
+			if (isVisibleRef.current && !wasVisible && !animationIdRef.current) {
+				animationIdRef.current = requestAnimationFrame(render);
+			}
+		});
+		visibilityObserver.observe(container);
+		isVisibleRef.current = true;
 		const resizeObserver = new ResizeObserver(resizeCanvas);
 		resizeObserver.observe(container);
 		render();
 		return () => {
 			cancelAnimationFrame(animationIdRef.current);
 			resizeObserver.disconnect();
+			visibilityObserver.disconnect();
 		};
 	}, [blur, speed, colors, waveWidth, backgroundFill, waveOpacity]);
 	return (

@@ -92,8 +92,15 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 		if (!ctx) return;
 
 		let animationFrameId: number;
+		let lastFrameTime = 0;
+		// Ambient twinkle doesn't need 60fps — halve the GPU/CPU cost.
+		const FRAME_MIN_INTERVAL = 1000 / 30;
 
-		const render = () => {
+		const render = (time: number) => {
+			animationFrameId = requestAnimationFrame(render);
+			if (time - lastFrameTime < FRAME_MIN_INTERVAL) return;
+			lastFrameTime = time;
+
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			stars.forEach((star) => {
 				ctx.beginPath();
@@ -107,11 +114,9 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 						Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5);
 				}
 			});
-
-			animationFrameId = requestAnimationFrame(render);
 		};
 
-		render();
+		animationFrameId = requestAnimationFrame(render);
 
 		return () => {
 			cancelAnimationFrame(animationFrameId);
