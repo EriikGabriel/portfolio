@@ -3,10 +3,10 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { en } from "@payloadcms/translations/languages/en";
 import { pt } from "@payloadcms/translations/languages/pt";
-import path from "path";
+import path from "node:path";
 import { buildConfig } from "payload";
 import sharp from "sharp";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 import { Media, Projects, Tags, Techs, Users } from "./collections";
 import { About } from "./globals";
 

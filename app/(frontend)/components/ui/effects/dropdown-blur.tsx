@@ -114,6 +114,8 @@ export function DropdownBlur({
 				</span>
 
 				<div className="flex gap-2">
+					{/* biome-ignore lint/a11y/useSemanticElements: um <button> real
+						dentro do <button> gatilho seria HTML inválido (interativos aninhados) */}
 					<span
 						role="button"
 						tabIndex={0}
