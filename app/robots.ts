@@ -1,3 +1,4 @@
+import { siteUrl } from "@utils/site";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: ["/admin", "/api"],
 		},
-		sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || `https://erikgabriel.vercel.app/sitemap.xml`}`,
+		sitemap: `${siteUrl}/sitemap.xml`,
 	};
 }
