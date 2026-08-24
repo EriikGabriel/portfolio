@@ -3,6 +3,7 @@
 import { useLoading } from "@contexts/loading";
 import SpecularButton from "@ui/specular-button";
 import { navItems, scrollToSection } from "@utils/nav";
+import { lenisRef } from "@utils/lenis";
 import {
 	AnimatePresence,
 	motion,
@@ -49,15 +50,19 @@ export function Header() {
 	}, [scroll]);
 
 	useEffect(() => {
-		if (mobileOpen) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
-		}
+		if (!mobileOpen) return;
+
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
+
+		const lenis = lenisRef.current;
+		lenis?.stop();
+
 		return () => {
-			document.body.style.overflow = "";
+			document.body.style.overflow = previousOverflow;
+			if (!isLoading) lenis?.start();
 		};
-	}, [mobileOpen]);
+	}, [mobileOpen, isLoading]);
 
 	return (
 		<header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-4 md:pt-4">
