@@ -1,6 +1,6 @@
 "use client";
 
-import SpecularButton from "@ui/specular-button";
+import SpecularButton from "@ui/effects/specular-button";
 import { scrollToSection } from "@utils/nav";
 
 export function ProjectsButton() {

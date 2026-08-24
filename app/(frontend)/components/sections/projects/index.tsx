@@ -1,8 +1,8 @@
 import { ProjectsTransitionProvider } from "@contexts/projects-transition";
 import { findPopulated } from "@frontend/utils/payload";
 import config from "@payload-config";
-import { Lamp } from "@ui/lamp";
-import MagicBento from "@ui/magic-bento";
+import { Lamp } from "@ui/effects/lamp";
+import MagicBento from "@ui/effects/magic-bento";
 import { projectsSearchParamsCache } from "@utils/search-params";
 import type { Where } from "payload";
 import { getPayload } from "payload";

@@ -2,9 +2,9 @@
 
 import { Icon } from "@iconify/react";
 import type { Tech } from "@payload/payload-types";
-import { CardBody, CardContainer, CardItem } from "@ui/3d-card";
-import BorderGlow from "@ui/border-glow";
-import GlassSurface from "@ui/glass-surface";
+import { CardBody, CardContainer, CardItem } from "@ui/effects/3d-card";
+import BorderGlow from "@ui/effects/border-glow";
+import GlassSurface from "@ui/effects/glass-surface";
 
 interface TechCardProps {
 	tech: Tech;

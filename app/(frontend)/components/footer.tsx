@@ -3,8 +3,8 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { BackgroundBeamsWithCollision } from "@ui/background-beams-with-collision";
-import LaserFlow from "@ui/laser-flow";
+import { BackgroundBeamsWithCollision } from "@ui/effects/background-beams-with-collision";
+import LaserFlow from "@ui/effects/laser-flow";
 import { navItems, scrollToSection } from "@utils/nav";
 import { socialMedias } from "@utils/social";
 import Image from "next/image";

@@ -1,5 +1,5 @@
 import configPromise from "@payload-config";
-import { Lamp } from "@ui/lamp";
+import { Lamp } from "@ui/effects/lamp";
 import { getPayload } from "payload";
 import { Motion } from "../../motion";
 import { TechCard } from "./tech-card";

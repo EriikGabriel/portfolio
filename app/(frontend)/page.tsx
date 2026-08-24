@@ -4,8 +4,8 @@ import { Hero } from "@sections/hero";
 import { Projects } from "@sections/projects";
 import { Social } from "@sections/social";
 import { Techs } from "@sections/techs";
-import GradualBlurMemo from "@ui/gradual-blur";
-import { WavyBackground } from "@ui/wavy-background";
+import GradualBlurMemo from "@ui/effects/gradual-blur";
+import { WavyBackground } from "@ui/effects/wavy-background";
 
 interface HomeProps {
 	searchParams: Promise<Record<string, string | string[] | undefined>>;

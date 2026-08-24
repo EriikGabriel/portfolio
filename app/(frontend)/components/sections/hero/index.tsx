@@ -1,7 +1,7 @@
 import { Motion } from "@components/motion";
-import { Meteors } from "@ui/meteors";
-import { Sparkles } from "@ui/sparkles";
-import { Spotlight } from "@ui/spotlight";
+import { Meteors } from "@ui/effects/meteors";
+import { Sparkles } from "@ui/effects/sparkles";
+import { Spotlight } from "@ui/effects/spotlight";
 import { ProjectsButton } from "../../projects-button";
 
 export function Hero() {

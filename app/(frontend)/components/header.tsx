@@ -1,7 +1,7 @@
 "use client";
 
 import { useLoading } from "@contexts/loading";
-import SpecularButton from "@ui/specular-button";
+import SpecularButton from "@ui/effects/specular-button";
 import { navItems, scrollToSection } from "@utils/nav";
 import { lenisRef } from "@utils/lenis";
 import {

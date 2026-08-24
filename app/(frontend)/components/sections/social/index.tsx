@@ -1,5 +1,5 @@
-import { EncryptedText } from "@ui/encrypted-text";
-import { Lamp } from "@ui/lamp";
+import { EncryptedText } from "@ui/effects/encrypted-text";
+import { Lamp } from "@ui/effects/lamp";
 import Link from "next/link";
 import { Motion } from "../../motion";
 import { SocialMedias } from "./social-medias";

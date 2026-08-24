@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import { GlareCard } from "@ui/glare-card";
-import GlassSurface from "@ui/glass-surface";
+import { GlareCard } from "@ui/effects/glare-card";
+import GlassSurface from "@ui/effects/glass-surface";
 
 interface SocialCardProps {
 	icon: string;

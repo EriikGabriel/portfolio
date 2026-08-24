@@ -1,7 +1,7 @@
 import { Motion } from "@components/motion";
 import { findPopulatedGlobal } from "@frontend/utils/payload";
-import { EvervaultCard, Icon } from "@ui/evervault-card";
-import { Lamp } from "@ui/lamp";
+import { EvervaultCard, Icon } from "@ui/effects/evervault-card";
+import { Lamp } from "@ui/effects/lamp";
 import Image from "next/image";
 
 export async function About() {

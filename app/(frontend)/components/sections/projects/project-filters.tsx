@@ -1,5 +1,5 @@
 import type { Project } from "@payload/payload-types";
-import type { DropdownBlurItem } from "@ui/dropdown-blur";
+import type { DropdownBlurItem } from "@ui/effects/dropdown-blur";
 import type { Populated } from "@utils/payload";
 
 export const OTHER_FILTER_VALUE = "other";

@@ -1,8 +1,8 @@
 "use client";
 
 import { useProjectsTransition } from "@contexts/projects-transition";
-import { DropdownBlur, type DropdownBlurItem } from "@ui/dropdown-blur";
-import { InputFocusBlur } from "@ui/input-focus-blur";
+import { DropdownBlur, type DropdownBlurItem } from "@ui/effects/dropdown-blur";
+import { InputFocusBlur } from "@ui/effects/input-focus-blur";
 import { projectsSearchParams } from "@utils/search-params";
 import { FilterIcon } from "lucide-react";
 import { useQueryStates } from "nuqs";

@@ -3,7 +3,7 @@
 import type { Populated } from "@frontend/utils/payload";
 import { Icon } from "@iconify/react";
 import type { Project } from "@payload/payload-types";
-import GlassSurface from "@ui/glass-surface";
+import GlassSurface from "@ui/effects/glass-surface";
 import Image from "next/image";
 import { ProjectTags } from "./project-tags";
 

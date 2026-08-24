@@ -1,4 +1,4 @@
-import type { DropdownBlurItem } from "@ui/dropdown-blur";
+import type { DropdownBlurItem } from "@ui/effects/dropdown-blur";
 import {
 	CpuIcon,
 	Gamepad2Icon,

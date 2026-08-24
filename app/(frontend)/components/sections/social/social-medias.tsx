@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatedTooltip } from "@ui/animated-tooltip";
-import { LinkPreview } from "@ui/link-preview";
+import { AnimatedTooltip } from "@ui/effects/animated-tooltip";
+import { LinkPreview } from "@ui/effects/link-preview";
 import { socialMedias } from "@utils/social";
 import { useState } from "react";
 import { SocialCard } from "./social-card";
