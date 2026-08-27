@@ -1,4 +1,5 @@
 import type { GlobalConfig } from "payload";
+import { isAdminOrSelf } from "../access/is-admin-or-self";
 
 export const About: GlobalConfig = {
 	slug: "about",
@@ -6,7 +7,10 @@ export const About: GlobalConfig = {
 	admin: {
 		group: "Seções",
 	},
-
+	access: {
+		read: isAdminOrSelf,
+		update: isAdminOrSelf,
+	},
 	fields: [
 		{
 			name: "image",
