@@ -38,3 +38,7 @@ next-env.d.ts
 
 # Payload CMS
 public/media
+
+# IA
+.codegraph
+.omo

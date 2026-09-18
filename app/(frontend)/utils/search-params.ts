@@ -1,7 +1,8 @@
 import { createSearchParamsCache, parseAsString } from "nuqs/server";
 
 export const projectsSearchParams = {
-	search: parseAsString,
+	page: parseAsString.withDefault("1"),
+	search: parseAsString.withDefault(""),
 	filter: parseAsString,
 };
 

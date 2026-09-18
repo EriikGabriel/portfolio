@@ -1,4 +1,3 @@
-import { ProjectsTransitionProvider } from "@contexts/projects-transition";
 import { findPopulated } from "@frontend/utils/payload";
 import config from "@payload-config";
 import { Lamp } from "@ui/effects/lamp";
@@ -6,20 +5,23 @@ import MagicBento from "@ui/effects/magic-bento";
 import { projectsSearchParamsCache } from "@utils/search-params";
 import type { Where } from "payload";
 import { getPayload } from "payload";
-import { Motion } from "../../motion";
 import { dropdownItems } from "./project-dropdown";
 import { buildTagLookup, filterProjectsByTag } from "./project-filters";
 import { ProjectForm } from "./project-form";
 import { ProjectGrid } from "./project-grid";
+import { ProjectsTransitionProvider } from "@contexts/projects-transition";
+import { ProjectControls } from "./project-controls";
+import { Motion } from "../../motion";
 
 interface ProjectsProps {
 	searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export async function Projects({ searchParams }: ProjectsProps) {
-	const { search, filter } = projectsSearchParamsCache.parse(
+	const { search, filter, page } = projectsSearchParamsCache.parse(
 		await searchParams,
 	);
+	const pageNum = Number(page);
 
 	const where: Where = {
 		enabled: { equals: true },
@@ -33,11 +35,16 @@ export async function Projects({ searchParams }: ProjectsProps) {
 	const projects = await findPopulated({
 		collection: "projects",
 		depth: 1,
-		limit: filter ? 0 : 5,
 		where,
 	});
 
+	// Determine page size based on number of highlighted projects (featured)
+	const highlightCount = projects.docs.filter((p) => p.featured).length;
+	const pageSize = Math.max(3, 6 - Math.min(highlightCount, 3));
+	const skip = (pageNum - 1) * pageSize;
+
 	let filteredDocs = projects.docs;
+	let totalDocs = projects.totalDocs;
 
 	if (filter) {
 		const payload = await getPayload({ config });
@@ -54,10 +61,11 @@ export async function Projects({ searchParams }: ProjectsProps) {
 		});
 
 		const lookup = buildTagLookup(dropdownItems, knownTags.docs);
-		filteredDocs = filterProjectsByTag(projects.docs, filter, lookup).slice(
-			0,
-			5,
-		);
+		const allFiltered = filterProjectsByTag(projects.docs, filter, lookup);
+		totalDocs = allFiltered.length;
+		filteredDocs = allFiltered.slice(skip, skip + pageSize);
+	} else {
+		filteredDocs = projects.docs.slice(skip, skip + pageSize);
 	}
 
 	return (
@@ -70,9 +78,9 @@ export async function Projects({ searchParams }: ProjectsProps) {
 				subtitle="Alguns projetos desenvolvidos por mim"
 			>
 				<Motion
-				initial={{ opacity: 0, y: 40 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
+					initial={{ opacity: 0, y: 40 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
 					transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
 					className="mt-8 flex w-full max-w-4xl flex-col gap-6 px-4"
 				>
@@ -91,6 +99,7 @@ export async function Projects({ searchParams }: ProjectsProps) {
 								enableBorderGlow
 								textAutoHide
 							/>
+							<ProjectControls totalDocs={totalDocs} pageSize={pageSize} />
 						</ProjectGrid>
 					</ProjectsTransitionProvider>
 				</Motion>
